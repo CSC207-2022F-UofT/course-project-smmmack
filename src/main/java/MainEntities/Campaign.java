@@ -4,6 +4,7 @@ import Cards.Card;
 import Tiles.Tile;
 
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,8 +88,8 @@ public class Campaign {
         return decks;
     }
 
-    public List<Player> getPlayers() {
-        return players;
+    public ArrayList<Player> getPlayers() {
+        return new ArrayList<>(players);
     }
 
     public int getCurrPlayerIndex() {

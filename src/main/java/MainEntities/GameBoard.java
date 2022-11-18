@@ -71,7 +71,7 @@ public class GameBoard {
 
 
     public Tile[] getTiles() {
-        return tiles;
+        return tiles.clone();
     }
 
     /**

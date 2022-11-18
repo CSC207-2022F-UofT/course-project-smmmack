@@ -115,4 +115,36 @@ public class Player {
     public void loseCash(int amount) {
         cash -= amount;
     }
+
+    /**
+     * Add a property to the list of owned properties of the player. <br>
+     * CAUTION: this does NOT keep the consistency between the owner and the owned properties.
+     * @param property the property to be added to the list
+     */
+    public void addProperty(Property property) {
+        this.properties.add(property);
+    }
+
+    /**
+     * Remove a property from the list of owned properties of the player. <br>
+     * CAUTION: this does NOT keep the consistency between the owner and the owned properties.
+     * @param property the property to be removed from the list
+     */
+    public void removeProperty(Property property) {
+        this.properties.remove(property);
+    }
+
+    /**
+     * Adds this property to the owner's list of owned properties and set the ownership of the property to this player.
+     * If the property already has a owner, remove the ownership. This keeps the consistency between the owner and
+     * owned properties.
+     * @param property the property to be assigned
+     */
+    public void assignOwnership(Property property) {
+        if (property.getOwner() != Player.OWNERLESS) {
+            property.removeOwnership();
+        }
+        property.setOwner(this);
+        this.addProperty(property);
+    }
 }
