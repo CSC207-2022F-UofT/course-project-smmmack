@@ -1,17 +1,15 @@
 package Advance;
 
 public class AdvanceInputData {
-    String confirm;
+    boolean confirmRoll;
+    int diceSum;
 
-    public AdvanceInputData(String decision) {
-        this.confirm = decision;
+    public AdvanceInputData(int diceSum) {
+        this.confirmRoll = true;
+        this.diceSum = diceSum;
     }
 
-    public String getConfirm() {
-        return confirm;
-    }
-
-    public void setConfirm(String confirm) {
-        this.confirm = confirm;
+    public boolean isConfirmRoll() {
+        return confirmRoll;
     }
 }
