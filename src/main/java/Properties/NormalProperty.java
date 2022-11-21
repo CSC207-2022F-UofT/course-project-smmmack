@@ -116,6 +116,9 @@ public class NormalProperty extends Property {
     //other getters
     @Override
     public int getRent(Player target) {
+        if (houseLevel == 0 && getOwner().ownsColorGroupOf(this)) {
+            return rentList[0] * 2;
+        }
         return rentList[houseLevel];
     }
 

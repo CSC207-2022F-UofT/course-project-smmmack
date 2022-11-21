@@ -97,4 +97,32 @@ public abstract class Property {
     public int getLiftMortgagePrice() {
         return (int)(getMortgageValue() * 1.1);
     }
+
+    public boolean isOwnerless() {
+        return this.owner == Player.OWNERLESS;
+    }
+
+    //other setters
+
+    /**
+     * Remove any ownership of this property. This keeps the consistency between the owner and owned properties.
+     */
+    public void removeOwnership() {
+        if (this.isOwnerless()) {
+            this.owner.removeProperty(this);
+        }
+        this.owner = Player.OWNERLESS;
+    }
+
+    /**
+     * Adds this property to the owner's list of owned properties and set the ownership of this property to the player.
+     * If the property already has an owner, remove the ownership. This keeps the consistency between the owner and
+     * owned properties.
+     * @param owner The player that is going to own this property
+     */
+    public void assignOwnership(Player owner) {
+        owner.assignOwnership(this);
+    }
+
+
 }
