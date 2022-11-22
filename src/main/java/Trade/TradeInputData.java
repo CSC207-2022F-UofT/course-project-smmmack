@@ -5,6 +5,7 @@ import Properties.NormalProperty;
 import java.util.ArrayList;
 
 public class TradeInputData {
+    //change to private`
     boolean confirmTrade;
     Player player1;
 

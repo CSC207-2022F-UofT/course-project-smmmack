@@ -2,6 +2,7 @@ package Trade;
 import java.io.IOException;
 
 public interface TradeOutputBoundary {
+    //change to private`
 
     /**
      * Prints the results of the Trade to user.

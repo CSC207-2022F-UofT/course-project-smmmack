@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 
 public class TradeController {
+    //change to private`
 
     final TradeInputBoundary input;
     final Player player1;

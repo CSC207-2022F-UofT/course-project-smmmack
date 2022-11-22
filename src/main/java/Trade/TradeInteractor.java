@@ -12,6 +12,7 @@ import java.util.List;
  * TradeInteractor is a class that handles the trade between two players.
  */
 public class TradeInteractor implements TradeInputBoundary {
+    //change to private`
     final TradeOutputBoundary output;
     final Campaign campaign;
     Player player1;

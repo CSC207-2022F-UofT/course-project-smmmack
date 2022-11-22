@@ -1,7 +1,7 @@
 package Trade;
 
 public class TradePresenter implements TradeOutputBoundary{
-
+    //change
     public TradeOutputData prepareSuccessView(String results) {
         return null;
     }

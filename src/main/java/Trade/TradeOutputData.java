@@ -1,6 +1,7 @@
 package Trade;
 
 public class TradeOutputData {
+    //change to private`
     Boolean tradeSuccess;
     // String playerLocation;
 
