@@ -5,7 +5,7 @@ public class TradeOutputData {
     // String playerLocation;
 
     public TradeOutputData(Boolean tradeSuccess) {
-        this.tradeSuccess = tradeSuccess;
+         this.tradeSuccess = tradeSuccess;
     }
 
     //Getter and Setter Methods
