@@ -3,7 +3,7 @@ package Cards;
 /**
  * GainCashCard is a type of Card. When a player draws it, he gains a specific amount of cash.
  */
-public class GainCashCard extends Card {
+public class  GainCashCard extends Card {
     /**
      * The amount of cash to be gained. It should be a positive value.
      */
