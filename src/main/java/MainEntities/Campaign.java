@@ -3,6 +3,7 @@ package MainEntities;
 import Cards.Card;
 import Tiles.Tile;
 
+import java.io.Serializable;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +14,7 @@ import java.util.Map;
  * Campaign class includes all information about a game: its players, board, round count, and the current player. All
  * use case interactors should have a reference of the corresponding campaign.
  */
-public class Campaign {
+public class Campaign implements Serializable {
     private GameBoard board;
 
     /**

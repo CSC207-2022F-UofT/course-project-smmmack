@@ -3,13 +3,14 @@ package MainEntities;
 import Properties.NormalProperty;
 import Properties.Property;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 
 /**
  * Player contains every information about a player, including the name, cash, location, and owned properties.
  */
-public class Player {
+public class Player implements Serializable {
     public static final Player OWNERLESS = null;
     public static final Player BANK = null;
 

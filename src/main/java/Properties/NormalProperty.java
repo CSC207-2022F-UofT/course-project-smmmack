@@ -2,6 +2,7 @@ package Properties;
 
 import MainEntities.Player;
 
+import java.io.Serializable;
 import java.security.InvalidParameterException;
 
 /**
@@ -10,7 +11,7 @@ import java.security.InvalidParameterException;
  * When a player owns all properties in one color group, the rent is doubled if nothing is built on this property. Also,
  * the player may only build houses on the property if he owns all properties in the same group.
  */
-public class NormalProperty extends Property {
+public class NormalProperty extends Property implements Serializable {
     public static final int MAX_HOUSE_LEVEL = 5;
     public static final int MIN_HOUSE_LEVEL = 0;
     /**
