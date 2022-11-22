@@ -74,11 +74,14 @@ public class TradeInteractor implements TradeInputBoundary {
     }
 
 
-        @Override
-        public TradeOutputData create (TradeInputData input) throws Exception {
-            Player player1 = campaign.getCurrentPlayer();
-            if (player1.getCash() > input.player1Cash) {
-                throw new Exception("Player 1 does not have enough cash");
-            }
+    @Override
+    public TradeOutputData create(TradeInputData input) throws Exception {
+        Player player1 = campaign.getCurrentPlayer();
+        if (player1.getCash() > input.player1Cash) {
+            throw new Exception("Player 1 does not have enough cash");
         }
+        return null;
     }
+}
+
+
