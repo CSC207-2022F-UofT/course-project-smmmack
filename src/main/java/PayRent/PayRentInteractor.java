@@ -1,8 +1,5 @@
 package PayRent;
 
-import MainEntities.Player;
-import Properties.Property;
-
 public class PayRentInteractor implements PayRentInputBoundary{
 
     final PayRentOutputBoundary payRentOutputBoundary;
@@ -13,31 +10,6 @@ public class PayRentInteractor implements PayRentInputBoundary{
         this.payRentPresenter = payRentPresenter;
     }
 
-    /**
-     * return false if the property has no owner, the property is mortgaged or if the rentee does not have enough money
-     * to pay the rent and return true if paying rent is successful
-
-     * @param rentee player who landed on a property
-     * @param propertyLandedOn property that the player landed on
-     * @return false if rentee did not pay rent money and true if rentee paid the rent money
-     */
-    public boolean payRentMoney(Player rentee, Property propertyLandedOn){
-
-
-        // need to ask how getRent(Player) is implemented and based on that, I might need to change this
-        if (propertyLandedOn.getOwner() == Player.OWNERLESS ||
-                rentee.getCash() < propertyLandedOn.getRent(rentee)){
-            return false;
-        }
-
-        if (propertyLandedOn.isMortgaged()){
-            return true;
-        }
-
-        rentee.setCash(rentee.getCash() - propertyLandedOn.getRent(rentee));
-        return true;
-
-    }
 
     /**
      * For prepareFailView:
@@ -63,6 +35,8 @@ public class PayRentInteractor implements PayRentInputBoundary{
                     "No rent is paid as this property is mortgaged.");
         }
 
+        payRentInputData.getRentee().setCash(payRentInputData.getRentee().getCash() -
+                payRentInputData.getPropertyLandedOn().getRent(payRentInputData.getRentee()));
         return payRentOutputBoundary.prepareSuccessView(payRentInputData.getRentee() + " paid " +
                 payRentInputData.getRentMoney() + "of rent money to " + payRentInputData.getRenter());
     }
