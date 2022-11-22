@@ -35,4 +35,24 @@ public class SaveCampaignInteractor implements SaveCampaignInputBoundary {
             outputBoundary.performAction(outputData);
         }
     }
+
+    //getters
+
+    public Campaign getCampaign() {
+        return campaign;
+    }
+
+    public SaveCampaignOutputBoundary getOutputBoundary() {
+        return outputBoundary;
+    }
+
+    //setters
+
+    public void setCampaign(Campaign campaign) {
+        this.campaign = campaign;
+    }
+
+    public void setOutputBoundary(SaveCampaignOutputBoundary outputBoundary) {
+        this.outputBoundary = outputBoundary;
+    }
 }
