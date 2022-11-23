@@ -11,6 +11,8 @@ public interface TradeOutputBoundary {
      */
     TradeOutputData prepareSuccessView(Boolean results);
 
+    TradeOutputData prepareSuccessView(boolean message);
+
     /**
      * Prompt the user to enter a valid input.
      * @param inputAgain Message to be displayed to user.
