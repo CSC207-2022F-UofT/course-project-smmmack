@@ -8,7 +8,7 @@ public class SaveCampaignController {
     }
 
     public void performAction(String command) {
-        String[] words = command.split("\s");
+        String[] words = command.split("\s+");
         String address = words[1];
         SaveCampaignInputData inputData = new SaveCampaignInputData(address);
         inputBoundary.performAction(inputData);
