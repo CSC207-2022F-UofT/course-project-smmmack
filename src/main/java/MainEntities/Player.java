@@ -107,6 +107,20 @@ public class Player implements Serializable {
         }
     }
 
+    /**
+     * @return A boolean indicating whether the player is bank-broke. The player is bank-broke if all his/her cash and
+     * mortgage value of unmortgaged properties combined is less than or equal to 0.
+     */
+    public boolean isBroke() {
+        int totalWealth = this.cash;
+        for (Property property: this.properties) {
+            if (! property.isMortgaged()) {
+                totalWealth += property.getMortgageValue();
+            }
+        }
+        return totalWealth > 0;
+    }
+
     //other setters
 
     public void gainCash(int amount) {
