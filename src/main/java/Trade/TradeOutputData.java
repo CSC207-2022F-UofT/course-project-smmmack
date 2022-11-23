@@ -10,7 +10,7 @@ public class TradeOutputData {
     }
 
     //Getter and Setter Methods
-    public Boolean getTradeSuccess() {
+    public boolean getTradeSuccess() {
         return tradeSuccess;
     }
 

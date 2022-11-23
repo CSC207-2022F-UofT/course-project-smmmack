@@ -9,7 +9,7 @@ public interface TradeOutputBoundary {
      * @param results Message to be displayed to user.
      * @return The result of the trade if successful
      */
-    TradeOutputData prepareSuccessView(String results);
+    TradeOutputData prepareSuccessView(Boolean results);
 
     /**
      * Prompt the user to enter a valid input.
