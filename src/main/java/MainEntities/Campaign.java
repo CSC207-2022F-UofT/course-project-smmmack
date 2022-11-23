@@ -194,6 +194,20 @@ public class Campaign implements Serializable {
         return getDeck(type).drawCard();
     }
 
+    /**
+     * @return A boolean indicating whether the game is over or not. The game is over if there is only one or fewer
+     * players left that are not bank-broke.
+     */
+    public boolean isGameOver() {
+        int playerNum = this.players.size();
+        for (Player player: this.players) {
+            if (player.isBroke()) {
+                playerNum --;
+            }
+        }
+        return playerNum > 1;
+    }
+
     //other setters
 
     /**
