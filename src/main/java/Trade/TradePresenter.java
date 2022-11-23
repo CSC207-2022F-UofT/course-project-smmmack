@@ -1,8 +1,13 @@
 package Trade;
 
 public class TradePresenter implements TradeOutputBoundary{
-    //change
-    public TradeOutputData prepareSuccessView(String results) {
+    @Override
+    public TradeOutputData prepareSuccessView(Boolean results) {
+        return null;
+    }
+
+    @Override
+    public TradeOutputData prepareSuccessView(boolean message) {
         return null;
     }
     public TradeOutputData prepareFailureView(String message){

@@ -11,7 +11,8 @@ import java.util.List;
 /**
  * TradeInteractor is a class that handles the trade between two players.
  */
-public class TradeInteractor implements TradeInputBoundary {
+public class
+TradeInteractor implements TradeInputBoundary {
     final TradeOutputBoundary output;
     final Campaign campaign;
     Player player1;
@@ -39,7 +40,8 @@ public class TradeInteractor implements TradeInputBoundary {
      * @param player1Properties, player2Properties, player1Cash, player2Cash the properties and cash that the players are trading
      * @return void
      */
-    public void trade(ArrayList<NormalProperty> player1Properties, ArrayList<NormalProperty> player2Properties, int player1Cash, int player2Cash) {
+    public void trade(ArrayList<NormalProperty> player1Properties, ArrayList<NormalProperty> player2Properties,
+                      int player1Cash, int player2Cash) {
         player1.setCash(player1.getCash() - player1Cash + player2Cash);
         player2.setCash(player2.getCash() - player2Cash + player1Cash);
         for (NormalProperty property : player1Properties) {
