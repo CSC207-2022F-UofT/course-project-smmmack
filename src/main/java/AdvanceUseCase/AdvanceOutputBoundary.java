@@ -1,5 +1,4 @@
-package Advance;
-import java.io.IOException;
+package AdvanceUseCase;
 
 public interface AdvanceOutputBoundary {
 
@@ -16,5 +15,7 @@ public interface AdvanceOutputBoundary {
      * @return a message asking users to input a valid String.
      */
     AdvanceOutputData prepareFailureView(String inputAgain);
+
+    void create(AdvanceOutputData outputData);
 
 }

@@ -1,4 +1,4 @@
-package Advance;
+package AdvanceUseCase;
 
 public class AdvanceController {
 
@@ -10,9 +10,9 @@ public class AdvanceController {
         this.diceSum = diceSum;
     }
 
-    AdvanceOutputData create() throws Exception {
+    void create() throws Exception {
         AdvanceInputData inputData = new AdvanceInputData(diceSum);
-        return input.create(inputData);
+        input.create(inputData);
     }
 
 

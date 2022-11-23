@@ -1,4 +1,4 @@
-package Advance;
+package AdvanceUseCase;
 
 public class AdvancePresenter implements AdvanceOutputBoundary{
 
@@ -7,6 +7,10 @@ public class AdvancePresenter implements AdvanceOutputBoundary{
     }
     public AdvanceOutputData prepareFailureView(String message){
         return null;
+    }
+
+    //Placeholder
+    public void create(AdvanceOutputData outputData){
     }
 
 }

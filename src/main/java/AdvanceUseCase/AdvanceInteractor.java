@@ -1,9 +1,7 @@
-package Advance;
+package AdvanceUseCase;
 import MainEntities.Player;
 import MainEntities.GameBoard;
-import Tiles.DrawCardTile;
-import Tiles.GoToJailTile;
-import Tiles.Tile;
+import Tiles.*;
 
 public class AdvanceInteractor implements AdvanceInputBoundary{
     /*
@@ -30,8 +28,17 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
      * @param diceSum the result of two dice rolls
      */
     public void advancePlayer(int diceSum) throws Exception {
-        player.setLocation(diceSum + player.getLocation());
-        performTileAction(player.getLocation());
+        int tilesMoved = diceSum + player.getLocation();
+        // If the player will move past start, add $200 to the player's cash
+        if (tilesMoved > board.getSize()){
+            player.setLocation(board.getSize() - tilesMoved);
+            player.gainCash(200);
+            performTileAction(player.getLocation());
+        }
+        else {
+            player.setLocation(diceSum + player.getLocation());
+            performTileAction(player.getLocation());
+        }
     }
 
     /**
@@ -41,20 +48,20 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
     public void performTileAction(int tileIndex) throws Exception {
         Tile tile = this.board.getTileAt(tileIndex);
 
-        if (tile.getClass().getName().equals("DrawCardTile")){
+        if (tile instanceof DrawCardTile){
             // Calls on DrawCard use case after it is finished.
-        } else if (tile.getClass().getName().equals("GoToJailTile")) {
+        } else if (tile instanceof GoToJailTile) {
             // Calls on GoToJail use case after it is finished.
-        } else if (tile.getClass().getName().equals("JailTile")) {
+        } else if (tile instanceof JailTile) {
             // Do nothing as the tile has no user actions.
             return;
-        } else if (tile.getClass().getName().equals("ParkingTile")) {
+        } else if (tile instanceof ParkingTile) {
             // Do nothing as the tile has no user actions.
             return;
-        } else if (tile.getClass().getName().equals("PropertyTile")) {
+        } else if (tile instanceof PropertyTile) {
             // Calls on BuyProperty and PayRent use case after it is finished.
             // What happens if the property is owned? If it isn't?
-        } else if (tile.getClass().getName().equals("StartTile")) {
+        } else if (tile instanceof StartTile) {
             // Calls on Start Tile use case? Will need to be discussed.
         }
         else{
@@ -63,13 +70,17 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
     }
 
     @Override
-    public AdvanceOutputData create(AdvanceInputData input) throws Exception {
+    public void create(AdvanceInputData input) throws Exception {
         if (input.isConfirmRoll()) {
             advancePlayer(input.diceSum);
-            return output.prepareSuccessView("You have landed on this tile: " + player.getLocation());
+            AdvanceOutputData outputMessage =
+                    new AdvanceOutputData("You have landed on this tile: " + player.getLocation());
+            output.create(outputMessage);
         }
         else {
-            return output.prepareFailureView("Please press any key to roll dice.");
+            AdvanceOutputData outputMessage =
+                    new AdvanceOutputData("Please press any key to roll dice.");
+            output.create(outputMessage);
         }
     }
 }

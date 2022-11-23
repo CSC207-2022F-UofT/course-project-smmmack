@@ -1,4 +1,4 @@
-package Advance;
+package AdvanceUseCase;
 
 public class AdvanceInputData {
     boolean confirmRoll;
