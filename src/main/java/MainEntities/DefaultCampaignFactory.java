@@ -42,7 +42,6 @@ public class DefaultCampaignFactory {
 
         // Call Campaign Constructor
         return new Campaign(board, playerList, decks);
-
     }
 
     public Deck createCChestDeck() {
@@ -145,8 +144,8 @@ public class DefaultCampaignFactory {
         //Assign all property tiles, using parallel lists to store the corresponding tile parameters
         int propertyNum = 22;
         String[] nameList = new String[] {
-                "Land1",  "Land2",  "Land3",  "Land4", "Land5",
-                "Land6",  "Land7",  "Land8", "Land9",  "Land10", "Land11",
+                "Land1", "Land2", "Land3", "Land4", "Land5",
+                "Land6", "Land7", "Land8", "Land9", "Land10", "Land11",
                 "Land12", "Land13", "Land14", "Land15", "Land16", "Land17",
                 "Land18", "Land19", "Land20", "Land21", "Land22"
         };
