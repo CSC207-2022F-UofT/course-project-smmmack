@@ -77,9 +77,9 @@ public class NormalProperty extends Property implements Serializable {
     }
 
     public void setRentList(int[] rentList) {
-        if (rentList.length != MAX_HOUSE_LEVEL - MIN_HOUSE_LEVEL) {
+        if (rentList.length != MAX_HOUSE_LEVEL - MIN_HOUSE_LEVEL + 1) {
             throw new InvalidParameterException(
-                    "The length of rentList must be " + (MAX_HOUSE_LEVEL - MIN_HOUSE_LEVEL)
+                    "The length of rentList must be " + (MAX_HOUSE_LEVEL - MIN_HOUSE_LEVEL + 1)
             );
         }
         this.rentList = rentList.clone();
