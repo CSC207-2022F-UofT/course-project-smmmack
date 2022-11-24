@@ -7,15 +7,17 @@ import Tiles.*;
 import java.util.ArrayList;
 
 public class DefaultCampaignFactory implements CampaignFactory {
-
     private int playerNumber;
+    public static final int MIN_PLAYER_NUM = 2;
+    public static final int MAX_PLAYER_NUM = 8;
 
     /**
-     * Construct a DefaultCampaignFactory instance with designated player number.
+     * Construct a DefaultCampaignFactory instance with designated player number. The player number should be in range
+     * [MIN_PLAYER_NUM, MAX_PLAYER_NUM]
      * @param playerNumber the number of players in the campaign.
      */
     public DefaultCampaignFactory(int playerNumber) {
-        this.playerNumber = playerNumber;
+        setPlayerNumber(playerNumber);
     }
 
     //getters
@@ -26,7 +28,15 @@ public class DefaultCampaignFactory implements CampaignFactory {
 
     //setters
 
+    /**
+     * Set the number of players in the campaign, the player number has to be in range [MIN_PLAYER_NUM, MAX_PLAYER_NUM]
+     * @param playerNumber the number of players
+     */
     public void setPlayerNumber(int playerNumber) {
+        if (playerNumber < 2 || playerNumber > 8) {
+            throw new IllegalArgumentException("player number in DefaultCampaignFactory must be in range " +
+                    "[" + MIN_PLAYER_NUM + ", " + MAX_PLAYER_NUM + "]");
+        }
         this.playerNumber = playerNumber;
     }
 
@@ -237,12 +247,14 @@ public class DefaultCampaignFactory implements CampaignFactory {
                 17, 18, 19, 21, 22, 23,
                 25, 26, 27, 29, 31
         };
+        // Make properties
+        NormalProperty[] propertyList = new NormalProperty[propertyNum];
         for (int i = 0; i < propertyNum; i ++) {
             int[] rentList = new int[]{
                     rent0List[i], rent1List[i], rent2List[i],
                     rent3List[i], rent4List[i], rent5List[i]
             };
-            NormalProperty property = new NormalProperty(
+            propertyList[i] = new NormalProperty(
                     rentList,
                     nameList[i],
                     abbreviationList[i],
@@ -250,8 +262,23 @@ public class DefaultCampaignFactory implements CampaignFactory {
                     housePriceList[i],
                     hotelPriceList[i]
             );
-            tiles[indexList[i]] = new PropertyTile(property);
         }
+
+        // Put properties in Color Groups
+        NormalProperty.groupProperties(propertyList[0], propertyList[1]);
+        NormalProperty.groupProperties(propertyList[2], propertyList[3], propertyList[4]);
+        NormalProperty.groupProperties(propertyList[5], propertyList[6], propertyList[7]);
+        NormalProperty.groupProperties(propertyList[8], propertyList[9], propertyList[10]);
+        NormalProperty.groupProperties(propertyList[11], propertyList[12], propertyList[13]);
+        NormalProperty.groupProperties(propertyList[14], propertyList[15], propertyList[16]);
+        NormalProperty.groupProperties(propertyList[17], propertyList[18], propertyList[19]);
+        NormalProperty.groupProperties(propertyList[20], propertyList[21]);
+
+        //Assign properties to property tiles
+        for (int i = 0; i < propertyNum; i ++) {
+            tiles[indexList[i]] = new PropertyTile(propertyList[i]);
+        }
+
         return tiles;
     }
 }
