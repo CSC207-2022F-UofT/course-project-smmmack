@@ -33,7 +33,7 @@ public class DefaultCampaignFactory implements CampaignFactory {
      * @param playerNumber the number of players
      */
     public void setPlayerNumber(int playerNumber) {
-        if (playerNumber < 2 || playerNumber > 8) {
+        if (playerNumber < MIN_PLAYER_NUM || playerNumber > MAX_PLAYER_NUM) {
             throw new IllegalArgumentException("player number in DefaultCampaignFactory must be in range " +
                     "[" + MIN_PLAYER_NUM + ", " + MAX_PLAYER_NUM + "]");
         }
