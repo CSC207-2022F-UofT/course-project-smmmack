@@ -1,23 +1,29 @@
 package SaveCampaignUseCase;
 
 import MainEntities.Campaign;
+import MainEntities.CampaignAccess;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+/**
+ * This use case saves a campaign to a .ser file as an object. You may only save campaigns at the beginning of turns.
+ * TODO: might use another input format: the user might input only a file name instead of the full address.
+ */
 public class SaveCampaignInteractor implements SaveCampaignInputBoundary {
-    private Campaign campaign;
+    private CampaignAccess campaignAccess;
     private SaveCampaignOutputBoundary outputBoundary;
 
-    public SaveCampaignInteractor(Campaign campaign, SaveCampaignOutputBoundary outputBoundary) {
-        this.campaign = campaign;
+    public SaveCampaignInteractor(CampaignAccess campaignAccess, SaveCampaignOutputBoundary outputBoundary) {
+        this.campaignAccess = campaignAccess;
         this.outputBoundary = outputBoundary;
     }
 
     @Override
     public void performAction(SaveCampaignInputData inputData) {
         String address = inputData.getAddress();
+        Campaign campaign = campaignAccess.getCampaign();
         //Save the campaign to the given address as a serializable object
         try {
             FileOutputStream fileStream = new FileOutputStream(address);
@@ -38,8 +44,8 @@ public class SaveCampaignInteractor implements SaveCampaignInputBoundary {
 
     //getters
 
-    public Campaign getCampaign() {
-        return campaign;
+    public CampaignAccess getCampaignAccess() {
+        return campaignAccess;
     }
 
     public SaveCampaignOutputBoundary getOutputBoundary() {
@@ -48,11 +54,23 @@ public class SaveCampaignInteractor implements SaveCampaignInputBoundary {
 
     //setters
 
-    public void setCampaign(Campaign campaign) {
-        this.campaign = campaign;
+    public void setCampaignAccess(CampaignAccess campaignAccess) {
+        this.campaignAccess = campaignAccess;
     }
 
     public void setOutputBoundary(SaveCampaignOutputBoundary outputBoundary) {
         this.outputBoundary = outputBoundary;
+    }
+
+    //other getters
+
+    public Campaign getCampaign() {
+        return campaignAccess.getCampaign();
+    }
+
+    //other setters
+
+    public void setCampaign(Campaign campaign) {
+        this.campaignAccess.setCampaign(campaign);
     }
 }

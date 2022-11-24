@@ -1,26 +1,27 @@
 package StartCampaignUseCase;
 
 import MainEntities.Campaign;
+import MainEntities.CampaignAccess;
 
 public class StartCampaignInteractor implements StartCampaignInputBoundary {
 
-    private Campaign campaign;
+    private CampaignAccess campaignAccess;
     private StartCampaignOutputBoundary outputBoundary;
 
-    public StartCampaignInteractor(Campaign campaign, StartCampaignOutputBoundary outputBoundary) {
-        this.campaign = campaign;
+    public StartCampaignInteractor(CampaignAccess campaignAccess, StartCampaignOutputBoundary outputBoundary) {
+        this.campaignAccess = campaignAccess;
         this.outputBoundary = outputBoundary;
     }
 
     @Override
     public void performAction(StartCampaignInputData inputData) {
-
+        //to be implemented
     }
 
     //getter
 
-    public Campaign getCampaign() {
-        return campaign;
+    public CampaignAccess getCampaignAccess() {
+        return campaignAccess;
     }
 
     public StartCampaignOutputBoundary getOutputBoundary() {
@@ -29,11 +30,23 @@ public class StartCampaignInteractor implements StartCampaignInputBoundary {
 
     //setters
 
-    public void setCampaign(Campaign campaign) {
-        this.campaign = campaign;
+    public void setCampaignAccess(CampaignAccess campaignAccess) {
+        this.campaignAccess = campaignAccess;
     }
 
     public void setOutputBoundary(StartCampaignOutputBoundary outputBoundary) {
         this.outputBoundary = outputBoundary;
+    }
+
+    //other getters
+
+    public Campaign getCampaign() {
+        return campaignAccess.getCampaign();
+    }
+
+    //other setters
+
+    public void setCampaign(Campaign campaign) {
+        campaignAccess.setCampaign(campaign);
     }
 }
