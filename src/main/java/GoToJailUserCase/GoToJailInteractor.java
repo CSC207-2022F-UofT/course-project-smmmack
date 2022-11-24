@@ -21,17 +21,32 @@ public class GoToJailInteractor implements GoToJailInputBoundary{
         this.player = player;
     }
 
+    public int jailIndex(GoToJailTile jailTile, GameBoard board){
+        int index=0;
+        while (board.getTileAt(index) != jailTile.getJailTile()){
+            index++;
+        }
+        return index;
+    }
+
+    public boolean inJail(Player player, GoToJailTile jailTile){
+        boolean jail;
+        jail = player.getLocation()==(jailIndex(jailTile, board));
+        return jail;
+    }
+
 
     @Override
 
 
     public GoToJailOutputData create(GoToJailInputData input) throws Exception {
-        if (input.jail) {
-            player.setLocation(player.getJailTurn());
+        boolean jail = inJail(player, jailTile);
+        if (jail) {
+            player.setLocation(jailIndex(jailTile, board));
             return output.prepareSuccessView("You are in jail: " );
         }
         else{
-            return output.prepareFailView("Please press any key to roll dice.");
+            return output.prepareFailureView("Please press any key to roll dice.");
         }
     }
 }
