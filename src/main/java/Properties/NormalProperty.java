@@ -148,7 +148,7 @@ public class NormalProperty extends Property implements Serializable {
      * properties to be the input array.
      * @param properties an array of properties of the same color group.
      */
-    public static void groupProperties(NormalProperty[] properties) {
+    public static void groupProperties(NormalProperty... properties) {
         for (NormalProperty property: properties) {
             property.setSameColorGroupProperties(properties);
         }
