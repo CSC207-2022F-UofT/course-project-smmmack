@@ -6,16 +6,38 @@ import Tiles.*;
 
 import java.util.ArrayList;
 
-public class DefaultCampaignFactory {
+public class DefaultCampaignFactory implements CampaignFactory {
+
+    private int playerNumber;
+
+    /**
+     * Construct a DefaultCampaignFactory instance with designated player number.
+     * @param playerNumber the number of players in the campaign.
+     */
+    public DefaultCampaignFactory(int playerNumber) {
+        this.playerNumber = playerNumber;
+    }
+
+    //getters
+
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+
+    //setters
+
+    public void setPlayerNumber(int playerNumber) {
+        this.playerNumber = playerNumber;
+    }
 
     /**
      * Create a campaign all at starting location with a specific number of players. The players are named p1, p2,
      * p3 ... and so on. <br>
      * Each player initially owns 1000 dollars.
-     * @param playerNumber the number of players in the campaign
      * @return an initialised campaign object
      */
-    public Campaign create(int playerNumber) {
+    @Override
+    public Campaign create() {
         // Initialize the list of players
         ArrayList<Player> playerList= new ArrayList<>();
         for (int i = 1; i <= playerNumber; i ++) {
