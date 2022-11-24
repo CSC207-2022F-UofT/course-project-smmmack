@@ -28,8 +28,7 @@ public class NormalProperty extends Property implements Serializable {
     private int[] rentList;
 
     /**
-     * sameColorGroupProperties contains all other properties in the same color group. Does not include this property
-     * itself.
+     * sameColorGroupProperties contains all other properties in the same color group. It includes this property itself.
      */
     private NormalProperty[] sameColorGroupProperties;
     private int housePrice;
@@ -78,6 +77,11 @@ public class NormalProperty extends Property implements Serializable {
     }
 
     public void setRentList(int[] rentList) {
+        if (rentList.length != MAX_HOUSE_LEVEL - MIN_HOUSE_LEVEL) {
+            throw new InvalidParameterException(
+                    "The length of rentList must be " + (MAX_HOUSE_LEVEL - MIN_HOUSE_LEVEL)
+            );
+        }
         this.rentList = rentList.clone();
     }
 
@@ -137,5 +141,16 @@ public class NormalProperty extends Property implements Serializable {
      */
     public void houseDown() throws InvalidParameterException {
         setHouseLevel(houseLevel - 1);
+    }
+
+    /**
+     * Put all properties in the input array in the same group, which means assign the color group of each of the \
+     * properties to be the input array.
+     * @param properties an array of properties of the same color group.
+     */
+    public static void groupProperties(NormalProperty[] properties) {
+        for (NormalProperty property: properties) {
+            property.setSameColorGroupProperties(properties);
+        }
     }
 }
