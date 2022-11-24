@@ -1,5 +1,8 @@
 package DrawCard;
+import java.io.IOException;
 
 public interface DrawCardOutputBoundary {
-    // one create method that takes in an output data. thats it
+    //need to add a create method that takes in an output data I think
+    DrawCardOutputData prepareSuccessView(String message);
+    DrawCardOutputData prepareFailureView(String message);
 }

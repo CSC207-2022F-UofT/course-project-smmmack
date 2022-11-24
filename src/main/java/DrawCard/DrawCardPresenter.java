@@ -7,5 +7,4 @@ public class DrawCardPresenter implements DrawCardOutputBoundary{
     public DrawCardOutputData prepareFailureView(String message) {
         return null;
     }
-
 }

@@ -7,27 +7,32 @@ import MainEntities.Player;
 public class DrawCardInputData {
     // str name of player, str type of card
     boolean confirm;
-    Player playerName;
-    Deck cardDeck;
+    private String playerName;
+    private String cardType;
 
     public DrawCardInputData(boolean confirm) {
         this.confirm = true;
     }
-
     public boolean isConfirm() {return confirm;}
 
-    public String getPlayerName(Player playerName) {
-        return playerName.getName();
+    public DrawCardInputData(String playerName, String cardType){
+        this.playerName = playerName;
+        this.cardType = cardType;
     }
 
-    public Card getCard(Deck cardDeck) {
-        return cardDeck.drawCard();
+    //getters
+    public String getPlayerName() {
+        return playerName;
+    }
+    public String getCardType() {
+        return cardType;
     }
 
-    public String getCardType(Card drawnCard) {
-        /* Want to draw card from the community chest deck or chance deck.
-        Then we want to decide if it is a loose cash or gain cash card.
-         */
-        drawnCard =
+    //setters]]
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
     }
 }
