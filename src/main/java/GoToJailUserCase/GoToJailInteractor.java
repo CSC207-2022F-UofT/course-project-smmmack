@@ -2,9 +2,7 @@ package GoToJailUserCase;
 
 import MainEntities.GameBoard;
 import MainEntities.Player;
-import Tiles.JailTile;
 import Tiles.GoToJailTile;
-import java.time.LocalDateTime;
 
 public class GoToJailInteractor implements GoToJailInputBoundary{
     final GoToJailOutputBoundary output;

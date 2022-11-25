@@ -1,5 +1,4 @@
 package GoToJailUserCase;
-import java.io.IOException;
 
 
 public interface GoToJailOutputBoundary {

@@ -1,7 +1,5 @@
 package GoToJailUserCase;
 
-import MainEntities.Player;
-
 public class GoToJailInputData {
     boolean jail;
 
