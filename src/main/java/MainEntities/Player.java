@@ -22,11 +22,13 @@ public class Player implements Serializable {
      * The number of turns the player need to stay in jail. Int implementation allows sentences longer than 1 turn.
      */
     private int jailTurn;
+    //TODO: in order to let player panel show different color for each player, a color instance variable is needed
+
     /**
      * Create a new Player object with these default parameters: <br>
      * cash = 0 <br>
      * location = 0 <br>
-     * properties = new ArrayList<br>
+     * properties = new ArrayList<>()<br>
      * jailTurn = 0
      *
      * @param name the name of the player
