@@ -1,8 +1,6 @@
 package DrawCard;
 
-import Cards.Card;
 import MainEntities.Deck;
-import MainEntities.Player;
 
 public class DrawCardInputData {
     // boolean confirm;
