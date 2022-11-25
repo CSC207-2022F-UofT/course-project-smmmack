@@ -2,15 +2,25 @@ package PayRent;
 
 public class PayRentController {
 
-    private final PayRentInputBoundary payRentInputBoundary;
+    private PayRentInputBoundary payRentInputBoundary;
 
     public PayRentController(PayRentInputBoundary payRentInputBoundary) {
         this.payRentInputBoundary = payRentInputBoundary;
     }
 
-    PayRentOutputData create (PayRentInputData newPayRentInputData) {
+    public void create (PayRentInputData newPayRentInputData) {
         PayRentInputData payRentInputData = new PayRentInputData(newPayRentInputData.getRentee(),
                 newPayRentInputData.getPropertyLandedOn());
-        return payRentInputBoundary.create(payRentInputData);
+        payRentInputBoundary.create(payRentInputData);
+    }
+
+    // getters
+    public PayRentInputBoundary getPayRentInputBoundary(){
+        return this.payRentInputBoundary;
+    }
+
+    // setters
+    public void setPayRentInputBoundary(PayRentInputBoundary payRentInputBoundary){
+        this.payRentInputBoundary = payRentInputBoundary;
     }
 }

@@ -2,42 +2,48 @@ package PayRent;
 
 public class PayRentInteractor implements PayRentInputBoundary{
 
-    final PayRentOutputBoundary payRentOutputBoundary;
-    final PayRentPresenter payRentPresenter;
+    private PayRentOutputBoundary payRentOutputBoundary;
 
-    public PayRentInteractor(PayRentOutputBoundary payRentOutputBoundary,PayRentPresenter payRentPresenter) {
+    public PayRentInteractor(PayRentOutputBoundary payRentOutputBoundary) {
         this.payRentOutputBoundary = payRentOutputBoundary;
-        this.payRentPresenter = payRentPresenter;
     }
 
-
     /**
-     * For prepareFailView:
-     * - If the player does not have enough money to pay the rent, send a fail message return("player does not have
-     * enough money to pay the rent")
-
-     * For prepareSuccessView:
-     * - if the property is mortgaged, no rent is paid
-     * - otherwise, return a success message that Player has paid the rent
-
-     * @param payRentInputData input data
-     * @return returns a string based on whether payRentMoney was successful or not
+     *
+     * @param payRentInputData input data for PayRent
      */
     @Override
-    public PayRentOutputData create(PayRentInputData payRentInputData) {
+    public void create(PayRentInputData payRentInputData) {
 
         if (payRentInputData.getRentee().getCash() < payRentInputData.getRentMoney()){
-            return payRentOutputBoundary.prepareFailView("Player does have enough money to pay the rent.");
+            String outputMessage = "Player does not have enough money to pay the rent.";
+            PayRentOutputData payRentOutputData = new PayRentOutputData(outputMessage);
+            payRentOutputBoundary.payRentMessage(payRentOutputData);
         }
 
         if(payRentInputData.getIsMortgaged()){
-            return payRentOutputBoundary.prepareSuccessView(
-                    "No rent is paid as this property is mortgaged.");
+            String outputMessage = "No rent is paid as this property is mortgaged.";
+            PayRentOutputData payRentOutputData = new PayRentOutputData(outputMessage);
+            payRentOutputBoundary.payRentMessage(payRentOutputData);
         }
 
+        // may need to change this part based on how getRent() is implemented
         payRentInputData.getRentee().setCash(payRentInputData.getRentee().getCash() -
                 payRentInputData.getPropertyLandedOn().getRent(payRentInputData.getRentee()));
-        return payRentOutputBoundary.prepareSuccessView(payRentInputData.getRentee() + " paid " +
-                payRentInputData.getRentMoney() + "of rent money to " + payRentInputData.getRenter());
+        String outputMessage = payRentInputData.getRentee() + " paid " +
+                payRentInputData.getRentMoney() + "of rent money to " + payRentInputData.getRenter();
+        PayRentOutputData payRentOutputData = new PayRentOutputData(outputMessage);
+        payRentOutputBoundary.payRentMessage(payRentOutputData);
+
+    }
+
+    // getters
+    public PayRentOutputBoundary getPayRentOutputBoundary(){
+        return payRentOutputBoundary;
+    }
+
+    // setters
+    public void setPayRentOutputBoundary(PayRentOutputBoundary payRentOutputBoundary){
+        this.payRentOutputBoundary = payRentOutputBoundary;
     }
 }
