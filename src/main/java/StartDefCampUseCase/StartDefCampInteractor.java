@@ -5,13 +5,13 @@ import MainEntities.CampaignAccess;
 import MainEntities.CampaignFactory;
 import MainEntities.DefaultCampaignFactory;
 import StartCampaignUseCase.StartCampaignInputData;
-import StartCampaignUseCase.StartCampaignInteractor;
+import StartCampaignUseCase.StartCampaignInputBoundary;
 
 public class StartDefCampInteractor implements StartDefCampInputBoundary {
 
     private CampaignAccess campaignAccess;
     private StartDefCampOutputBoundary outputBoundary;
-    private StartCampaignInteractor startCampaignInteractor;
+    private StartCampaignInputBoundary startCampaignInputBoundary;
 
     public StartDefCampInteractor(CampaignAccess campaignAccess, StartDefCampOutputBoundary outputBoundary) {
         this.campaignAccess = campaignAccess;
@@ -20,10 +20,10 @@ public class StartDefCampInteractor implements StartDefCampInputBoundary {
 
     public StartDefCampInteractor(CampaignAccess campaignAccess,
                                   StartDefCampOutputBoundary outputBoundary,
-                                  StartCampaignInteractor startCampaignInteractor) {
+                                  StartCampaignInputBoundary startCampaignInputBoundary) {
         this.campaignAccess = campaignAccess;
         this.outputBoundary = outputBoundary;
-        this.startCampaignInteractor = startCampaignInteractor;
+        this.startCampaignInputBoundary = startCampaignInputBoundary;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class StartDefCampInteractor implements StartDefCampInputBoundary {
 
         //call next use case
         StartCampaignInputData startCampaignInputData = new StartCampaignInputData();
-        startCampaignInteractor.performAction(startCampaignInputData);
+        startCampaignInputBoundary.performAction(startCampaignInputData);
     }
 
     //getters
@@ -53,8 +53,8 @@ public class StartDefCampInteractor implements StartDefCampInputBoundary {
         return outputBoundary;
     }
 
-    public StartCampaignInteractor getStartCampaignInteractor() {
-        return startCampaignInteractor;
+    public StartCampaignInputBoundary getStartCampaignInputBoundary() {
+        return startCampaignInputBoundary;
     }
 
     //setters
@@ -67,8 +67,8 @@ public class StartDefCampInteractor implements StartDefCampInputBoundary {
         this.outputBoundary = outputBoundary;
     }
 
-    public void setStartCampaignInteractor(StartCampaignInteractor startCampaignInteractor) {
-        this.startCampaignInteractor = startCampaignInteractor;
+    public void setStartCampaignInputBoundary(StartCampaignInputBoundary startCampaignInputBoundary) {
+        this.startCampaignInputBoundary = startCampaignInputBoundary;
     }
 
     //other getters
