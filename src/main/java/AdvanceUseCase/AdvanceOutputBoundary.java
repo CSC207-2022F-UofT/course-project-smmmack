@@ -1,21 +1,10 @@
 package AdvanceUseCase;
 
 public interface AdvanceOutputBoundary {
-
     /**
-     * Prints the results of the dice roll to user.
-     * @param results Message to be displayed to user.
-     * @return The result of the dice roll if successful
+     * Either prompts the user to enter a valid input or displays the results of a dice roll.
+     * @param outputData
      */
-    AdvanceOutputData prepareSuccessView(String results);
-
-    /**
-     * Prompt the user to enter a valid input.
-     * @param inputAgain Message to be displayed to user.
-     * @return a message asking users to input a valid String.
-     */
-    AdvanceOutputData prepareFailureView(String inputAgain);
-
     void create(AdvanceOutputData outputData);
 
 }

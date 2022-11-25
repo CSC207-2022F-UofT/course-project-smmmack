@@ -2,19 +2,31 @@ package AdvanceUseCase;
 
 public class AdvanceController {
 
-    final AdvanceInputBoundary input;
+    private AdvanceInputBoundary inputBoundary;
     final int diceSum;
 
-    public AdvanceController(AdvanceInputBoundary input, int diceSum) {
-        this.input = input;
+    public AdvanceController(AdvanceInputBoundary inputBoundary, int diceSum) {
+        this.inputBoundary = inputBoundary;
         this.diceSum = diceSum;
     }
 
     void create() throws Exception {
         AdvanceInputData inputData = new AdvanceInputData(diceSum);
-        input.create(inputData);
+        inputBoundary.create(inputData);
     }
 
+    // Getters and Setters
 
 
+    public AdvanceInputBoundary getInputBoundary() {
+        return inputBoundary;
+    }
+
+    public int getDiceSum() {
+        return diceSum;
+    }
+
+    public void setInputBoundary(AdvanceInputBoundary inputBoundary) {
+        this.inputBoundary = inputBoundary;
+    }
 }
