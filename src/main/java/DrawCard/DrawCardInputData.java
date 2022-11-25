@@ -5,34 +5,31 @@ import MainEntities.Deck;
 import MainEntities.Player;
 
 public class DrawCardInputData {
-    // str name of player, str type of card
-    boolean confirm;
+    // boolean confirm;
     private String playerName;
-    private String cardType;
+    private Deck deckType;
 
-    public DrawCardInputData(boolean confirm) {
-        this.confirm = true;
-    }
-    public boolean isConfirm() {return confirm;}
+//    public DrawCardInputData(boolean confirm) {
+//        this.confirm = true;
+//    }
+//    public boolean isConfirm() {return confirm;}
 
-    public DrawCardInputData(String playerName, String cardType){
+    public DrawCardInputData(String playerName, Deck deckType){
         this.playerName = playerName;
-        this.cardType = cardType;
+        this.deckType = deckType;
     }
 
     //getters
     public String getPlayerName() {
         return playerName;
     }
-    public String getCardType() {
-        return cardType;
+    public Deck getDeckType() {
+        return deckType;
     }
 
     //setters]]
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
-    public void setCardType(String cardType) {
-        this.cardType = cardType;
-    }
+    public void setDeckType(Deck deckType) {this.deckType = deckType; }
 }
