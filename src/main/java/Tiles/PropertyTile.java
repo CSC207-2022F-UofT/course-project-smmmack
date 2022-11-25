@@ -2,11 +2,13 @@ package Tiles;
 
 import Properties.Property;
 
+import java.io.Serializable;
+
 /**
  * PropertyTile is a tile that corresponds to a property. If any player stepped on an owner-less property, then he or
  * she may buy the property. If the property is already owned by others, he or she has to pay tax to the owner.
  */
-public class PropertyTile extends Tile {
+public class PropertyTile extends Tile implements Serializable {
     private Property property;
 
     /**
