@@ -69,6 +69,7 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
         }
     }
 
+    // Todo: may need to changeoutput message depending on tile type.
     @Override
     public void create(AdvanceInputData input) throws Exception {
         if (input.isConfirmRoll()) {

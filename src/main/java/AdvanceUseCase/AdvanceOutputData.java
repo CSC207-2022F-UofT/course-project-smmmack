@@ -1,21 +1,21 @@
 package AdvanceUseCase;
 
 public class AdvanceOutputData {
-    String diceResults;
+    String advanceMessage;
     // String playerLocation;
 
-    public AdvanceOutputData(String diceResults) {
-        this.diceResults = diceResults;
+    public AdvanceOutputData(String advanceMessage) {
+        this.advanceMessage = advanceMessage;
     }
 
     //Getter and Setter Methods
-    public String getDiceResults() {
-        return diceResults;
+    public String getAdvanceMessage() {
+        return advanceMessage;
     }
 
 
-    public void setDiceResults(String diceResults) {
-        this.diceResults = diceResults;
+    public void setAdvanceMessage(String advanceMessage) {
+        this.advanceMessage = advanceMessage;
     }
 
 }
