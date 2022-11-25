@@ -13,7 +13,7 @@ public class PayRentInteractor implements PayRentInputBoundary{
      * @param payRentInputData input data for PayRent
      */
     @Override
-    public void create(PayRentInputData payRentInputData) {
+    public void performAction(PayRentInputData payRentInputData) {
 
         if (payRentInputData.getRentee().getCash() < payRentInputData.getRentMoney()){
             String outputMessage = "Player does not have enough money to pay the rent.";
@@ -28,11 +28,17 @@ public class PayRentInteractor implements PayRentInputBoundary{
         }
 
         // may need to change this part based on how getRent() is implemented
-        payRentInputData.getRentee().setCash(payRentInputData.getRentee().getCash() -
-                payRentInputData.getPropertyLandedOn().getRent(payRentInputData.getRentee()));
+        int rentMoneyPaid = payRentInputData.getRentee().getCash() -
+                payRentInputData.getPropertyLandedOn().getRent(payRentInputData.getRentee());
+
+        payRentInputData.getRentee().setCash(rentMoneyPaid);
+        payRentInputData.setRentMoney(rentMoneyPaid);
+
         String outputMessage = payRentInputData.getRentee() + " paid " +
                 payRentInputData.getRentMoney() + "of rent money to " + payRentInputData.getRenter();
+
         PayRentOutputData payRentOutputData = new PayRentOutputData(outputMessage);
+
         payRentOutputBoundary.payRentMessage(payRentOutputData);
 
     }

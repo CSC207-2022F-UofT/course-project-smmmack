@@ -11,7 +11,7 @@ public class PayRentController {
     public void create (PayRentInputData newPayRentInputData) {
         PayRentInputData payRentInputData = new PayRentInputData(newPayRentInputData.getRentee(),
                 newPayRentInputData.getPropertyLandedOn());
-        payRentInputBoundary.create(payRentInputData);
+        payRentInputBoundary.performAction(payRentInputData);
     }
 
     // getters
