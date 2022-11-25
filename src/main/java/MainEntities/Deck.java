@@ -2,6 +2,7 @@ package MainEntities;
 
 import Cards.Card;
 
+import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -11,7 +12,7 @@ import java.util.Queue;
  * Deck is a collection of cards. When a card is drawn, it's drawn from the top of the deck. When a card is put in the
  * deck, it's put at the bottom of the deck.
  */
-public class Deck {
+public class Deck implements Serializable {
     /**
      * In an ordinary game, the type of the card should be either "community chest" or "chance"
      */

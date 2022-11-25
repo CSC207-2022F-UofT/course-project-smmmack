@@ -2,13 +2,14 @@ package MainEntities;
 
 import Tiles.Tile;
 
+import java.io.Serializable;
 import java.security.InvalidParameterException;
 
 /**
  * GameBoard is a class that contains the width, length, and the array of tiles in a board. <br>
  * The width and height of the board are final, and can't be less than 2.
  */
-public class GameBoard {
+public class GameBoard implements Serializable {
     private final int width;
     private final int height;
     private Tile[] tiles;
