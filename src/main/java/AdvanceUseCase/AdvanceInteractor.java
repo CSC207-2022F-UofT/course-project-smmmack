@@ -15,8 +15,7 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
 
     Player player;
 
-    public AdvanceInteractor(AdvanceOutputBoundary output, GameBoard board, AdvanceController controller,
-                             Player player) {
+    public AdvanceInteractor(AdvanceOutputBoundary output, GameBoard board, Player player) {
         this.output = output;
         this.board = board;
         this.player = player;
@@ -29,7 +28,7 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
      */
     public void advancePlayer(int diceSum) throws Exception {
         int tilesMoved = diceSum + player.getLocation();
-        // If the player will move past start, add $200 to the player's cash
+        // If the player moves past start, add $200 to the player's cash
         if (tilesMoved > board.getSize()){
             player.setLocation(board.getSize() - tilesMoved);
             player.gainCash(200);
@@ -69,7 +68,7 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
         }
     }
 
-    // Todo: may need to changeoutput message depending on tile type.
+    // Todo: may need to change output message depending on tile type.
     @Override
     public void create(AdvanceInputData input) throws Exception {
         if (input.isConfirmRoll()) {
