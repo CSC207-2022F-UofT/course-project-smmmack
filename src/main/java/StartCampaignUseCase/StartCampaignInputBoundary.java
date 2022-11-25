@@ -1,5 +1,5 @@
 package StartCampaignUseCase;
 
 public interface StartCampaignInputBoundary {
-    public void performAction(StartCampaignInputData inputData);
+    void performAction(StartCampaignInputData inputData);
 }
