@@ -1,7 +1,7 @@
 package GoToJailUserCase;
 
 public class GoToJailOutputData {
-    String message;
+    private String message;
 
     public GoToJailOutputData(String message) {
         this.message = message;

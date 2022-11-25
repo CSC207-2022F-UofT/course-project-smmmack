@@ -2,7 +2,5 @@ package GoToJailUserCase;
 
 
 public interface GoToJailOutputBoundary {
-    GoToJailOutputData prepareSuccessView(String message);
-
-    GoToJailOutputData prepareFailureView(String message);
+    void create(GoToJailOutputData outputData) throws Exception;
 }

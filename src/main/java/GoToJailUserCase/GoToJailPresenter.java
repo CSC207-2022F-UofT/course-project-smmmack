@@ -1,14 +1,11 @@
 package GoToJailUserCase;
 
-public class GoToJailPresenter implements  GoToJailOutputBoundary {
+public class GoToJailPresenter implements GoToJailOutputBoundary{
 
     @Override
-    public GoToJailOutputData prepareSuccessView(String message) {
-        return null;
-    }
-
-    @Override
-    public GoToJailOutputData prepareFailureView(String message) {
-        return null;
+    public void create(GoToJailOutputData outputData) {
+        String message = outputData.getMessage();
+        // Update the view model to add the output message to the command lines
     }
 }
+

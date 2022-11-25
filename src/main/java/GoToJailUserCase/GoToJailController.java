@@ -1,18 +1,20 @@
 package GoToJailUserCase;
 
-import GoToJailUserCase.GoToJailInputBoundary;
-import GoToJailUserCase.GoToJailInputData;
-import GoToJailUserCase.GoToJailOutputData;
-
 public class GoToJailController {
-    final GoToJailInputBoundary input;
+    private GoToJailInputBoundary inputBoundary;
 
-    public GoToJailController(GoToJailInputBoundary input) {
-        this.input = input;
+    public GoToJailController(GoToJailInputBoundary inputBoundary) {
+        this.inputBoundary = inputBoundary;
     }
 
     GoToJailOutputData create (boolean jail) throws Exception {
         GoToJailInputData inputData = new GoToJailInputData(jail);
-        return input.create(inputData);
+        return inputBoundary.create(inputData);
+    }
+    public GoToJailInputBoundary getInput() {
+        return inputBoundary;
+    }
+    public void setInputBoundary(GoToJailInputBoundary inputBoundary) {
+        this.inputBoundary = inputBoundary;
     }
 }

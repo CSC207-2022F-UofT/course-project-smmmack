@@ -33,18 +33,10 @@ public class GoToJailInteractor implements GoToJailInputBoundary{
         return jail;
     }
 
-
     @Override
-
-
-    public GoToJailOutputData create(GoToJailInputData input) throws Exception {
-        boolean jail = inJail(player, jailTile);
-        if (jail) {
-            player.setLocation(jailIndex(jailTile, board));
-            return output.prepareSuccessView("You are in jail: " );
-        }
-        else{
-            return output.prepareFailureView("Please press any key to roll dice.");
-        }
+    public GoToJailOutputData create(GoToJailInputData inputData) {
+        inputData.jail = inJail(player, jailTile);
+        player.setLocation(jailIndex(jailTile, board));
+        return new GoToJailOutputData("You are in jail ");
     }
 }
