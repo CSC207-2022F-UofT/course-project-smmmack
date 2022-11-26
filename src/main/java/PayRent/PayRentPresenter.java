@@ -8,4 +8,5 @@ public class PayRentPresenter implements PayRentOutputBoundary{
         String message = payRentOutputData.getOutputMessage();
         // Will update the view model to add the output message to the command lines later
     }
+
 }

@@ -61,4 +61,5 @@ public class PayRentInputData {
     public void setIsMortgaged(boolean isMortgaged){
         this.isMortgaged = isMortgaged;
     }
+
 }

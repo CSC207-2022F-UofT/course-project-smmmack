@@ -17,4 +17,5 @@ public class PayRentOutputData {
     public void setOutputMessage(String outputMessage){
         this.outputMessage = outputMessage;
     }
+
 }

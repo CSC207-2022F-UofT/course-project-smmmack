@@ -23,4 +23,5 @@ public class PayRentController {
     public void setPayRentInputBoundary(PayRentInputBoundary payRentInputBoundary){
         this.payRentInputBoundary = payRentInputBoundary;
     }
+
 }

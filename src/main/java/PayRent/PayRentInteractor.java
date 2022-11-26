@@ -52,4 +52,5 @@ public class PayRentInteractor implements PayRentInputBoundary{
     public void setPayRentOutputBoundary(PayRentOutputBoundary payRentOutputBoundary){
         this.payRentOutputBoundary = payRentOutputBoundary;
     }
+
 }
