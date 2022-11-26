@@ -3,6 +3,7 @@ package MainEntities;
 import Cards.Card;
 import Tiles.Tile;
 
+import java.io.Serializable;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +14,7 @@ import java.util.Map;
  * Campaign class includes all information about a game: its players, board, round count, and the current player. All
  * use case interactors should have a reference of the corresponding campaign.
  */
-public class Campaign {
+public class Campaign implements Serializable {
     private GameBoard board;
 
     /**
@@ -191,6 +192,20 @@ public class Campaign {
 
     public Card drawCardFromDeck(String type) {
         return getDeck(type).drawCard();
+    }
+
+    /**
+     * @return A boolean indicating whether the game is over or not. The game is over if there is only one or fewer
+     * players left that are not bank-broke.
+     */
+    public boolean isGameOver() {
+        int playerNum = this.players.size();
+        for (Player player: this.players) {
+            if (player.isBroke()) {
+                playerNum --;
+            }
+        }
+        return playerNum > 1;
     }
 
     //other setters
