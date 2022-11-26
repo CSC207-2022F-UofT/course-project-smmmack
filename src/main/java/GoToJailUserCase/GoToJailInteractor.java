@@ -34,9 +34,9 @@ public class GoToJailInteractor implements GoToJailInputBoundary{
     }
 
     @Override
-    public GoToJailOutputData create(GoToJailInputData inputData) {
+    public void create (GoToJailInputData inputData) {
         inputData.jail = inJail(player, jailTile);
         player.setLocation(jailIndex(jailTile, board));
-        return new GoToJailOutputData("You are in jail ");
+        new GoToJailOutputData("You are in jail ");
     }
 }

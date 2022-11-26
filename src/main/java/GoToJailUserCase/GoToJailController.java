@@ -7,10 +7,11 @@ public class GoToJailController {
         this.inputBoundary = inputBoundary;
     }
 
-    GoToJailOutputData create (boolean jail) throws Exception {
+    public void create(boolean jail) {
         GoToJailInputData inputData = new GoToJailInputData(jail);
-        return inputBoundary.create(inputData);
+        this.inputBoundary.create(inputData);
     }
+
     public GoToJailInputBoundary getInput() {
         return inputBoundary;
     }
