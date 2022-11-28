@@ -1,9 +1,11 @@
 package Tiles;
 
+import java.io.Serializable;
+
 /**
  * GoToJailTile sends whoever steps on it to jail, and stay there for one turn.
  */
-public class GoToJailTile extends Tile {
+public class GoToJailTile extends Tile implements Serializable {
     /**
      * The corresponding JailTile of this GoToJailTile.
      */
