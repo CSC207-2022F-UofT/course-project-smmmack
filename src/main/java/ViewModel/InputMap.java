@@ -101,6 +101,11 @@ public class InputMap {
 
     //other getters
 
+    /**
+     * Identify whether the command is in the input map or its appendices
+     * @param command the command string (user input)
+     * @return boolean indicating whether the command is in the input map or its appendices.
+     */
     public boolean hasCommand(String command) {
         if (this.map.containsKey(command)) {
             return true;
