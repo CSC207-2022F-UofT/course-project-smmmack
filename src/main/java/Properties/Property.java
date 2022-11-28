@@ -3,11 +3,13 @@ package Properties;
 import MainEntities.Player;
 import Tiles.PropertyTile;
 
+import java.io.Serializable;
+
 /**
  * Properties can be owned by players. This is an abstract class because there may be more properties other than normal
  * properties such as railroads and utilities. However, they would share some attributes and methods.
  */
-public abstract class Property {
+public abstract class Property implements Serializable {
     private String name;
     private String abbreviation;
     private PropertyTile propertyTile;

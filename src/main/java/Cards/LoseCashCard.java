@@ -1,9 +1,11 @@
 package Cards;
 
+import java.io.Serializable;
+
 /**
  * LoseCashCard is a type of Card. When a player draws it, he loses a specific amount of cash.
  */
-public class LoseCashCard extends Card{
+public class LoseCashCard extends Card implements Serializable {
     /**
      * The amount of cash to be lost. It should be a positive value.
      */
