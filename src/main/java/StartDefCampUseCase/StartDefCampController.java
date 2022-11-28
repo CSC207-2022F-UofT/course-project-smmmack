@@ -1,13 +1,15 @@
 package StartDefCampUseCase;
 
-public class StartDefCampController {
+import UseCaseUniversal.CommandPerformer;
+
+public class StartDefCampController implements CommandPerformer {
     private StartDefCampInputBoundary inputBoundary;
 
     public StartDefCampController(StartDefCampInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
     }
 
-    public void performAction(String command) throws IllegalArgumentException{
+    public void performCommand(String command) throws IllegalArgumentException{
         String[] words = command.split("\\s+");
         if (words.length != 2)
             throw new IllegalArgumentException("This command only takes in one parameter");
