@@ -9,7 +9,7 @@ public class PayRentInteractor implements PayRentInputBoundary{
     }
 
     /**
-     *
+     * Update the payRentMessage in payRentOutputBoundary based on different scenarios.
      * @param payRentInputData input data for PayRent
      */
     @Override
