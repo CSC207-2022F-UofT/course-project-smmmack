@@ -22,8 +22,7 @@ public class StartCampaignInteractor implements StartCampaignInputBoundary {
         String playerName = currPlayer.getName();
         String message = "Starting campaign: " + campaignName + ", player " + playerName + "'s turn.";
         String nextMap = "before_move";
-        StartCampaignOutputData outputData = new StartCampaignOutputData(message, nextMap);
-        outputBoundary.performAction(outputData);
+        outputBoundary.performAction(new StartCampaignOutputData(message, nextMap));
     }
 
     //getter

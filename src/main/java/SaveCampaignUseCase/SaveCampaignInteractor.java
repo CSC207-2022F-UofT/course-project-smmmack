@@ -36,7 +36,7 @@ public class SaveCampaignInteractor implements SaveCampaignInputBoundary {
             outputBoundary.performAction(outputData);
         } catch (IOException e) {
             String outputMessage = "Failed to save the game at: " + address +
-                    "Because of IOException: " + e.getMessage();
+                    " Because of IOException: " + e.getMessage();
             SaveCampaignOutputData outputData = new SaveCampaignOutputData(false, outputMessage);
             outputBoundary.performAction(outputData);
         }
@@ -60,17 +60,5 @@ public class SaveCampaignInteractor implements SaveCampaignInputBoundary {
 
     public void setOutputBoundary(SaveCampaignOutputBoundary outputBoundary) {
         this.outputBoundary = outputBoundary;
-    }
-
-    //other getters
-
-    public Campaign getCampaign() {
-        return campaignAccess.getCampaign();
-    }
-
-    //other setters
-
-    public void setCampaign(Campaign campaign) {
-        this.campaignAccess.setCampaign(campaign);
     }
 }
