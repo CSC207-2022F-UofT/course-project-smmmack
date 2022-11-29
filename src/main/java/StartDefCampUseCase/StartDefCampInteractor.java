@@ -35,7 +35,8 @@ public class StartDefCampInteractor implements StartDefCampInputBoundary {
         this.campaignAccess.setCampaign(campaign);
 
         //create output
-        StartDefCampOutputData outputData = new StartDefCampOutputData("New campaign of " + playerNum + "created...");
+        String message = "New campaign of " + playerNum + " players created...";
+        StartDefCampOutputData outputData = new StartDefCampOutputData(message);
         outputBoundary.performAction(outputData);
 
         //call next use case
