@@ -97,5 +97,4 @@ public class BoardPanelViewModel {
             listener.performAction();
         }
     }
-
 }
