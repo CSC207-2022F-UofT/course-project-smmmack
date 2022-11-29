@@ -1,17 +1,18 @@
-package BuyPropertyUseCase;
+package ConfirmBuyPropertyUseCase;
 
 
 import MainEntities.Player;
 import Properties.Property;
 
-public class BuyPropertyInteractor implements BuyPropertyInputBoundary{
+public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoundary {
 
-    private BuyPropertyOutputBoundary result;
+    private ConfirmBuyPropertyOutputBoundary result;
     private Property property;
     private Player player;
 
-    public BuyPropertyInteractor(BuyPropertyOutputBoundary buyPropertyOutputBoundary,
-                                 Player player, Property property) {
+
+    public ConfirmBuyPropertyInteractor(ConfirmBuyPropertyOutputBoundary buyPropertyOutputBoundary,
+                                        Player player, Property property) {
         this.result = buyPropertyOutputBoundary;
         this.player = player;
         this.property = property;
@@ -59,17 +60,21 @@ public class BuyPropertyInteractor implements BuyPropertyInputBoundary{
     }
 
     @Override
-    public void create(BuyPropertyInputData buyPropertyInputData) throws Exception{
+    public void performAction(ConfirmBuyPropertyInputData buyPropertyInputData) throws Exception{
         int message = buyProperty(player, property);
-        BuyPropertyOutputData outputDataMessage;
+        ConfirmBuyPropertyOutputData outputDataMessage;
         if (message == 1){
-            outputDataMessage = new BuyPropertyOutputData("You have purchased this property.");
+            outputDataMessage = new ConfirmBuyPropertyOutputData("You have purchased this property.", true);
         } else if (message == 2) {
-            outputDataMessage = new BuyPropertyOutputData("This property is already purchased by "
-                    + property.getOwner());
+            outputDataMessage = new ConfirmBuyPropertyOutputData("This property is already purchased by "
+                    + property.getOwner(), false);
         } else {
-            outputDataMessage = new BuyPropertyOutputData("Not have enough funds.");
-        } result.create(outputDataMessage);
+            outputDataMessage = new ConfirmBuyPropertyOutputData("Not have enough funds.", false);
+        } result.performAction(outputDataMessage);
     }
+
+    // 3 more variables: 1 boolean indicating of confirmPurchase at the BuyPropertyOutPutData.
+    // playerIndex. Which player at which index bought the property.
+    // propertyIndex. Which property at what index has been bought?
 
 }

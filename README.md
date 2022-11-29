@@ -1,20 +1,27 @@
-# Project Template
+# UofTorontopoly Monopoly Game
 
-This is a template repository for CSC 207 projects. 
-This repository contains starter code for a gradle project.
-It also contains workflow documents that give instructions on how to manage your Github repository and how to use Github Projects for efficient collaboration.
+Are you a monopoly lover? Or maybe it is your first time playing Monopoly? Then that is one of the 
+most exciting versions of Monopoly that you will ever play: University
+of Toronto themed Monopoly game! That is exactly the right
+game for you if you are a current UofT student, or maybe an alumni,
+or a professor at UofT, or a future student that is planning to apply
+to UofT. This Monopoly game is based on all of the locations
+that you might be familiar with on the UofT campus. Enjoy the game, 
+refresh your memories of UofT while playing, and buy all your
+best study locations of UofT on the UofTorontopoly game!
 
-## Checklist For Your Project
-- [ ] Verify the correct settings for your project repository
-- [ ] Set up Github Projects
-- [ ] Create the implementation plan using issues and Github Projects
-- [ ] Create deveopment branches for your features
-- [ ] Use pull requests to merge finished features into main branch
-- [ ] Conduct code reviews
+## Things to Remember Before Starting to Play:
+- [ ] Verify that you are playing between 2-8 players.
+- [ ] Please create a username for each player.
+- [ ] All the players will be initiated with a fixed amount of Monopoly cash at the start of the game.
+- [ ] Each player will have consecutive turns, set at the start of the game.
+- [ ] For the rest of the game rules and how to play, please refer to the UofTorontopoly Manual below.
+- [ ] HOW TO SEE THE GAME SCREEN.
 
-**If your team has trouble with any of these steps, please ask on Piazza. For example, with how GitHub Classroom works, your team *may* not have permissions to do some of the first few steps, in which case we'll post alternative instructions as needed.**
+**If you have any questions about starting the game, 
+please refer to the 'UofTorontopoly Manual' below for help.**
 
-## Workflow Documents
+## UofTorontopoly Manual
 
 * Github Workflow: Please refer to the workflow that was introduced in the first lab. You should follow this when working on your code. The following document provides additional details too.
 
