@@ -1,4 +1,4 @@
-package BuyProperty;
+package BuyPropertyUseCase;
 
 public class BuyPropertyInputData {
 

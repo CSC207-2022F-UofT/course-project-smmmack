@@ -4,6 +4,7 @@ import MainEntities.GameBoard;
 import Tiles.*;
 import MainEntities.CampaignAccess;
 
+
 public class AdvanceInteractor implements AdvanceInputBoundary{
     /*
     The Advance use case advances the player to a specific location on the board depending on the dice roll passed by
