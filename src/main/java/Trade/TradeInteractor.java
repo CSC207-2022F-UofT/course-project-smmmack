@@ -55,12 +55,33 @@ TradeInteractor implements TradeInputBoundary {
             player1.assignOwnership(property);
         }
     }
+    /**
+     * Checks if the trade is valid.
+     *
+     * @param player1Properties, player2Properties, player1Cash, player2Cash the properties and cash that the players are trading
+     * @return boolean
+     */
+    public boolean isTradeValid() {
+        if (player1Cash < campaign.getCurrentPlayer().getCash() && player2Cash < player2.getCash()) {
+            for (Property property : campaign.getCurrentPlayer().getProperties()) {
+                if (player1Properties.contains(property)) {
+                    for (Property property2 : player2.getProperties()) {
+                        if (player2Properties.contains(property2)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
 
 
     @Override
     public TradeOutputData create(TradeInputData input) throws Exception {
         Player player1 = campaign.getCurrentPlayer();
-        if(input.isTradeValid() && input.isConfirmTrade()){
+        if(isTradeValid() && input.isConfirmTrade()){
             trade(player1Properties, player2Properties, player1Cash, player2Cash);
             return output.prepareSuccessView(true);
         }
