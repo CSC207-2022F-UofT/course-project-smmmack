@@ -16,6 +16,11 @@ public class AdvanceOutputData {
 
     public boolean isAdvanceSuccess() {
         return isAdvanceSuccess;
+    }
+
+    public void setAdvanceMessage(String advanceMessage) {
+        this.advanceMessage = advanceMessage;
+    }
 
     public void setAdvanceSuccess(boolean advanceSuccess) {
         isAdvanceSuccess = advanceSuccess;

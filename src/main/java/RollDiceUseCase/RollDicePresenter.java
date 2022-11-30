@@ -13,7 +13,7 @@ public class RollDicePresenter implements RollDiceOutputBoundary{
     }
 
     /**
-     * Displays the resulst of the dice roll.
+     * Displays the results of the dice roll.
      * @param diceOutputData output data from the interactor.
      */
     @Override
