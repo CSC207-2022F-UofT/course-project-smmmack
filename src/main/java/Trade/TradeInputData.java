@@ -32,21 +32,6 @@ public class TradeInputData {
         this.player2Cash = player2Cash;
     }
 
-    public boolean isTradeValid() {
-        if (player1Cash < campaign.getCurrentPlayer().getCash() && player2Cash < player2.getCash()) {
-            for (Property property : campaign.getCurrentPlayer().getProperties()) {
-                if (player1Properties.contains(property)) {
-                    for (Property property2 : player2.getProperties()) {
-                        if (player2Properties.contains(property2)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
     public boolean isConfirmTrade() {
         return confirmTrade;
     }
