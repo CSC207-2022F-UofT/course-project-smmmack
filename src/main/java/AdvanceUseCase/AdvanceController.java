@@ -10,13 +10,12 @@ public class AdvanceController {
         this.diceSum = diceSum;
     }
 
-    void create() throws Exception {
+    void performAction() throws Exception {
         AdvanceInputData inputData = new AdvanceInputData(diceSum);
-        inputBoundary.create(inputData);
+        inputBoundary.performAction(inputData);
     }
 
     // Getters and Setters
-
 
     public AdvanceInputBoundary getInputBoundary() {
         return inputBoundary;
