@@ -3,13 +3,14 @@ package MainEntities;
 import Properties.NormalProperty;
 import Properties.Property;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 
 /**
  * Player contains every information about a player, including the name, cash, location, and owned properties.
  */
-public class Player {
+public class Player implements Serializable {
     public static final Player OWNERLESS = null;
     public static final Player BANK = null;
 
@@ -21,11 +22,13 @@ public class Player {
      * The number of turns the player need to stay in jail. Int implementation allows sentences longer than 1 turn.
      */
     private int jailTurn;
+    //TODO: in order to let player panel show different color for each player, a color instance variable is needed
+
     /**
      * Create a new Player object with these default parameters: <br>
      * cash = 0 <br>
      * location = 0 <br>
-     * properties = new ArrayList<br>
+     * properties = new ArrayList<>()<br>
      * jailTurn = 0
      *
      * @param name the name of the player
@@ -104,6 +107,20 @@ public class Player {
         } else {
             return false;
         }
+    }
+
+    /**
+     * @return A boolean indicating whether the player is bank-broke. The player is bank-broke if all his/her cash and
+     * mortgage value of unmortgaged properties combined is less than or equal to 0.
+     */
+    public boolean isBroke() {
+        int totalWealth = this.cash;
+        for (Property property: this.properties) {
+            if (! property.isMortgaged()) {
+                totalWealth += property.getMortgageValue();
+            }
+        }
+        return totalWealth > 0;
     }
 
     //other setters
