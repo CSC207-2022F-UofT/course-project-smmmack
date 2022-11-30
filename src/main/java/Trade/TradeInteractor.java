@@ -1,20 +1,20 @@
 package Trade;
 import MainEntities.Campaign;
+import MainEntities.CampaignAccess;
 import MainEntities.Player;
 import Properties.NormalProperty;
 import Properties.Property;
 
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.List;
+
 /**
  * TradeInteractor is a class that handles the trade between two players.
  */
 public class
 TradeInteractor implements TradeInputBoundary {
     final TradeOutputBoundary output;
-    final Campaign campaign;
+    final CampaignAccess campaign;
     Player player1;
     Player player2;
 
@@ -23,7 +23,7 @@ TradeInteractor implements TradeInputBoundary {
     int player1Cash;
     int player2Cash;
 
-    public TradeInteractor(TradeOutputBoundary output, Player player2, Campaign campaign, ArrayList<NormalProperty> player1Properties,
+    public TradeInteractor(TradeOutputBoundary output, Player player2, CampaignAccess campaign, ArrayList<NormalProperty> player1Properties,
                            ArrayList<NormalProperty> player2Properties, int player1Cash, int player2Cash) {
         this.output = output;
         this.player2 = player2;
@@ -55,18 +55,18 @@ TradeInteractor implements TradeInputBoundary {
             player1.assignOwnership(property);
         }
     }
+
     /**
      * Checks if the trade is valid.
      *
-     * @param player1Properties, player2Properties, player1Cash, player2Cash the properties and cash that the players are trading
      * @return boolean
      */
     public boolean isTradeValid() {
-        if (player1Cash < campaign.getCurrentPlayer().getCash() && player2Cash < player2.getCash()) {
-            for (Property property : campaign.getCurrentPlayer().getProperties()) {
-                if (player1Properties.contains(property)) {
+        if (player1Cash < campaign.getCampaign().getCurrentPlayer().getCash() && player2Cash < player2.getCash()) {
+            for (Property property : campaign.getCampaign().getCurrentPlayer().getProperties()) {
+                if (player1Properties.contains(property) && property.getHouseLevel() == 0) {
                     for (Property property2 : player2.getProperties()) {
-                        if (player2Properties.contains(property2)) {
+                        if (player2Properties.contains(property2) && property2.getHouseLevel() == 0) {
                             return true;
                         }
                     }
@@ -77,16 +77,20 @@ TradeInteractor implements TradeInputBoundary {
     }
 
 
-
     @Override
-    public TradeOutputData create(TradeInputData input) throws Exception {
-        Player player1 = campaign.getCurrentPlayer();
-        if(isTradeValid() && input.isConfirmTrade()){
+    public void create(TradeInputData input) throws Exception {
+        Player player1 = campaign.getCampaign().getCurrentPlayer();
+        if (isTradeValid() && input.isConfirmTrade()) {
             trade(player1Properties, player2Properties, player1Cash, player2Cash);
-            return output.prepareSuccessView(true);
-        }
-        else {
-            return output.prepareFailureView("Trade Failed!");
+            TradeOutputData outputMessage =
+                    new TradeOutputData(true, "You traded" + player1Properties + "and" + player1Cash + "for"
+                            + player2Properties + "and" + player2Cash);
+            output.create(outputMessage);
+        } else {
+            TradeOutputData outputMessage =
+                    new TradeOutputData(false, "Trade failed" + player2.getName()
+                            + "Declined your trade");
+            output.create(outputMessage);
         }
     }
 }

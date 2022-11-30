@@ -91,6 +91,7 @@ public abstract class Property implements Serializable {
     //other getters
 
     public abstract int getRent(Player target);
+    public int getHouseLevel() {return 0;}
 
     public int getMortgageValue() {
         return this.price / 2;
