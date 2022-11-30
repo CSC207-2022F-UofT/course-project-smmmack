@@ -1,34 +1,37 @@
 package PayRent;
 
-import MainEntities.Player;
-import Properties.Property;
-
 public class PayRentInputData {
 
-    private Player rentee;
-    private Player renter;
-    private Property propertyLandedOn;
-    private int rentMoney;
+    private String rentee;
+    private int renteeCash;
+    private String renter;
+    private int renterCash;
+    private String propertyLandedOn;
+    private int rentMoney = 0;
     private boolean isMortgaged;
 
-    public PayRentInputData(Player rentee, Property propertyLandedOn){
-        this.propertyLandedOn = propertyLandedOn;
-        this.rentee = rentee;
-        this.renter = propertyLandedOn.getOwner();
-        this.rentMoney = propertyLandedOn.getRent(rentee);
-        this.isMortgaged = propertyLandedOn.isMortgaged();
+    public PayRentInputData(){
+
     }
 
     // getters
-    public Player getRentee(){
+    public String getRentee(){
         return this.rentee;
     }
 
-    public Player getRenter(){
+    public int getRenteeCash(){
+        return this.renteeCash;
+    }
+
+    public String getRenter(){
         return this.renter;
     }
 
-    public Property getPropertyLandedOn(){
+    public int getRenterCash(){
+        return this.renterCash;
+    }
+
+    public String getPropertyLandedOn(){
         return this.propertyLandedOn;
     }
 
@@ -42,19 +45,27 @@ public class PayRentInputData {
 
 
     // setters
-    public void setRentee(Player rentee){
+    public void setRentee(String rentee){
         this.rentee = rentee;
     }
 
-    public void setRenter(Player renter){
+    public void setRenteeCash(int renteeCash){
+        this.renteeCash = renteeCash;
+    }
+
+    public void setRenter(String renter){
         this.renter = renter;
+    }
+
+    public void setRenterCash(int renterCash){
+        this.renterCash = renterCash;
     }
 
     public void setRentMoney(int rentMoney){
         this.rentMoney = rentMoney;
     }
 
-    public void setPropertyLandedOn(Property propertyLandedOn){
+    public void setPropertyLandedOn(String propertyLandedOn){
         this.propertyLandedOn = propertyLandedOn;
     }
 
