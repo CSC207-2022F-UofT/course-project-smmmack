@@ -16,7 +16,6 @@ public class AdvanceOutputData {
 
     public boolean isAdvanceSuccess() {
         return isAdvanceSuccess;
-    }
 
     public void setAdvanceSuccess(boolean advanceSuccess) {
         isAdvanceSuccess = advanceSuccess;
