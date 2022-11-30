@@ -1,6 +1,7 @@
 package PayRent;
 
 public interface PayRentOutputBoundary {
-    void payRentMessage(PayRentOutputData payRentOutputData);
+
+    void payRentMessage(boolean paidRent, int renteeCash, int renterCash, PayRentOutputData payRentOutputData);
 
 }
