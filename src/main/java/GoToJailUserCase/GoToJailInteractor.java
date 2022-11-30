@@ -19,6 +19,12 @@ public class GoToJailInteractor implements GoToJailInputBoundary{
         this.player = player;
     }
 
+    /**
+     * To find the index of the jail
+     * @param board The board of the game.
+     * @param jailTile The class that contains the information that where a player will go to jail
+     */
+
     public int jailIndex(GoToJailTile jailTile, GameBoard board){
         int index=0;
         while (board.getTileAt(index) != jailTile.getJailTile()){
@@ -26,6 +32,13 @@ public class GoToJailInteractor implements GoToJailInputBoundary{
         }
         return index;
     }
+
+    /**
+     * To check if the player is on the tile that will go the jail, if he is jail is true, if he
+     * is not, jail is false
+     * @param player The player of the game.
+     * @param jailTile The class that contains the information that where a player will go to jail
+     */
 
     public boolean inJail(Player player, GoToJailTile jailTile){
         boolean jail;
@@ -35,7 +48,7 @@ public class GoToJailInteractor implements GoToJailInputBoundary{
 
     @Override
     public void create (GoToJailInputData inputData) throws Exception {
-        inputData.jail = inJail(player, jailTile);
+        inputData.injail = inJail(player, jailTile);
         GoToJailOutputData outputData;
         player.setLocation(jailIndex(jailTile, board));
         new GoToJailOutputData("You are in jail ");
