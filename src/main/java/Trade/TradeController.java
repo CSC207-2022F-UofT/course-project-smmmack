@@ -15,10 +15,10 @@ public class TradeController {
         this.player1 = player1;
     }
 
-    TradeOutputData create() throws Exception {
+    void create() throws Exception {
         TradeInputData inputData = new TradeInputData(player1, new ArrayList<NormalProperty>(),
                 new ArrayList<NormalProperty>(), 0, 0);
-        return input.create(inputData);
+         input.create(inputData);
     }
 
 
