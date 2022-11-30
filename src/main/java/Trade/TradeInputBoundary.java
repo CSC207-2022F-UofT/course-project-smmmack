@@ -1,8 +1,10 @@
 package Trade;
 
 public interface TradeInputBoundary {
-    //change to private`
-    default TradeOutputData create(TradeInputData input) throws Exception {
-        return null;
-    }
+
+    /**
+     * Displays the trade menu.
+     * @param input
+     */
+    void create(TradeInputData input) throws Exception;
 }

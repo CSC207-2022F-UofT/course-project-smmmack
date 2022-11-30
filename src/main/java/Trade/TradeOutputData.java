@@ -5,8 +5,10 @@ public class TradeOutputData {
     Boolean tradeSuccess;
     // String playerLocation;
 
-    public TradeOutputData(Boolean tradeSuccess) {
+    public TradeOutputData(Boolean tradeSuccess, String tradeMessage) {
          this.tradeSuccess = tradeSuccess;
+
+
     }
 
     //Getter and Setter Methods
@@ -19,6 +21,13 @@ public class TradeOutputData {
         this.tradeSuccess = tradeSuccess;
     }
 
+    public String getTradeMessage() {
+        if (tradeSuccess) {
+            return "Trade successful!";
+        } else {
+            return "Trade unsuccessful!";
+        }
+    }
 }
 
 
