@@ -1,11 +1,11 @@
-package Trade;
+package tradeUseCase;
 
-public class TradeOutputData {
+public class tradeOutputData {
     //change to private`
     Boolean tradeSuccess;
     // String playerLocation;
 
-    public TradeOutputData(Boolean tradeSuccess, String tradeMessage) {
+    public tradeOutputData(Boolean tradeSuccess, String tradeMessage) {
          this.tradeSuccess = tradeSuccess;
 
 
@@ -15,6 +15,11 @@ public class TradeOutputData {
     public boolean getTradeSuccess() {
         return tradeSuccess;
     }
+
+    /**
+     *
+     * @param tradeSuccess The boolean value that determines whether the trade was successful or not.
+     */
 
 
     public void setTradeSuccess(Boolean tradeSuccess) {
