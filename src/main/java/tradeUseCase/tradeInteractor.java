@@ -1,5 +1,4 @@
-package Trade;
-import MainEntities.Campaign;
+package tradeUseCase;
 import MainEntities.CampaignAccess;
 import MainEntities.Player;
 import Properties.NormalProperty;
@@ -11,9 +10,8 @@ import java.util.ArrayList;
 /**
  * TradeInteractor is a class that handles the trade between two players.
  */
-public class
-TradeInteractor implements TradeInputBoundary {
-    final TradeOutputBoundary output;
+public class tradeInteractor implements tradeInputBoundary {
+    final tradeOutputBoundary output;
     final CampaignAccess campaign;
     Player player1;
     Player player2;
@@ -23,7 +21,7 @@ TradeInteractor implements TradeInputBoundary {
     int player1Cash;
     int player2Cash;
 
-    public TradeInteractor(TradeOutputBoundary output, Player player2, CampaignAccess campaign, ArrayList<NormalProperty> player1Properties,
+    public tradeInteractor(tradeOutputBoundary output, Player player2, CampaignAccess campaign, ArrayList<NormalProperty> player1Properties,
                            ArrayList<NormalProperty> player2Properties, int player1Cash, int player2Cash) {
         this.output = output;
         this.player2 = player2;
@@ -35,10 +33,10 @@ TradeInteractor implements TradeInputBoundary {
     }
 
     /**
-     * Makes the trade, player1 gives player2 player1Properties and player1Cash, and player2 gives player1 player2Properties and player2Cash.
-     *
-     * @param player1Properties, player2Properties, player1Cash, player2Cash the properties and cash that the players are trading
-     * @return void
+     * @param player1Properties The properties that the player who is trading is offering.
+     * @param player2Properties The properties that the player who is trading is asking for.
+     * @param player1Cash The amount of cash that the player who is trading is offering.
+     * @param player2Cash The amount of cash that the player who is trading is asking for.
      */
     public void trade(ArrayList<NormalProperty> player1Properties, ArrayList<NormalProperty> player2Properties,
                       int player1Cash, int player2Cash) {
@@ -78,17 +76,17 @@ TradeInteractor implements TradeInputBoundary {
 
 
     @Override
-    public void create(TradeInputData input) throws Exception {
+    public void preformAction(tradeInputData input) throws Exception {
         Player player1 = campaign.getCampaign().getCurrentPlayer();
         if (isTradeValid() && input.isConfirmTrade()) {
             trade(player1Properties, player2Properties, player1Cash, player2Cash);
-            TradeOutputData outputMessage =
-                    new TradeOutputData(true, "You traded" + player1Properties + "and" + player1Cash + "for"
+            tradeOutputData outputMessage =
+                    new tradeOutputData(true, "You traded" + player1Properties + "and" + player1Cash + "for"
                             + player2Properties + "and" + player2Cash);
             output.create(outputMessage);
         } else {
-            TradeOutputData outputMessage =
-                    new TradeOutputData(false, "Trade failed" + player2.getName()
+            tradeOutputData outputMessage =
+                    new tradeOutputData(false, "Trade failed" + player2.getName()
                             + "Declined your trade");
             output.create(outputMessage);
         }
