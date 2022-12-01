@@ -8,9 +8,9 @@ import MainEntities.Player;
 
 public class DrawCardInteractor implements DrawCardInputBoundary {
 
-    private DrawCardOutputBoundary output;
-    private Player player;
-    private Card drawnCard;
+    final DrawCardOutputBoundary output;
+    final Player player;
+    Card drawnCard;
 
     public DrawCardInteractor(DrawCardOutputBoundary output, Player player, Card card) {
         this.output = output;
@@ -41,12 +41,6 @@ public class DrawCardInteractor implements DrawCardInputBoundary {
         return message;
     }
 
-
-    // I literally can not figure out why I need this here
-    @Override
-    public DrawCardOutputData performAction(DrawCardInputData drawCardInputData) throws Exception {
-        return null;
-    }
 
     @Override
     public void performAction(DrawCardInputData drawCardInput, Deck deckType) throws Exception {
