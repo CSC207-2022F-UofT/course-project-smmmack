@@ -9,9 +9,22 @@ public class PayRentInputData {
     private String propertyLandedOn;
     private int rentMoney = 0;
     private boolean isMortgaged;
+    private boolean confirmPayRent = true;
 
+    /**
+     * Constructor automatically called when rentee lands on the property
+     */
     public PayRentInputData(){
 
+    }
+
+    /**
+     * Constructor called when the rentee manually clicks confirm to pay rent since they fail to pay rent the first time
+     * because they didn't have enough money to pay the rent
+     * @param confirmPayRent true if rentee confirms to pay the rent and false otherwise
+     */
+    public PayRentInputData(boolean confirmPayRent){
+        this.confirmPayRent = confirmPayRent;
     }
 
     // getters
@@ -42,6 +55,9 @@ public class PayRentInputData {
     public boolean getIsMortgaged(){
         return this.isMortgaged;
     }
+    public boolean getConfirmPayRent(){
+        return this.confirmPayRent;
+    }
 
 
     // setters
@@ -71,6 +87,10 @@ public class PayRentInputData {
 
     public void setIsMortgaged(boolean isMortgaged){
         this.isMortgaged = isMortgaged;
+    }
+
+    public void setConfirmPayRent(boolean confirmPayRent){
+        this.confirmPayRent = confirmPayRent;
     }
 
 }
