@@ -2,8 +2,6 @@ package PayRent;
 
 public interface PayRentOutputBoundary {
 
-    PayRentOutputData prepareSuccessView(String successMessage);
-
-    PayRentOutputData prepareFailView(String error);
+    void payRentMessage(boolean paidRent, int renteeCash, int renterCash, PayRentOutputData payRentOutputData);
 
 }

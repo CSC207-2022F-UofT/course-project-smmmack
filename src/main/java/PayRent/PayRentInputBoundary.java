@@ -1,7 +1,6 @@
 package PayRent;
 
 public interface PayRentInputBoundary{
-
-    PayRentOutputData create (PayRentInputData payRentInputData);
+    void performAction(PayRentInputData payRentInputData);
 
 }

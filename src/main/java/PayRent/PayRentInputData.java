@@ -1,34 +1,50 @@
 package PayRent;
 
-import MainEntities.Player;
-import Properties.Property;
-
 public class PayRentInputData {
 
-    private Player rentee;
-    private Player renter;
-    private Property propertyLandedOn;
-    private int rentMoney;
+    private String rentee;
+    private int renteeCash;
+    private String renter;
+    private int renterCash;
+    private String propertyLandedOn;
+    private int rentMoney = 0;
     private boolean isMortgaged;
+    private boolean confirmPayRent = true;
 
-    public PayRentInputData(Player rentee, Property propertyLandedOn){
-        this.propertyLandedOn = propertyLandedOn;
-        this.rentee = rentee;
-        this.renter = propertyLandedOn.getOwner();
-        this.rentMoney = propertyLandedOn.getRent(rentee);
-        this.isMortgaged = propertyLandedOn.isMortgaged();
+    /**
+     * Constructor automatically called when rentee lands on the property
+     */
+    public PayRentInputData(){
+
+    }
+
+    /**
+     * Constructor called when the rentee manually clicks confirm to pay rent since they fail to pay rent the first time
+     * because they didn't have enough money to pay the rent
+     * @param confirmPayRent true if rentee confirms to pay the rent and false otherwise
+     */
+    public PayRentInputData(boolean confirmPayRent){
+        this.confirmPayRent = confirmPayRent;
     }
 
     // getters
-    public Player getRentee(){
+    public String getRentee(){
         return this.rentee;
     }
 
-    public Player getRenter(){
+    public int getRenteeCash(){
+        return this.renteeCash;
+    }
+
+    public String getRenter(){
         return this.renter;
     }
 
-    public Property getPropertyLandedOn(){
+    public int getRenterCash(){
+        return this.renterCash;
+    }
+
+    public String getPropertyLandedOn(){
         return this.propertyLandedOn;
     }
 
@@ -39,27 +55,42 @@ public class PayRentInputData {
     public boolean getIsMortgaged(){
         return this.isMortgaged;
     }
+    public boolean getConfirmPayRent(){
+        return this.confirmPayRent;
+    }
 
 
     // setters
-    public void setRentee(Player rentee){
+    public void setRentee(String rentee){
         this.rentee = rentee;
     }
 
-    public void setRenter(Player renter){
+    public void setRenteeCash(int renteeCash){
+        this.renteeCash = renteeCash;
+    }
+
+    public void setRenter(String renter){
         this.renter = renter;
+    }
+
+    public void setRenterCash(int renterCash){
+        this.renterCash = renterCash;
     }
 
     public void setRentMoney(int rentMoney){
         this.rentMoney = rentMoney;
     }
 
-    public void setPropertyLandedOn(Property propertyLandedOn){
+    public void setPropertyLandedOn(String propertyLandedOn){
         this.propertyLandedOn = propertyLandedOn;
     }
 
     public void setIsMortgaged(boolean isMortgaged){
         this.isMortgaged = isMortgaged;
+    }
+
+    public void setConfirmPayRent(boolean confirmPayRent){
+        this.confirmPayRent = confirmPayRent;
     }
 
 }
