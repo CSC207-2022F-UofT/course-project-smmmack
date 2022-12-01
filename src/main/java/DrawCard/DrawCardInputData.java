@@ -17,7 +17,7 @@ public class DrawCardInputData {
      * @param deckType The type of Deck that the player has to draw on.
      */
 
-    public DrawCardInputData(String playerName, Deck deckType){
+    public DrawCardInputData(String playerName, Deck deckType) {
         this.playerName = playerName;
         this.deckType = deckType;
     }
