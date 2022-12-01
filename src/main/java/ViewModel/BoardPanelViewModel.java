@@ -14,10 +14,14 @@ import java.util.List;
  * Just the same as GameBoard, BoardPanelViewModel has final width and height, and both are no less than 2.
  */
 public class BoardPanelViewModel {
-    private final int width;
-    private final int height;
+    private int width;
+    private int height;
     private TileViewModel[] tileVMs;
     private List<BoardPanelVMListener> listeners;
+
+    public BoardPanelViewModel() throws InvalidParameterException {
+        this(2, 2);
+    }
 
     public BoardPanelViewModel(int width, int height) throws InvalidParameterException {
         if (width < 2 || height < 2) {
@@ -51,6 +55,14 @@ public class BoardPanelViewModel {
      */
     public void setTileVMAt(int index, TileViewModel tileVM) {
         tileVMs[index] = tileVM;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
     }
 
     //getters
