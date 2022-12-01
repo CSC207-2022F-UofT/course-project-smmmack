@@ -7,7 +7,7 @@ package PayRent;
 public class PayRentController {
 
     private PayRentInputBoundary payRentInputBoundary;
-    private boolean confirmPayRent = false;
+    private boolean confirmPayRent = true;
 
     public PayRentController(PayRentInputBoundary payRentInputBoundary) {
         this.payRentInputBoundary = payRentInputBoundary;
