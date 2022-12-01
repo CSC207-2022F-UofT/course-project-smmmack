@@ -16,8 +16,14 @@ public class StartCampaignInteractor implements StartCampaignInputBoundary {
 
     @Override
     public void performAction(StartCampaignInputData inputData) {
-        String campaignName = inputData.getCampaignName();
         Campaign campaign = campaignAccess.getCampaign();
+        // Update board panel view model
+        int width = campaign.getBoardWidth();
+        int height = campaign.getBoardHeight();
+
+
+        // Put a new String in the command lines
+        String campaignName = inputData.getCampaignName();
         Player currPlayer = campaign.getCurrentPlayer();
         String playerName = currPlayer.getName();
         String message = "Starting campaign: " + campaignName + ", player " + playerName + "'s turn.";
