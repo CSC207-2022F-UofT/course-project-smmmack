@@ -8,13 +8,19 @@ public class ConfirmBuyPropertyOutputData {
     /**
      *
      * @param message The response message when the player is attempting to purchase the property that
-     *                the player landed on; the attempt of purchasing can either be accepted or denied.
+     *                the player landed on; the attempt of purchasing can either be accepted or denied;
+     *                further indicates the error message of an unsuccessful purchase to inform the player.
+     *
+     * @param confirmPurchase The boolean parameter indicating whether the purchase is verified; true for
+     *                        successful purchase, false otherwise.
      */
 
     public ConfirmBuyPropertyOutputData(String message, boolean confirmPurchase){
         this.message = message;
         this.confirmPurchase = confirmPurchase;
     }
+
+    // Getters:
 
     public String getMessage() {
         return message;
@@ -24,6 +30,8 @@ public class ConfirmBuyPropertyOutputData {
         return confirmPurchase;
     }
 
+    // Setters:
+
     public void setMessage(String message) {
         this.message = message;
     }
@@ -31,9 +39,5 @@ public class ConfirmBuyPropertyOutputData {
     public void setConfirmPurchase(boolean confirmPurchase){
         this.confirmPurchase = confirmPurchase;
     }
-
-    // 3 more variables: 1 boolean indicating of confirmPurchase at the BuyPropertyOutPutData.
-    // playerIndex. Which player at which index bought the property.
-    // propertyIndex. Which property at what index has been bought?
 
 }

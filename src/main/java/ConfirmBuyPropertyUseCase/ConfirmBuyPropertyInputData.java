@@ -1,40 +1,26 @@
 package ConfirmBuyPropertyUseCase;
 
-import MainEntities.Player;
-import Properties.Property;
-
 public class ConfirmBuyPropertyInputData {
-    Player player;
-    Property property;
-
     boolean decision;
 
+    /**
+     *
+     * @param decision The decision of attempting to purchase the landed on
+     *                 property; true if the player attempts to purchase the
+     *                 landed on property; false otherwise.
+     */
 
-    public ConfirmBuyPropertyInputData(Player player, Property property, boolean decision) {
-        this.player = player;
-        this.property = property;
+    public ConfirmBuyPropertyInputData(boolean decision) {
         this.decision = decision;
     }
 
-    public Player getPlayer() {
-        return player;
-    }
-
-    public Property getProperty() {
-        return property;
-    }
+    // Getter:
 
     public boolean getDecision() {
         return decision;
     }
 
-    public void setProperty(Property property) {
-        this.property = property;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
+    // Setter:
 
     public void setDecision(boolean decision){
         this.decision = decision;
