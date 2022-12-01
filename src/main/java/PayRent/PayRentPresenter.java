@@ -1,6 +1,6 @@
 package PayRent;
 
-import ViewModel.CommandLineViewModel;
+import ViewModel.CommandPanelViewModel;
 import ViewModel.PlayerViewModel;
 
 /**
@@ -10,14 +10,14 @@ public class PayRentPresenter implements PayRentOutputBoundary{
 
     private PlayerViewModel renteePlayerViewModel;
     private PlayerViewModel renterPlayerViewModel;
-    private CommandLineViewModel commandLineViewModel;
+    private CommandPanelViewModel commandPanelViewModel;
 
     public PayRentPresenter(PlayerViewModel renteePlayerViewModel, PlayerViewModel renterPlayerViewModel,
-                            CommandLineViewModel commandLineViewModel){
+                            CommandPanelViewModel commandPanelViewModel){
 
         this.renteePlayerViewModel = renteePlayerViewModel;
         this.renterPlayerViewModel = renterPlayerViewModel;
-        this.commandLineViewModel = commandLineViewModel;
+        this.commandPanelViewModel = commandPanelViewModel;
 
     }
 
@@ -36,11 +36,9 @@ public class PayRentPresenter implements PayRentOutputBoundary{
         if (paidRent){
             renteePlayerViewModel.setCash(renteeCash);
             renterPlayerViewModel.setCash(renterCash);
-            commandLineViewModel.setMessage(message);
-            commandLineViewModel.setType("output");
+            commandPanelViewModel.appendCommandLine("output",message);
         } else{
-            commandLineViewModel.setMessage(message);
-            commandLineViewModel.setType("output");
+            commandPanelViewModel.appendCommandLine("output",message);
         }
 
     }
