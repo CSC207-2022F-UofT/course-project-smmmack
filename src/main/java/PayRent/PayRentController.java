@@ -7,22 +7,12 @@ package PayRent;
 public class PayRentController {
 
     private PayRentInputBoundary payRentInputBoundary;
-    private boolean confirmPayRent = true;
 
     public PayRentController(PayRentInputBoundary payRentInputBoundary) {
         this.payRentInputBoundary = payRentInputBoundary;
     }
 
-    public PayRentController(PayRentInputBoundary payRentInputBoundary, boolean confirmPayRent) {
-        this.payRentInputBoundary = payRentInputBoundary;
-        this.confirmPayRent = confirmPayRent;
-    }
-
     public void performAction() {
-        if (confirmPayRent){
-            PayRentInputData payRentInputData = new PayRentInputData(true);
-            payRentInputBoundary.performAction(payRentInputData);
-        }
         PayRentInputData payRentInputData = new PayRentInputData();
         payRentInputBoundary.performAction(payRentInputData);
     }
@@ -32,17 +22,9 @@ public class PayRentController {
         return this.payRentInputBoundary;
     }
 
-    public boolean getConfirmPayRent(){
-        return this.confirmPayRent;
-    }
-
     // setters
     public void setPayRentInputBoundary(PayRentInputBoundary payRentInputBoundary){
         this.payRentInputBoundary = payRentInputBoundary;
-    }
-
-    public void setConfirmPayRent(boolean confirmPayRent){
-        this.confirmPayRent = confirmPayRent;
     }
 
 }
