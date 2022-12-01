@@ -1,10 +1,11 @@
 package DrawCard;
+// calls view model
 
 public class DrawCardPresenter implements DrawCardOutputBoundary{
+    //update view model in Presenter using command Panel view model with append something
 
-    public DrawCardOutputData prepareSuccessView(String message) {return null;}
-
-    public DrawCardOutputData prepareFailureView(String message) {
-        return null;
+    @Override
+    public void performAction(DrawCardOutputData drawCardOutputData) {
+        String message = drawCardOutputData.getMessage();
     }
 }

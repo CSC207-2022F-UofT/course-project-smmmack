@@ -1,7 +1,5 @@
 package DrawCard;
 
-//add the imports I need from entities and or the other classes
-
 import Cards.Card;
 import Cards.GainCashCard;
 import Cards.LoseCashCard;
@@ -10,37 +8,59 @@ import MainEntities.Player;
 
 public class DrawCardInteractor implements DrawCardInputBoundary {
 
-    final DrawCardOutputBoundary output;
-    Player player;
-    Card drawnCard;
+    private DrawCardOutputBoundary output;
+    private Player player;
+    private Card drawnCard;
 
-    public DrawCardInteractor(DrawCardOutputBoundary output, Player player) {
+    public DrawCardInteractor(DrawCardOutputBoundary output, Player player, Card card) {
         this.output = output;
         this.player = player;
+        this.drawnCard = card;
     }
 
-    public void performDrawCard(Deck deckType) throws Exception {
+    /**
+     * @param deckType The type of Deck that the player has to draw on.
+     * @return An integer message informing the player about the card that they drew. There are 2 types of messages
+     *         indicated as 1 or 2. If the message equals to 1, then the card they have drawn is a GainCashCard.
+     *         If the message equals to 2, then the card they have drawn is a LoseCashCard.
+     *         At the end, if the player has insufficient funds in their account after the card is preformed,
+     *         then a message is shown that the player has become bankrupt.
+     */
+
+    public int performDrawCard(Deck deckType) {
         drawnCard = deckType.drawCard();
+        int message = 0;
 
         if (drawnCard instanceof GainCashCard) {
             player.gainCash(((GainCashCard) drawnCard).getAmount());
+            message = 1;
         } else if (drawnCard instanceof LoseCashCard) {
             player.gainCash(((LoseCashCard) drawnCard).getAmount());
-        } else {
-            throw new Exception("Not a gain or lose cash card");
+            message = 2;
         }
+        return message;
+    }
+
+
+    // I literally can not figure out why I need this here
+    @Override
+    public DrawCardOutputData performAction(DrawCardInputData drawCardInputData) throws Exception {
+        return null;
     }
 
     @Override
-    public DrawCardOutputData create(DrawCardInputData drawCardInput) throws Exception {
+    public void performAction(DrawCardInputData drawCardInput, Deck deckType) throws Exception {
+        int message = performDrawCard(deckType);
+        DrawCardOutputData outputMessage;
         if (player.getCash() > 0) {
-            if (drawnCard instanceof GainCashCard) {
-                return output.prepareSuccessView("You gained:" + ((GainCashCard) drawnCard).getAmount() + ":)");
+            if (message == 1) {
+                outputMessage = new DrawCardOutputData("You gained:" + ((GainCashCard) drawnCard).getAmount() + ":)");
             } else { //(drawnCard instanceof LoseCashCard)
-                return output.prepareSuccessView("You lost:" + ((LoseCashCard) drawnCard).getAmount() + ":(");
+                outputMessage = new DrawCardOutputData("You lost:" + ((LoseCashCard) drawnCard).getAmount() + ":(");
             }
         } else {
-            return output.prepareFailureView("You have insufficient funds. You are out of the game.");
+            outputMessage = new DrawCardOutputData("You have insufficient funds. You are out of the game.");
         }
+        output.performAction(outputMessage);
     }
 }

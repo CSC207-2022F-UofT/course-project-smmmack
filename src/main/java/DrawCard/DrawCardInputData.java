@@ -5,12 +5,17 @@ import MainEntities.Deck;
 public class DrawCardInputData {
     // boolean confirm;
     private String playerName;
+
+    /**
+     *
+     * @param playerName the name of the player who has to draw a Card.
+     */
     private Deck deckType;
 
-//    public DrawCardInputData(boolean confirm) {
-//        this.confirm = true;
-//    }
-//    public boolean isConfirm() {return confirm;}
+    /**
+     *
+     * @param deckType The type of Deck that the player has to draw on.
+     */
 
     public DrawCardInputData(String playerName, Deck deckType){
         this.playerName = playerName;
@@ -25,7 +30,7 @@ public class DrawCardInputData {
         return deckType;
     }
 
-    //setters]]
+    //setters
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }

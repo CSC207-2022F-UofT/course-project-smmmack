@@ -3,8 +3,8 @@ package DrawCard;
 import MainEntities.Deck;
 
 public class DrawCardController {
-    //Add more variables and create methods
-    final DrawCardInputBoundary input;
+    //Add more variables and create methods, calls interactor
+    private DrawCardInputBoundary input;
     final String playerName;
     final Deck deckType;
 
@@ -14,8 +14,26 @@ public class DrawCardController {
         this.deckType = deckType;
     }
 
-    DrawCardOutputData create() throws Exception {
+    void performAction() throws Exception {
         DrawCardInputData drawCardInputData = new DrawCardInputData(playerName, deckType);
-        return input.create(drawCardInputData);
+        input.performAction(drawCardInputData);
+    }
+
+    // getters
+    public DrawCardInputBoundary getInputDrawCard(){
+        return input;
+    }
+
+    public String getPlayerName(){
+        return playerName;
+    }
+
+    public Deck getDeckType(){
+        return deckType;
+    }
+
+    // setters
+    public void setInputDrawCard(DrawCardInputBoundary input){
+        this.input = input;
     }
 }
