@@ -8,9 +8,8 @@ public class PayRentController {
         this.payRentInputBoundary = payRentInputBoundary;
     }
 
-    public void create (PayRentInputData newPayRentInputData) {
-        PayRentInputData payRentInputData = new PayRentInputData(newPayRentInputData.getRentee(),
-                newPayRentInputData.getPropertyLandedOn());
+    public void create () {
+        PayRentInputData payRentInputData = new PayRentInputData();
         payRentInputBoundary.performAction(payRentInputData);
     }
 
