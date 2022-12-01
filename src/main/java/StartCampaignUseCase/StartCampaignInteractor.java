@@ -2,6 +2,7 @@ package StartCampaignUseCase;
 
 import MainEntities.Campaign;
 import MainEntities.CampaignAccess;
+import MainEntities.Player;
 
 public class StartCampaignInteractor implements StartCampaignInputBoundary {
 
@@ -15,7 +16,19 @@ public class StartCampaignInteractor implements StartCampaignInputBoundary {
 
     @Override
     public void performAction(StartCampaignInputData inputData) {
-        //to be implemented
+        Campaign campaign = campaignAccess.getCampaign();
+        // Update board panel view model
+        int width = campaign.getBoardWidth();
+        int height = campaign.getBoardHeight();
+
+
+        // Put a new String in the command lines
+        String campaignName = inputData.getCampaignName();
+        Player currPlayer = campaign.getCurrentPlayer();
+        String playerName = currPlayer.getName();
+        String message = "Starting campaign: " + campaignName + ", player " + playerName + "'s turn.";
+        String nextMap = "before_move";
+        outputBoundary.performAction(new StartCampaignOutputData(message, nextMap));
     }
 
     //getter

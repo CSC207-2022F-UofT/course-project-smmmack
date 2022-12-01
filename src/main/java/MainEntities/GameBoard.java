@@ -87,4 +87,18 @@ public class GameBoard implements Serializable {
             throw new IndexOutOfBoundsException("Tile index out of bounds");
         }
     }
+
+    /**
+     * Get the index of a specific tile. Returns -1 if the tile is not found in the board.
+     * @param tile the tile that need to be found.
+     * @return the index of the given tile.
+     */
+    public int getTileIndex(Tile tile) {
+        for (int i = 0; i < getSize(); i ++) {
+            if (getTileAt(i) == tile) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
