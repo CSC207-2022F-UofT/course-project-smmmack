@@ -1,15 +1,16 @@
-package StartDefCampUseCase;
+package ReadCampaignUseCase;
 
 import ViewModel.CommandPanelViewModel;
 
-public class StartDefCampPresenter implements StartDefCampOutputBoundary {
+public class ReadCampaignPresenter implements ReadCampaignOutputBoundary {
 
     private CommandPanelViewModel commandPanelVM;
 
     @Override
-    public void performAction(StartDefCampOutputData outputData) {
+    public void performAction(ReadCampaignOutputData outputData) {
         String message = outputData.getMessage();
-        commandPanelVM.appendOutput(message);
+        if (outputData.isSuccess()) commandPanelVM.appendOutput(message);
+        else commandPanelVM.appendWarning(message);
         commandPanelVM.notifyListeners();
     }
 
