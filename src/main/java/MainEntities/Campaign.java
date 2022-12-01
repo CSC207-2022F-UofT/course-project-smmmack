@@ -1,14 +1,13 @@
 package MainEntities;
 
 import Cards.Card;
+import Properties.Property;
+import Tiles.PropertyTile;
 import Tiles.Tile;
 
 import java.io.Serializable;
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Campaign class includes all information about a game: its players, board, round count, and the current player. All
@@ -176,6 +175,40 @@ public class Campaign implements Serializable {
     }
 
     /**
+     * Return the index of a specific tile. If the tile is not found on the board, return -1.
+     * @param tile the tile to be found on the game board
+     * @return the index of the given tile on the board. -1 if the tile is not found.
+     */
+    public int getTileIndex(Tile tile) {
+        for (int i = 0; i < this.getBoardSize(); i ++) {
+            if (getTileAt(i) == tile) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * return the index of a specific property tile by abbreviation. If the board contains more than one tiles with the
+     * same abbreviation (which shouldn't happen), it will return the first index where the abbreviation appears. If the
+     * board can't find such abbreviation, return -1.
+     * @param abbreviation The abbreviation of the board to be found
+     * @return the index of the first tile with the abbreviation
+     */
+    public int getTileIndexByAbbr(String abbreviation) {
+        for (int i = 0; i < this.getBoardSize(); i ++) {
+            Tile tile = getTileAt(i);
+            if (tile instanceof PropertyTile) {
+                Property property = ((PropertyTile) tile).getProperty();
+                if (abbreviation.equals(property.getAbbreviation())) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    /**
      * Get deck of a specific type in the Campaign. If there is no deck of such type, throws an exception.
      * @param type the type of the deck wanted (typically community chest or chance)
      * @return the corresponding deck in the campaign
@@ -206,6 +239,27 @@ public class Campaign implements Serializable {
             }
         }
         return playerNum > 1;
+    }
+
+    /**
+     * return a property by its abbreviation. If the board contains more than one property with the same abbreviation
+     * (which shouldn't happen), it will return the first property where the abbreviation appears. If the board can't
+     * find such abbreviation, return null.
+     * @param abbreviation The abbreviation of the board to be found
+     * @return the index of the first tile with the abbreviation
+     */
+    public Property getPropertyByAbbr(String abbreviation) {
+        for (int i = 0; i < this.getBoardSize(); i ++) {
+            Tile tile = getTileAt(i);
+            if (tile instanceof PropertyTile) {
+                Property property = ((PropertyTile) tile).getProperty();
+                if (abbreviation.equals(property.getAbbreviation())) {
+                    return property;
+                }
+            }
+        }
+        return null;
+
     }
 
     //other setters
