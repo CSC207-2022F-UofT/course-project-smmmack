@@ -8,7 +8,6 @@ public class PayRentInputData {
     private int renterCash;
     private String propertyLandedOn;
     private int rentMoney = 0;
-    private boolean isMortgaged;
 
     public PayRentInputData(){
 
@@ -39,10 +38,6 @@ public class PayRentInputData {
         return this.rentMoney;
     }
 
-    public boolean getIsMortgaged(){
-        return this.isMortgaged;
-    }
-
 
     // setters
     public void setRentee(String rentee){
@@ -68,9 +63,4 @@ public class PayRentInputData {
     public void setPropertyLandedOn(String propertyLandedOn){
         this.propertyLandedOn = propertyLandedOn;
     }
-
-    public void setIsMortgaged(boolean isMortgaged){
-        this.isMortgaged = isMortgaged;
-    }
-
 }

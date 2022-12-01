@@ -1,53 +1,62 @@
 package PayRent;
 
-public class PayRentInteractor implements PayRentInputBoundary{
+import MainEntities.Campaign;
+import MainEntities.CampaignAccess;
+import MainEntities.Player;
+import Properties.Property;
+import Tiles.PropertyTile;
+import Tiles.Tile;
 
-    private PayRentOutputBoundary payRentOutputBoundary;
+public class PayRentInteractor implements PayRent.PayRentInputBoundary {
 
-    public PayRentInteractor(PayRentOutputBoundary payRentOutputBoundary) {
+    private PayRent.PayRentOutputBoundary payRentOutputBoundary;
+    private CampaignAccess campaignAccess;
+
+    /**
+     * Constructor for PayRentInteractor
+     * @param payRentOutputBoundary output boundary
+     */
+    public PayRentInteractor(PayRent.PayRentOutputBoundary payRentOutputBoundary, CampaignAccess campaignAccess) {
         this.payRentOutputBoundary = payRentOutputBoundary;
+        this.campaignAccess = campaignAccess;
     }
 
     /**
-     * Update the payRentMessage in payRentOutputBoundary based on different scenarios.
+     *
      * @param payRentInputData input data for PayRent
      */
     @Override
     public void performAction(PayRentInputData payRentInputData) {
 
-        if (payRentInputData.getRentee().getCash() < payRentInputData.getRentMoney()){
-            String outputMessage = "Player does not have enough money to pay the rent.";
-            PayRentOutputData payRentOutputData = new PayRentOutputData(outputMessage);
-            payRentOutputBoundary.payRentMessage(payRentOutputData);
-        } else if(payRentInputData.getIsMortgaged()){
-            String outputMessage = "No rent is paid as this property is mortgaged.";
-            PayRentOutputData payRentOutputData = new PayRentOutputData(outputMessage);
-            payRentOutputBoundary.payRentMessage(payRentOutputData);
-        } else {
-            // may need to change this part based on how getRent() is implemented
-            int rentMoneyPaid = payRentInputData.getRentee().getCash() -
-                    payRentInputData.getPropertyLandedOn().getRent(payRentInputData.getRentee());
-
-            payRentInputData.getRentee().setCash(rentMoneyPaid);
-            payRentInputData.setRentMoney(rentMoneyPaid);
-
-            String outputMessage = payRentInputData.getRentee() + " paid " +
-                    payRentInputData.getRentMoney() + "of rent money to " + payRentInputData.getRenter();
-
-            PayRentOutputData payRentOutputData = new PayRentOutputData(outputMessage);
-
-            payRentOutputBoundary.payRentMessage(payRentOutputData);
+        Player rentee = campaignAccess.getCampaign().getCurrentPlayer();
+        Player renter = null;
+        Tile propertyLandedOn = campaignAccess.getCampaign().getTileUnderPlayer(rentee);
+        int rentMoney = 0;
+        if (propertyLandedOn instanceof PropertyTile){
+            rentMoney = ((PropertyTile) propertyLandedOn).getProperty().getRent(rentee);
+            renter = ((PropertyTile) propertyLandedOn).getProperty().getOwner();
         }
+
+        rentee.loseCash(rentMoney);
+        renter.gainCash(rentMoney);
+
+        String outputMessage = rentee + " paid $" +
+                rentMoney + "of rent money to " + renter;
+
+        PayRent.PayRentOutputData payRentOutputData = new PayRent.PayRentOutputData(outputMessage);
+
+        payRentOutputBoundary.payRentMessage(rentee.getCash(), renter.getCash(), payRentOutputData);
+
 
     }
 
     // getters
-    public PayRentOutputBoundary getPayRentOutputBoundary(){
+    public PayRent.PayRentOutputBoundary getPayRentOutputBoundary(){
         return payRentOutputBoundary;
     }
 
     // setters
-    public void setPayRentOutputBoundary(PayRentOutputBoundary payRentOutputBoundary){
+    public void setPayRentOutputBoundary(PayRent.PayRentOutputBoundary payRentOutputBoundary){
         this.payRentOutputBoundary = payRentOutputBoundary;
     }
 
