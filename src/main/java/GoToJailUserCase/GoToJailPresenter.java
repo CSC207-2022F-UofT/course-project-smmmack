@@ -1,11 +1,25 @@
 package GoToJailUserCase;
 
+import ViewModel.PlayerViewModel;
+import ViewModel.CommandPanelViewModel;
 public class GoToJailPresenter implements GoToJailOutputBoundary{
+    PlayerViewModel jailPlayerViewModel;
+    CommandPanelViewModel commandPanelViewModel;
+    public GoToJailPresenter(PlayerViewModel jailPlayerViewModel, CommandPanelViewModel commandPanelViewModel) {
+        this.jailPlayerViewModel = jailPlayerViewModel;
+        this.commandPanelViewModel = commandPanelViewModel;
+    }
 
     @Override
     public void create(GoToJailOutputData outputData) {
-        String message = outputData.getMessage();
-        // Update the view model to add the output message to the command lines
+    }
+
+    @Override
+    public void performAction (GoToJailOutputData output) {
+        jailPlayerViewModel.setJailTurn(1);
+        String Message = output.getMessage();
+        commandPanelViewModel.appendOutput(Message);
     }
 }
+
 

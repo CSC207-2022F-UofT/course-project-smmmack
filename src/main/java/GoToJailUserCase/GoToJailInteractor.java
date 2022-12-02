@@ -40,15 +40,18 @@ public class GoToJailInteractor implements GoToJailInputBoundary{
      * @param jailTile The class that contains the information that where a player will go to jail
      */
 
-    public boolean inJail(Player player, GoToJailTile jailTile){
-        boolean jail;
-        jail = player.getLocation()==(jailIndex(jailTile, board));
-        return jail;
+    public boolean isPlayerInJail(Player player, GoToJailTile jailTile){
+        return player.getLocation()==(jailIndex(jailTile, board));
     }
+
+    /**
+     * If the player is in jail, sent him to the jail and shows "You are in jail".
+     * @param inputData The input of the game.
+     */
 
     @Override
     public void create (GoToJailInputData inputData) throws Exception {
-        inputData.injail = inJail(player, jailTile);
+        inputData.inJail = isPlayerInJail(player, jailTile);
         GoToJailOutputData outputData;
         player.setLocation(jailIndex(jailTile, board));
         new GoToJailOutputData("You are in jail ");

@@ -1,17 +1,17 @@
 package GoToJailUserCase;
 
 public class GoToJailInputData {
-    boolean injail;
+    boolean inJail;
 
     public GoToJailInputData(boolean jail) {
-        this.injail = jail;
+        this.inJail = jail;
     }
 
     public boolean getJail() {
-        return injail;
+        return inJail;
     }
 
     public void setJail(boolean jail) {
-        this.injail = jail;
+        this.inJail = jail;
     }
 }
