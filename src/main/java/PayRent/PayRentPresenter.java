@@ -22,7 +22,7 @@ public class PayRentPresenter implements PayRentOutputBoundary{
     }
 
     /**
-     * Send a message to update the PlayerViewModel and CommandLineViewModel
+     * Send a message to update the PlayerViewModel and CommandPanelViewModel
      * @param renteeCash the amount of cash the rentee has
      * @param renterCash the amount of cash the renter has
      * @param payRentOutputData output data that is going to be displayed
@@ -32,6 +32,9 @@ public class PayRentPresenter implements PayRentOutputBoundary{
 
         String message = payRentOutputData.getOutputMessage();
 
+        if(renteeCash == -1 && renterCash == -1){
+            commandPanelViewModel.appendCommandLine("output",message);
+        }
         renteePlayerViewModel.setCash(renteeCash);
         renterPlayerViewModel.setCash(renterCash);
         commandPanelViewModel.appendCommandLine("output",message);

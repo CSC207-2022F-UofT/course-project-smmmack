@@ -12,7 +12,7 @@ public class PayRentController {
         this.payRentInputBoundary = payRentInputBoundary;
     }
 
-    public void performAction() {
+    public void performAction() throws Exception {
         PayRent.PayRentInputData payRentInputData = new PayRent.PayRentInputData();
         payRentInputBoundary.performAction(payRentInputData);
     }

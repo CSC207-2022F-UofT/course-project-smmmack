@@ -26,22 +26,18 @@ public class PayRentInteractor implements PayRent.PayRentInputBoundary {
      * @param payRentInputData input data for PayRent
      */
     @Override
-    public void performAction(PayRentInputData payRentInputData) {
+    public void performAction(PayRentInputData payRentInputData) throws Exception {
 
         Player rentee = campaignAccess.getCampaign().getCurrentPlayer();
-        Player renter = null;
         Tile propertyLandedOn = campaignAccess.getCampaign().getTileUnderPlayer(rentee);
-        int rentMoney = 0;
-        if (propertyLandedOn instanceof PropertyTile){
-            rentMoney = ((PropertyTile) propertyLandedOn).getProperty().getRent(rentee);
-            renter = ((PropertyTile) propertyLandedOn).getProperty().getOwner();
-        }
+        Player renter = ((PropertyTile) propertyLandedOn).getProperty().getOwner();
+        int rentMoney = ((PropertyTile) propertyLandedOn).getProperty().getRent(rentee);
 
         rentee.loseCash(rentMoney);
         renter.gainCash(rentMoney);
 
-        String outputMessage = rentee + " paid $" +
-                rentMoney + "of rent money to " + renter;
+        String outputMessage = rentee.getName() + " paid $" +
+                rentMoney + "of rent money to " + renter.getName();
 
         PayRent.PayRentOutputData payRentOutputData = new PayRent.PayRentOutputData(outputMessage);
 
