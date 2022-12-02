@@ -31,10 +31,6 @@ public class PayRentPresenter implements PayRentOutputBoundary{
     public void payRentMessage(int renteeCash, int renterCash, PayRent.PayRentOutputData payRentOutputData) {
 
         String message = payRentOutputData.getOutputMessage();
-
-        if(renteeCash == -1 && renterCash == -1){
-            commandPanelViewModel.appendCommandLine("output",message);
-        }
         renteePlayerViewModel.setCash(renteeCash);
         renterPlayerViewModel.setCash(renterCash);
         commandPanelViewModel.appendCommandLine("output",message);
