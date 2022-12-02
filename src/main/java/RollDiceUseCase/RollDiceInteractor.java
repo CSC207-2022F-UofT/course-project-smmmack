@@ -21,7 +21,7 @@ public class RollDiceInteractor implements RollDiceInputBoundary{
                               advanceInputBoundary) {
         this.output = output;
         this.campaignAccess = campaignAccess;
-        board = campaignAccess.getCampaign().getBoard();
+        board = campaignAccess.getCampaign().getBoard(); //Should not be instance attribute
         player = campaignAccess.getCampaign().getCurrentPlayer();
         this.advanceInputBoundary = advanceInputBoundary;
     }
@@ -55,6 +55,7 @@ public class RollDiceInteractor implements RollDiceInputBoundary{
             } else {
                 // Otherwise call advance use case, then let user roll dice again using recursive call.
                 advanceInputBoundary.performAction(advanceInput);
+                //Cal presenter
                 rollDice(numDoubles + 1);
             }
         }
