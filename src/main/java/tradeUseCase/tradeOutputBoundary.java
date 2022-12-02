@@ -1,11 +1,8 @@
 package tradeUseCase;
+import SaveCampaignUseCase.SaveCampaignOutputData;
+
 import java.io.IOException;
 
 public interface tradeOutputBoundary {
-    /**
-     * Displays the trade menu.
-     * @param outputData
-     */
-    void create(tradeOutputData outputData) throws IOException;
-
+    void preformAction(tradeOutputData outputMessage);
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class tradeInputData {
     //change to private`
     boolean confirmTrade;
-    Player player2;
+    String player2;
 
     ArrayList<NormalProperty> player1Properties;
 
@@ -27,7 +27,7 @@ public class tradeInputData {
      */
 
 
-    public tradeInputData(Player player2, ArrayList<NormalProperty> player1Properties,
+    public tradeInputData(String player2, ArrayList<NormalProperty> player1Properties,
                           ArrayList<NormalProperty> player2Properties,
                           int player1Cash, int player2Cash) {
         this.confirmTrade = true;
@@ -41,4 +41,6 @@ public class tradeInputData {
     public boolean isConfirmTrade() {
         return confirmTrade;
     }
+
 }
+
