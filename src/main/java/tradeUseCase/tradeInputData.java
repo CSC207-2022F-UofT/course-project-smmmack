@@ -3,6 +3,9 @@ import MainEntities.Player;
 import Properties.NormalProperty;
 
 import java.util.ArrayList;
+/**
+ * TradeInteractor is a class that handles the trade between two players.
+ */
 
 public class tradeInputData {
     //change to private`

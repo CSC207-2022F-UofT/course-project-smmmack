@@ -20,6 +20,11 @@ public class tradeInteractor implements tradeInputBoundary {
     ArrayList<NormalProperty> player2Properties;
     int player1Cash;
     int player2Cash;
+    /**
+     *
+     * @param output The presenter that will display the output.
+     * @param campaign The campaign that the trade is taking place in.
+     */
 
     public tradeInteractor(tradeOutputBoundary output, Player player2, CampaignAccess campaign, ArrayList<NormalProperty> player1Properties,
                            ArrayList<NormalProperty> player2Properties, int player1Cash, int player2Cash) {

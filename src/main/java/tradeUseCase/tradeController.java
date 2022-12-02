@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 
 public class tradeController implements CommandPerformer {
-    //change to private`
 
     private tradeInputBoundary input;
 

@@ -1,4 +1,5 @@
 package tradeUseCase;
+//
 
 public class tradeOutputData {
     private Boolean tradeSuccess;
