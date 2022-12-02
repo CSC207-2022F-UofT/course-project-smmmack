@@ -1,13 +1,13 @@
 package tradeUseCase;
 
 public class tradeOutputData {
-    //change to private`
-    Boolean tradeSuccess;
+    private Boolean tradeSuccess;
+    private String tradeMessage;
     // String playerLocation;
 
     public tradeOutputData(Boolean tradeSuccess, String tradeMessage) {
          this.tradeSuccess = tradeSuccess;
-
+         this.tradeMessage = tradeMessage;
 
     }
 
@@ -15,24 +15,13 @@ public class tradeOutputData {
     public boolean getTradeSuccess() {
         return tradeSuccess;
     }
-
-    /**
-     *
-     * @param tradeSuccess The boolean value that determines whether the trade was successful or not.
-     */
-
+    public String getTradeMessage() {return tradeMessage;}
 
     public void setTradeSuccess(Boolean tradeSuccess) {
         this.tradeSuccess = tradeSuccess;
     }
+    public void setTradeMessage(String tradeMessage) {this.tradeMessage = tradeMessage;}
 
-    public String getTradeMessage() {
-        if (tradeSuccess) {
-            return "Trade successful!";
-        } else {
-            return "Trade unsuccessful!";
-        }
-    }
 }
 
 

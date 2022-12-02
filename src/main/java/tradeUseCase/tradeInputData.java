@@ -41,4 +41,6 @@ public class tradeInputData {
     public boolean isConfirmTrade() {
         return confirmTrade;
     }
+
 }
+
