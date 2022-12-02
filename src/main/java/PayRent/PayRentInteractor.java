@@ -36,12 +36,17 @@ public class PayRentInteractor implements PayRent.PayRentInputBoundary {
         rentee.loseCash(rentMoney);
         renter.gainCash(rentMoney);
 
-        String outputMessage = rentee.getName() + " paid $" +
-                rentMoney + "of rent money to " + renter.getName();
+        String outputMessage = rentee.getName() + " paid $" + rentMoney + "of rent money to " + renter.getName();
 
         PayRent.PayRentOutputData payRentOutputData = new PayRent.PayRentOutputData(outputMessage);
 
-        payRentOutputBoundary.payRentMessage(rentee.getCash(), renter.getCash(), payRentOutputData);
+        int renteeIndex = campaignAccess.getCampaign().getCurrPlayerIndex();
+
+        // will change this to int renterIndex = campaignAccess.getCampaign().getPlayerIndex(renter); once pull request #44 have been merged
+        int renterIndex = 0;
+
+        payRentOutputBoundary.payRentMessage(renteeIndex, renterIndex, rentee.getCash(), renter.getCash(),
+                payRentOutputData);
 
 
     }

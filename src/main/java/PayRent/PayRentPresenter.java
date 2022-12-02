@@ -1,6 +1,7 @@
 package PayRent;
 
 import ViewModel.CommandPanelViewModel;
+import ViewModel.PlayerPanelViewModel;
 import ViewModel.PlayerViewModel;
 
 /**
@@ -9,13 +10,15 @@ import ViewModel.PlayerViewModel;
 public class PayRentPresenter implements PayRentOutputBoundary{
 
     PlayerViewModel renteePlayerViewModel;
+    PlayerPanelViewModel playerPanelViewModel;
     PlayerViewModel renterPlayerViewModel;
     CommandPanelViewModel commandPanelViewModel;
 
-    public PayRentPresenter(PlayerViewModel renteePlayerViewModel, PlayerViewModel renterPlayerViewModel,
+    public PayRentPresenter(PlayerViewModel renteePlayerViewModel, PlayerPanelViewModel playerPanelViewModel, PlayerViewModel renterPlayerViewModel,
                             CommandPanelViewModel commandPanelViewModel){
 
         this.renteePlayerViewModel = renteePlayerViewModel;
+        this.playerPanelViewModel = playerPanelViewModel;
         this.renterPlayerViewModel = renterPlayerViewModel;
         this.commandPanelViewModel = commandPanelViewModel;
 
@@ -28,12 +31,13 @@ public class PayRentPresenter implements PayRentOutputBoundary{
      * @param payRentOutputData output data that is going to be displayed
      */
     @Override
-    public void payRentMessage(int renteeCash, int renterCash, PayRent.PayRentOutputData payRentOutputData) {
+    public void payRentMessage(int renteeIndex, int renterIndex, int renteeCash, int renterCash,
+                               PayRent.PayRentOutputData payRentOutputData) {
 
         String message = payRentOutputData.getOutputMessage();
-        renteePlayerViewModel.setCash(renteeCash);
-        renterPlayerViewModel.setCash(renterCash);
-        commandPanelViewModel.appendCommandLine("output",message);
+        playerPanelViewModel.getPlayerVMAt(renteeIndex).setCash(renteeCash);
+        playerPanelViewModel.getPlayerVMAt(renterIndex).setCash(renterCash);
+        commandPanelViewModel.appendOutput(message);
 
     }
 
