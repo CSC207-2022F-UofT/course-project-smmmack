@@ -11,8 +11,8 @@ import java.util.ArrayList;
  * TradeInteractor is a class that handles the trade between two players.
  */
 public class tradeInteractor implements tradeInputBoundary {
-    final tradeOutputBoundary output;
-    final CampaignAccess campaign;
+    private tradeOutputBoundary output;
+    private CampaignAccess campaign;
     Player player1;
     Player player2;
 
@@ -76,21 +76,26 @@ public class tradeInteractor implements tradeInputBoundary {
 
 
     @Override
-    public void preformAction(tradeInputData input) throws Exception {
-        Player player1 = campaign.getCampaign().getCurrentPlayer();
-        if (isTradeValid() && input.isConfirmTrade()) {
+    public void performAction(tradeInputData inputData){
+        if (isTradeValid() && inputData.isConfirmTrade()) {
             trade(player1Properties, player2Properties, player1Cash, player2Cash);
             tradeOutputData outputMessage =
                     new tradeOutputData(true, "You traded" + player1Properties + "and" + player1Cash + "for"
                             + player2Properties + "and" + player2Cash);
-            output.create(outputMessage);
+            output.preformAction(outputMessage);
         } else {
             tradeOutputData outputMessage =
                     new tradeOutputData(false, "Trade failed" + player2.getName()
                             + "Declined your trade");
-            output.create(outputMessage);
+            output.preformAction(outputMessage);
         }
     }
+
+    @Override
+    public void preformAction(tradeInputData inputData) {
+
+    }
+
 }
 
 
