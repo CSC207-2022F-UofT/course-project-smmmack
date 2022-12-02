@@ -1,13 +1,10 @@
 package GoToJailUserCase;
 
 import ViewModel.PlayerViewModel;
-import ViewModel.CommandPanelViewModel;
 public class GoToJailPresenter implements GoToJailOutputBoundary{
     PlayerViewModel jailPlayerViewModel;
-    CommandPanelViewModel commandPanelViewModel;
-    public GoToJailPresenter(PlayerViewModel jailPlayerViewModel, CommandPanelViewModel commandPanelViewModel) {
+    public GoToJailPresenter(PlayerViewModel jailPlayerViewModel) {
         this.jailPlayerViewModel = jailPlayerViewModel;
-        this.commandPanelViewModel = commandPanelViewModel;
     }
 
     @Override
@@ -17,8 +14,6 @@ public class GoToJailPresenter implements GoToJailOutputBoundary{
     @Override
     public void performAction (GoToJailOutputData output) {
         jailPlayerViewModel.setJailTurn(1);
-        String Message = output.getMessage();
-        commandPanelViewModel.appendOutput(Message);
     }
 }
 
