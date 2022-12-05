@@ -1,13 +1,9 @@
 package PayRent;
 
-import MainEntities.Campaign;
 import MainEntities.CampaignAccess;
 import MainEntities.Player;
-import Properties.Property;
 import Tiles.PropertyTile;
 import Tiles.Tile;
-
-import java.awt.*;
 
 public class PayRentInteractor implements PayRent.PayRentInputBoundary {
 
