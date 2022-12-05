@@ -2,6 +2,8 @@ package AdvanceUseCase;
 import MainEntities.Player;
 import MainEntities.GameBoard;
 import Tiles.*;
+import MainEntities.CampaignAccess;
+
 
 public class AdvanceInteractor implements AdvanceInputBoundary{
     /*
@@ -11,14 +13,15 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
 
     final AdvanceOutputBoundary output;
 
+    final CampaignAccess campaign;
+    final Player player;
     final GameBoard board;
 
-    Player player;
-
-    public AdvanceInteractor(AdvanceOutputBoundary output, GameBoard board, Player player) {
+    public AdvanceInteractor(AdvanceOutputBoundary output, CampaignAccess campaign) {
         this.output = output;
-        this.board = board;
-        this.player = player;
+        this.campaign = campaign;
+        this.player = campaign.getCampaign().getCurrentPlayer();
+        this.board = campaign.getCampaign().getBoard();
     }
 
     /**
@@ -69,18 +72,29 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
     }
 
     // Todo: may need to change output message depending on tile type.
+
+    /**
+     * Performs the Advance action by moving the player forwards the appropriate number of tiles. The Advance use case
+     * will be called by the RollDice use case and Card use cases.
+     * Precondition: The player has confirmed that they will advance, either by confirming their dice roll or card.
+     * @param input AdvanceInputData containing if the user confirmed the advance or not.
+     * @throws Exception if the tile that the user lands on is not valid
+     */
     @Override
-    public void create(AdvanceInputData input) throws Exception {
-        if (input.isConfirmRoll()) {
-            advancePlayer(input.diceSum);
-            AdvanceOutputData outputMessage =
-                    new AdvanceOutputData("You have landed on this tile: " + player.getLocation());
-            output.create(outputMessage);
+    public void performAction(AdvanceInputData input) throws Exception {
+        try {
+            if (input.isConfirmRoll()) {
+                advancePlayer(input.diceSum);
+                AdvanceOutputData outputMessage =
+                        new AdvanceOutputData("You have landed on this tile: " + player.getLocation(),
+                                true);
+                output.performAction(outputMessage);
+            }
         }
-        else {
+        catch (Exception e){
             AdvanceOutputData outputMessage =
-                    new AdvanceOutputData("Please press any key to roll dice.");
-            output.create(outputMessage);
+                    new AdvanceOutputData("Error: Tile not found", false);
+            output.performAction(outputMessage);
         }
     }
 }
