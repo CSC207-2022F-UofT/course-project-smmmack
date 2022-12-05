@@ -57,4 +57,8 @@ public class DrawCardInteractor implements DrawCardInputBoundary {
         }
         output.performAction(outputMessage);
     }
+
+    @Override
+    public void performAction(DrawCardInputData drawCardInput) throws Exception{
+    }
 }
