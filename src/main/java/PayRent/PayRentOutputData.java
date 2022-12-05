@@ -2,20 +2,20 @@ package PayRent;
 
 public class PayRentOutputData {
 
-    private String outputMessage;
+    private String payRentOutputData;
 
-    public PayRentOutputData(String outputMessage){
-        this.outputMessage = outputMessage;
+    public PayRentOutputData(String payRentOutputData){
+        this.payRentOutputData = payRentOutputData;
     }
 
     // getters
-    public String getOutputMessage(){
-        return this.outputMessage;
+    public String getPayRentOutputData(){
+        return this.payRentOutputData;
     }
 
     // setters
-    public void setOutputMessage(String outputMessage){
-        this.outputMessage = outputMessage;
+    public void setPayRentOutputData(String payRentOutputData){
+        this.payRentOutputData = payRentOutputData;
     }
 
 }

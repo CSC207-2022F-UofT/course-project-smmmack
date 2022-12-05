@@ -1,43 +1,44 @@
 package PayRent;
 
-import ViewModel.CommandPanelViewModel;
-import ViewModel.PlayerPanelViewModel;
-import ViewModel.PlayerViewModel;
+import ViewModel.*;
 
 /**
  * This class updates the view models for the PlayerViewModel and CommandLineViewModel
  */
 public class PayRentPresenter implements PayRentOutputBoundary{
 
-    PlayerViewModel renteePlayerViewModel;
     PlayerPanelViewModel playerPanelViewModel;
-    PlayerViewModel renterPlayerViewModel;
     CommandPanelViewModel commandPanelViewModel;
 
-    public PayRentPresenter(PlayerViewModel renteePlayerViewModel, PlayerPanelViewModel playerPanelViewModel, PlayerViewModel renterPlayerViewModel,
-                            CommandPanelViewModel commandPanelViewModel){
 
-        this.renteePlayerViewModel = renteePlayerViewModel;
+    public PayRentPresenter(PlayerPanelViewModel playerPanelViewModel, CommandPanelViewModel commandPanelViewModel){
+
         this.playerPanelViewModel = playerPanelViewModel;
-        this.renterPlayerViewModel = renterPlayerViewModel;
         this.commandPanelViewModel = commandPanelViewModel;
 
     }
 
     /**
      * Send a message to update the PlayerViewModel and CommandPanelViewModel
-     * @param renteeCash the amount of cash the rentee has
-     * @param renterCash the amount of cash the renter has
-     * @param payRentOutputData output data that is going to be displayed
+     * @param payRentOutputData a string of output data that needs to be displayed/changed in the commlandline and
+     *                          viewmodel
      */
     @Override
-    public void payRentMessage(int renteeIndex, int renterIndex, int renteeCash, int renterCash,
-                               PayRent.PayRentOutputData payRentOutputData) {
+    public void performAction(String payRentOutputData) {
 
-        String message = payRentOutputData.getOutputMessage();
+        String[] splitPayRentOutputData = payRentOutputData.split("@");
+
+        int renteeIndex = Integer.parseInt(splitPayRentOutputData[0]);
+        int renterIndex = Integer.parseInt(splitPayRentOutputData[1]);
+        int renteeCash = Integer.parseInt(splitPayRentOutputData[2]);
+        int renterCash = Integer.parseInt(splitPayRentOutputData[3]);
+        String message = splitPayRentOutputData[4];
+
         playerPanelViewModel.getPlayerVMAt(renteeIndex).setCash(renteeCash);
         playerPanelViewModel.getPlayerVMAt(renterIndex).setCash(renterCash);
+        playerPanelViewModel.notifyListeners();
         commandPanelViewModel.appendOutput(message);
+        commandPanelViewModel.notifyListeners();
 
     }
 

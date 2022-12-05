@@ -7,6 +7,8 @@ import Properties.Property;
 import Tiles.PropertyTile;
 import Tiles.Tile;
 
+import java.awt.*;
+
 public class PayRentInteractor implements PayRent.PayRentInputBoundary {
 
     private PayRent.PayRentOutputBoundary payRentOutputBoundary;
@@ -38,15 +40,17 @@ public class PayRentInteractor implements PayRent.PayRentInputBoundary {
 
         String outputMessage = rentee.getName() + " paid $" + rentMoney + "of rent money to " + renter.getName();
 
-        PayRent.PayRentOutputData payRentOutputData = new PayRent.PayRentOutputData(outputMessage);
-
         int renteeIndex = campaignAccess.getCampaign().getCurrPlayerIndex();
 
-        // will change this to int renterIndex = campaignAccess.getCampaign().getPlayerIndex(renter); once pull request #44 have been merged
-        int renterIndex = 0;
+        int renterIndex = campaignAccess.getCampaign().getPlayerIndex(renter);
 
-        payRentOutputBoundary.payRentMessage(renteeIndex, renterIndex, rentee.getCash(), renter.getCash(),
-                payRentOutputData);
+        String outputData = renteeIndex+ "@" + renterIndex + "@" + rentee.getCash() + "@" + renter.getCash() + "@" +
+                outputMessage;
+
+        PayRent.PayRentOutputData payRentOutputData = new PayRent.PayRentOutputData(outputData);
+
+
+        payRentOutputBoundary.performAction(String.valueOf(payRentOutputData));
 
 
     }
