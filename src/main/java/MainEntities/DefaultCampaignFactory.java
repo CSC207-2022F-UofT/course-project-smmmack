@@ -176,10 +176,13 @@ public class DefaultCampaignFactory implements CampaignFactory {
         //Assign all property tiles, using parallel lists to store the corresponding tile parameters
         int propertyNum = 22;
         String[] nameList = new String[] {
-                "Land1", "Land2", "Land3", "Land4", "Land5",
-                "Land6", "Land7", "Land8", "Land9", "Land10", "Land11",
-                "Land12", "Land13", "Land14", "Land15", "Land16", "Land17",
-                "Land18", "Land19", "Land20", "Land21", "Land22"
+                "New College Dining Hall", "New College Residence", "Morrison Hall", "Brennan Hall",
+                "Lash Miller Chemical Laboratory", "Willson Hall", "Bahen Center", "Myhal Centre",
+                "University College", "Trinity College", "Hart House",
+                "Sydney Smith Hall", "Woodsworth College", "Varsity Center",
+                "The Maddies", "Queens Park", "Medical Science Building",
+                "Royal Ontario Museum", "Gerstein Library", "Sigma Chi Fraternity House",
+                "Robarts Library", "Rotman School of Business"
         };
         String[] abbreviationList = new String[] {
                 "L1", "L2", "L3", "L4", "L5",
