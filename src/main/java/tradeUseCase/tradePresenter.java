@@ -15,7 +15,7 @@ public class tradePresenter implements tradeOutputBoundary {
         this.playerPanelVM = playerPanelVM;
     }
     @Override
-    public void preformAction(tradeOutputData outputMessage) {
+    public void performAction(tradeOutputData outputMessage) {
         String outputData = outputMessage.getTradeMessage();
         this.commandPanelVM.appendOutput(outputData);;
         commandPanelVM.notifyListeners();

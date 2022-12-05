@@ -12,9 +12,9 @@ public class tradeInputData {
     boolean confirmTrade;
     String player2;
 
-    ArrayList<NormalProperty> player1Properties;
+    String[] player1Properties;
 
-    ArrayList<NormalProperty> player2Properties;
+    String[] player2Properties;
 
     int player1Cash;
 
@@ -30,9 +30,8 @@ public class tradeInputData {
      */
 
 
-    public tradeInputData(String player2, ArrayList<NormalProperty> player1Properties,
-                          ArrayList<NormalProperty> player2Properties,
-                          int player1Cash, int player2Cash) {
+    public tradeInputData(String player2, String[] player1Properties,
+                          String[] player2Properties, int player1Cash, int player2Cash) {
         this.confirmTrade = true;
         this.player2 = player2;
         this.player1Properties = player1Properties;
@@ -43,6 +42,27 @@ public class tradeInputData {
 
     public boolean isConfirmTrade() {
         return confirmTrade;
+    }
+
+    //getters
+    public String getPlayer2() {
+        return player2;
+    }
+
+    public String[] getPlayer1Properties() {
+        return player1Properties;
+    }
+
+    public String[] getPlayer2Properties() {
+        return player2Properties;
+    }
+
+    public int getPlayer1Cash() {
+        return player1Cash;
+    }
+
+    public int getPlayer2Cash() {
+        return player2Cash;
     }
 
 }

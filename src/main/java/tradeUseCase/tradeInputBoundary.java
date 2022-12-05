@@ -10,5 +10,4 @@ public interface tradeInputBoundary {
      */
     void performAction(tradeInputData inputData);
 
-    void preformAction(tradeInputData inputData);
 }
