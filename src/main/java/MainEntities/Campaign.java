@@ -209,6 +209,21 @@ public class Campaign implements Serializable {
     }
 
     /**
+     * Return the index of a player in the list of players. If no player is found, return -1.
+     * @param player The player to be found
+     * @return the index of the given player, -1 if there is no such player found in the campaign
+     */
+    public int getPlayerIndex(Player player) {
+        for (int i = 0; i < this.getPlayerNumber(); i ++) {
+            Player p = getPlayerAt(i);
+            if(p == player) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
      * Get deck of a specific type in the Campaign. If there is no deck of such type, throws an exception.
      * @param type the type of the deck wanted (typically community chest or chance)
      * @return the corresponding deck in the campaign
