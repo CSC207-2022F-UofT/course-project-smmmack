@@ -22,7 +22,7 @@ public class Player implements Serializable {
      * The number of turns the player need to stay in jail. Int implementation allows sentences longer than 1 turn.
      */
     private int jailTurn;
-    //TODO: in order to let player panel show different color for each player, a color instance variable is needed
+    private int color;
 
     /**
      * Create a new Player object with these default parameters: <br>
@@ -33,12 +33,13 @@ public class Player implements Serializable {
      *
      * @param name the name of the player
      */
-    public Player(String name) {
+    public Player(String name, int color) {
         this.name = name;
         this.cash = 0;
         this.location = 0;
         this.properties = new ArrayList<>();
         this.jailTurn = 0;
+        this.color = color;
     }
 
     //getters
@@ -63,6 +64,10 @@ public class Player implements Serializable {
         return jailTurn;
     }
 
+    public int getColor() {
+        return color;
+    }
+
     //setters
 
     public void setName(String name) {
@@ -83,6 +88,10 @@ public class Player implements Serializable {
 
     public void setJailTurn(int jailTurn) {
         this.jailTurn = jailTurn;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     //other getters

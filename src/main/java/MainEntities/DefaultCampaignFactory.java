@@ -10,6 +10,8 @@ public class DefaultCampaignFactory implements CampaignFactory {
     private int playerNumber;
     public static final int MIN_PLAYER_NUM = 2;
     public static final int MAX_PLAYER_NUM = 8;
+    public static final int[] DEFAULT_COLORS = {0x39c5bb, 0x66ccff, 0xffe211, 0xffa500,
+            0x0000ff, 0xfaafbe, 0x800080, 0x111111};
 
     /**
      * Construct a DefaultCampaignFactory instance with designated player number. The player number should be in range
@@ -52,7 +54,7 @@ public class DefaultCampaignFactory implements CampaignFactory {
         ArrayList<Player> playerList= new ArrayList<>();
         for (int i = 1; i <= playerNumber; i ++) {
             String playerName = "p" + i;
-            Player player = new Player(playerName);
+            Player player = new Player(playerName, DEFAULT_COLORS[i]);
             player.setCash(1000);
             playerList.add(player);
         }
