@@ -15,6 +15,11 @@ public class tradeController implements CommandPerformer {
         this.input = input;
     }
 
+    /**
+     *
+     * @param command
+     */
+
 
     public void performCommand(String command) {
         String[] words = command.split("\\s+");

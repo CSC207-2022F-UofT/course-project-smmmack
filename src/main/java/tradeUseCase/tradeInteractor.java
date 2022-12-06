@@ -6,6 +6,7 @@ import Properties.Property;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * TradeInteractor is a class that handles the trade between two players.
@@ -74,11 +75,15 @@ public class tradeInteractor implements tradeInputBoundary {
         int player2Cash = inputData.getPlayer2Cash();
         ArrayList<NormalProperty> player1Properties = new ArrayList<>();
         ArrayList<NormalProperty> player2Properties = new ArrayList<>();
+        List<Integer> player1PropertyIndexes = null;
+        List<Integer> player2PropertyIndexes = null;
         for (String property : inputData.getPlayer1Properties()) {
             player1Properties.add((NormalProperty) campaign.getCampaign().getPropertyByAbbr(property));
+            player1PropertyIndexes.add(campaign.getCampaign().getTileIndexByAbbr(property));
         }
         for (String property : inputData.getPlayer2Properties()) {
             player2Properties.add((NormalProperty) campaign.getCampaign().getPropertyByAbbr(property));
+            player2PropertyIndexes.add(campaign.getCampaign().getTileIndexByAbbr(property));
         }
 
 
@@ -86,16 +91,25 @@ public class tradeInteractor implements tradeInputBoundary {
                 && inputData.isConfirmTrade()) {
             trade(player1, player2, player1Properties, player2Properties, player1Cash, player2Cash);
             tradeOutputData outputMessage =
-                    new tradeOutputData(true, "You traded" + player1Properties + "and" + player1Cash + "for"
-                            + player2Properties + "and" + player2Cash);
+                    new tradeOutputData(true, "You traded" + inputData.getPlayer1Properties() + "and" + player1Cash + "for"
+                            + inputData.getPlayer2Properties() + "and" + player2Cash, campaign.getCampaign().getCurrPlayerIndex(),
+                            campaign.getCampaign().getPlayerIndex(player2), player1.getCash(), player2.getCash(),
+                            inputData.getPlayer2Properties(), inputData.getPlayer1Properties(), player2PropertyIndexes, player1PropertyIndexes); ;
             output.performAction(outputMessage);
         } else {
             tradeOutputData outputMessage =
                     new tradeOutputData(false, "Trade failed" + player2.getName()
-                            + "Declined your trade");
+                            + "Declined your trade",campaign.getCampaign().getCurrPlayerIndex(),
+                            campaign.getCampaign().getPlayerIndex(player2), player1.getCash(), player2.getCash(),
+                            inputData.getPlayer2Properties(), inputData.getPlayer1Properties(),player2PropertyIndexes, player1PropertyIndexes);
             output.performAction(outputMessage);
         }
     }
+    //Getters and Setters
+    public tradeOutputBoundary getOutput() {
+        return output;
+    }
+
 
 }
 
