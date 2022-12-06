@@ -2,15 +2,17 @@ package MainEntities;
 
 import Cards.Card;
 
+import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 
 /**
  * Deck is a collection of cards. When a card is drawn, it's drawn from the top of the deck. When a card is put in the
  * deck, it's put at the bottom of the deck.
  */
-public class Deck {
+public class Deck implements Serializable {
     /**
      * In an ordinary game, the type of the card should be either "community chest" or "chance"
      */
@@ -52,22 +54,41 @@ public class Deck {
         return type;
     }
 
+    /**
+     * @return a copy of the queue of all the cards in the deck.
+     */
     public ArrayDeque<Card> getCards() {
         return new ArrayDeque<>(cards);
     }
 
     //other getters
 
+    /**
+     * Draws a card from the top of the deck. The card is then REMOVED from the deck, and should be added back again
+     * using putCard() if it needs to be put back.
+     * @return the card on the top of the deck.
+     */
     public Card drawCard() {
-        return cards.remove();
+        try {
+            return cards.remove();
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException("Drawing card from an empty deck is impossible.");
+        }
     }
 
+    /**
+     * @return The number of cards in the deck.
+     */
     public int getSize() {
         return cards.size();
     }
 
     //other setters
 
+    /**
+     * Put a card at the bottom of deck.
+     * @param card The card to be put at the bottom of the deck.
+     */
     public void putCard(Card card) {
         cards.add(card);
     }

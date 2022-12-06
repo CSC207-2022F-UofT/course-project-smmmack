@@ -2,11 +2,13 @@ package Tiles;
 
 import MainEntities.Deck;
 
+import java.io.Serializable;
+
 /**
  * DrawCardTile let anyone who steps on it draw a card from the corresponding deck, and perform the
  * corresponding actions.
  */
-public class DrawCardTile extends Tile{
+public class DrawCardTile extends Tile implements Serializable {
     private Deck deck;
 
     public DrawCardTile(Deck deck) {

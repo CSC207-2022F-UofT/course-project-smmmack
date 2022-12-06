@@ -1,9 +1,11 @@
 package Cards;
 
+import java.io.Serializable;
+
 /**
  * An abstract class for all cards.
  */
-public abstract class Card {
+public abstract class Card implements Serializable {
     private String name;
     private String description;
     /**

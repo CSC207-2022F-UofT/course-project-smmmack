@@ -2,13 +2,14 @@ package MainEntities;
 
 import Tiles.Tile;
 
+import java.io.Serializable;
 import java.security.InvalidParameterException;
 
 /**
- * GameBoard is a class that contains the width, length, and the array of tiles in a board. <p>
- * The width and height of the board are final.
+ * GameBoard is a class that contains the width, length, and the array of tiles in a board. <br>
+ * The width and height of the board are final, and can't be less than 2.
  */
-public class GameBoard {
+public class GameBoard implements Serializable {
     private final int width;
     private final int height;
     private Tile[] tiles;
@@ -36,13 +37,14 @@ public class GameBoard {
      */
     public void setTiles(Tile[] tiles) throws InvalidParameterException {
         if (tiles.length != getSize()) {
-            throw new InvalidParameterException("The size of the board is immutable.");
+            throw new InvalidParameterException("The size of input Array does not match the size of the board.");
         } else {
             this.tiles = tiles.clone();
         }
     }
 
     /**
+     * Set a single tile on the board at a specific index to the given Tile.
      * @param index The index of the tile that is to be changed
      * @param tile The tile that is to be changed to
      */
@@ -59,15 +61,44 @@ public class GameBoard {
         return height;
     }
 
+    //Other getters
+
+    /**
+     * @return The size of the board - how many tiles does it contain.
+     */
     public int getSize() {
         return width * 2 + height * 2 - 4;
     }
+
 
     public Tile[] getTiles() {
         return tiles.clone();
     }
 
+    /**
+     * Get the tiles at a specific index.
+     * @param index the index of the tile wanted.
+     * @return The tile at that index.
+     */
     public Tile getTileAt(int index) {
-        return tiles[index];
+        try {
+            return tiles[index];
+        } catch (IndexOutOfBoundsException e){
+            throw new IndexOutOfBoundsException("Tile index out of bounds");
+        }
+    }
+
+    /**
+     * Get the index of a specific tile. Returns -1 if the tile is not found in the board.
+     * @param tile the tile that need to be found.
+     * @return the index of the given tile.
+     */
+    public int getTileIndex(Tile tile) {
+        for (int i = 0; i < getSize(); i ++) {
+            if (getTileAt(i) == tile) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

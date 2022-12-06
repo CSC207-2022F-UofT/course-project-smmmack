@@ -3,13 +3,14 @@ package MainEntities;
 import Properties.NormalProperty;
 import Properties.Property;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 
 /**
  * Player contains every information about a player, including the name, cash, location, and owned properties.
  */
-public class Player {
+public class Player implements Serializable {
     public static final Player OWNERLESS = null;
     public static final Player BANK = null;
 
@@ -21,21 +22,24 @@ public class Player {
      * The number of turns the player need to stay in jail. Int implementation allows sentences longer than 1 turn.
      */
     private int jailTurn;
+    private int color;
+
     /**
      * Create a new Player object with these default parameters: <br>
      * cash = 0 <br>
      * location = 0 <br>
-     * properties = new ArrayList<br>
+     * properties = new ArrayList<>()<br>
      * jailTurn = 0
      *
      * @param name the name of the player
      */
-    public Player(String name) {
+    public Player(String name, int color) {
         this.name = name;
         this.cash = 0;
         this.location = 0;
         this.properties = new ArrayList<>();
         this.jailTurn = 0;
+        this.color = color;
     }
 
     //getters
@@ -60,6 +64,10 @@ public class Player {
         return jailTurn;
     }
 
+    public int getColor() {
+        return color;
+    }
+
     //setters
 
     public void setName(String name) {
@@ -80,6 +88,10 @@ public class Player {
 
     public void setJailTurn(int jailTurn) {
         this.jailTurn = jailTurn;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     //other getters
@@ -106,6 +118,20 @@ public class Player {
         }
     }
 
+    /**
+     * @return A boolean indicating whether the player is bank-broke. The player is bank-broke if all his/her cash and
+     * mortgage value of unmortgaged properties combined is less than or equal to 0.
+     */
+    public boolean isBroke() {
+        int totalWealth = this.cash;
+        for (Property property: this.properties) {
+            if (! property.isMortgaged()) {
+                totalWealth += property.getMortgageValue();
+            }
+        }
+        return totalWealth > 0;
+    }
+
     //other setters
 
     public void gainCash(int amount) {
@@ -114,5 +140,37 @@ public class Player {
 
     public void loseCash(int amount) {
         cash -= amount;
+    }
+
+    /**
+     * Add a property to the list of owned properties of the player. <br>
+     * CAUTION: this does NOT keep the consistency between the owner and the owned properties.
+     * @param property the property to be added to the list
+     */
+    public void addProperty(Property property) {
+        this.properties.add(property);
+    }
+
+    /**
+     * Remove a property from the list of owned properties of the player. <br>
+     * CAUTION: this does NOT keep the consistency between the owner and the owned properties.
+     * @param property the property to be removed from the list
+     */
+    public void removeProperty(Property property) {
+        this.properties.remove(property);
+    }
+
+    /**
+     * Adds this property to the owner's list of owned properties and set the ownership of the property to this player.
+     * If the property already has a owner, remove the ownership. This keeps the consistency between the owner and
+     * owned properties.
+     * @param property the property to be assigned
+     */
+    public void assignOwnership(Property property) {
+        if (property.getOwner() != Player.OWNERLESS) {
+            property.removeOwnership();
+        }
+        property.setOwner(this);
+        this.addProperty(property);
     }
 }

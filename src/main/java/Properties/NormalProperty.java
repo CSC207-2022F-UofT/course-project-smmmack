@@ -2,6 +2,7 @@ package Properties;
 
 import MainEntities.Player;
 
+import java.io.Serializable;
 import java.security.InvalidParameterException;
 
 /**
@@ -10,7 +11,7 @@ import java.security.InvalidParameterException;
  * When a player owns all properties in one color group, the rent is doubled if nothing is built on this property. Also,
  * the player may only build houses on the property if he owns all properties in the same group.
  */
-public class NormalProperty extends Property {
+public class NormalProperty extends Property implements Serializable {
     public static final int MAX_HOUSE_LEVEL = 5;
     public static final int MIN_HOUSE_LEVEL = 0;
     /**
@@ -27,8 +28,7 @@ public class NormalProperty extends Property {
     private int[] rentList;
 
     /**
-     * sameColorGroupProperties contains all other properties in the same color group. Does not include this property
-     * itself.
+     * sameColorGroupProperties contains all other properties in the same color group. It includes this property itself.
      */
     private NormalProperty[] sameColorGroupProperties;
     private int housePrice;
@@ -77,6 +77,11 @@ public class NormalProperty extends Property {
     }
 
     public void setRentList(int[] rentList) {
+        if (rentList.length != MAX_HOUSE_LEVEL - MIN_HOUSE_LEVEL + 1) {
+            throw new InvalidParameterException(
+                    "The length of rentList must be " + (MAX_HOUSE_LEVEL - MIN_HOUSE_LEVEL + 1)
+            );
+        }
         this.rentList = rentList.clone();
     }
 
@@ -93,6 +98,7 @@ public class NormalProperty extends Property {
     }
 
     //getters
+    @Override
     public int getHouseLevel() {
         return houseLevel;
     }
@@ -116,6 +122,9 @@ public class NormalProperty extends Property {
     //other getters
     @Override
     public int getRent(Player target) {
+        if (houseLevel == 0 && getOwner().ownsColorGroupOf(this)) {
+            return rentList[0] * 2;
+        }
         return rentList[houseLevel];
     }
 
@@ -133,5 +142,16 @@ public class NormalProperty extends Property {
      */
     public void houseDown() throws InvalidParameterException {
         setHouseLevel(houseLevel - 1);
+    }
+
+    /**
+     * Put all properties in the input array in the same group, which means assign the color group of each of the \
+     * properties to be the input array.
+     * @param properties an array of properties of the same color group.
+     */
+    public static void groupProperties(NormalProperty... properties) {
+        for (NormalProperty property: properties) {
+            property.setSameColorGroupProperties(properties);
+        }
     }
 }
