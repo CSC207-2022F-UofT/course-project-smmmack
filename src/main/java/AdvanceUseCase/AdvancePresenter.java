@@ -3,7 +3,7 @@ package AdvanceUseCase;
 import ViewModel.CommandLineViewModel;
 import ViewModel.CommandPanelViewModel;
 
-public class AdvancePresenter implements AdvanceOutputBoundary{
+public class AdvancePresenter implements AdvanceOutputBoundary {
 
     CommandPanelViewModel commandPanelViewModel;
 

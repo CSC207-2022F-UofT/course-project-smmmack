@@ -11,18 +11,12 @@ public class RollDiceInteractor implements RollDiceInputBoundary{
 
     final CampaignAccess campaignAccess;
 
-    final GameBoard board;
-
-    Player player;
-
     AdvanceInputBoundary advanceInputBoundary;
 
     public RollDiceInteractor(RollDiceOutputBoundary output, CampaignAccess campaignAccess, AdvanceInputBoundary
                               advanceInputBoundary) {
         this.output = output;
         this.campaignAccess = campaignAccess;
-        board = campaignAccess.getCampaign().getBoard(); //Should not be instance attribute
-        player = campaignAccess.getCampaign().getCurrentPlayer();
         this.advanceInputBoundary = advanceInputBoundary;
     }
 

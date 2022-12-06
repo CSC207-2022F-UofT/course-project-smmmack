@@ -30,10 +30,10 @@ public class InputMap {
      * @param name the name of the input map.
      */
     public InputMap(String name) {
-        this(name, new HashMap<>(), new ArrayList<>());
+        this();
     }
 
-    public InputMap(String name, Map<String, CommandPerformer> map, List<InputMap> appendices) {
+    public InputMap() {
         this.name = name;
         this.map = map;
         this.appendices = appendices;
