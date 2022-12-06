@@ -10,6 +10,10 @@ public class PlayerPanelViewModel {
     private List<PlayerViewModel> playerVMs;
     private List<PlayerPanelVMListener> listeners;
 
+    public PlayerPanelViewModel() {
+        this(new ArrayList<>());
+    }
+
     public PlayerPanelViewModel(List<PlayerViewModel> playerVMs) {
         this.playerVMs = playerVMs;
         this.listeners = new ArrayList<>();
@@ -43,11 +47,15 @@ public class PlayerPanelViewModel {
         return this.listeners.remove(listener);
     }
 
+    public void addPlayerViewModel(PlayerViewModel viewModel) {
+        this.playerVMs.add(viewModel);
+    }
+
     //other methods
 
     public void notifyListeners() {
         for (PlayerPanelVMListener listener: listeners) {
-            listener.performAction();
+            listener.performAction(this);
         }
     }
 }

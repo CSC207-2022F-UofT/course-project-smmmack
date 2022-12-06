@@ -62,7 +62,7 @@ public class CommandPanelViewModel {
 
     public void notifyListeners() {
         for (CommandPanelVMListener listener: listeners) {
-            listener.performAction();
+            listener.performAction(this);
         }
     }
 }
