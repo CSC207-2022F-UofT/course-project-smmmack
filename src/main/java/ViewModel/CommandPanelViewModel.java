@@ -68,6 +68,7 @@ public class CommandPanelViewModel {
             listener.performAction();
         }
     }
+}
 
 
 }

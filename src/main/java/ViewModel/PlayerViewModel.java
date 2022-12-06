@@ -55,6 +55,10 @@ public class PlayerViewModel {
         this.propertyAbbrs = new ArrayList<>(propertyAbbrs);
     }
 
+    public void addPropertyAbbrs(List<String> propertyAbbrs) {
+        this.propertyAbbrs.addAll(propertyAbbrs);
+    }
+
     public void setPosition(int position) {
         this.position = position;
     }

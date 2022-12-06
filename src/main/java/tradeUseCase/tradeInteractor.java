@@ -6,6 +6,7 @@ import Properties.Property;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * TradeInteractor is a class that handles the trade between two players.
@@ -13,23 +14,11 @@ import java.util.ArrayList;
 public class tradeInteractor implements tradeInputBoundary {
     private tradeOutputBoundary output;
     private CampaignAccess campaign;
-    Player player1;
-    Player player2;
+    private tradeInputData inputData;
 
-    ArrayList<NormalProperty> player1Properties;
-    ArrayList<NormalProperty> player2Properties;
-    int player1Cash;
-    int player2Cash;
-
-    public tradeInteractor(tradeOutputBoundary output, Player player2, CampaignAccess campaign, ArrayList<NormalProperty> player1Properties,
-                           ArrayList<NormalProperty> player2Properties, int player1Cash, int player2Cash) {
+    public tradeInteractor(tradeOutputBoundary output, CampaignAccess campaign) {
         this.output = output;
-        this.player2 = player2;
         this.campaign = campaign;
-        this.player1Properties = player1Properties;
-        this.player2Properties = player2Properties;
-        this.player1Cash = player1Cash;
-        this.player2Cash = player2Cash;
     }
 
     /**
@@ -38,8 +27,8 @@ public class tradeInteractor implements tradeInputBoundary {
      * @param player1Cash The amount of cash that the player who is trading is offering.
      * @param player2Cash The amount of cash that the player who is trading is asking for.
      */
-    public void trade(ArrayList<NormalProperty> player1Properties, ArrayList<NormalProperty> player2Properties,
-                      int player1Cash, int player2Cash) {
+    public void trade(Player player1, Player player2, ArrayList<NormalProperty> player1Properties,
+                      ArrayList<NormalProperty> player2Properties, int player1Cash, int player2Cash) {
         player1.setCash(player1.getCash() - player1Cash + player2Cash);
         player2.setCash(player2.getCash() - player2Cash + player1Cash);
         for (NormalProperty property : player1Properties) {
@@ -59,9 +48,10 @@ public class tradeInteractor implements tradeInputBoundary {
      *
      * @return boolean
      */
-    public boolean isTradeValid() {
-        if (player1Cash < campaign.getCampaign().getCurrentPlayer().getCash() && player2Cash < player2.getCash()) {
-            for (Property property : campaign.getCampaign().getCurrentPlayer().getProperties()) {
+    public boolean isTradeValid(Player player1, Player player2, ArrayList<NormalProperty> player1Properties,
+                                ArrayList<NormalProperty> player2Properties, int player1Cash, int player2Cash) {
+        if (player1Cash < player1.getCash() && player2Cash < player2.getCash()) {
+            for (Property property : player1.getProperties()) {
                 if (player1Properties.contains(property) && property.getHouseLevel() == 0) {
                     for (Property property2 : player2.getProperties()) {
                         if (player2Properties.contains(property2) && property2.getHouseLevel() == 0) {
@@ -75,26 +65,51 @@ public class tradeInteractor implements tradeInputBoundary {
     }
 
 
+
     @Override
     public void performAction(tradeInputData inputData){
-        if (isTradeValid() && inputData.isConfirmTrade()) {
-            trade(player1Properties, player2Properties, player1Cash, player2Cash);
+        this.inputData = inputData;
+        Player player1 = campaign.getCampaign().getCurrentPlayer();
+        Player player2 = campaign.getCampaign().getPlayerCalled(inputData.getPlayer2());
+        int player1Cash = inputData.getPlayer1Cash();
+        int player2Cash = inputData.getPlayer2Cash();
+        ArrayList<NormalProperty> player1Properties = new ArrayList<>();
+        ArrayList<NormalProperty> player2Properties = new ArrayList<>();
+        List<Integer> player1PropertyIndexes = null;
+        List<Integer> player2PropertyIndexes = null;
+        for (String property : inputData.getPlayer1Properties()) {
+            player1Properties.add((NormalProperty) campaign.getCampaign().getPropertyByAbbr(property));
+            player1PropertyIndexes.add(campaign.getCampaign().getTileIndexByAbbr(property));
+        }
+        for (String property : inputData.getPlayer2Properties()) {
+            player2Properties.add((NormalProperty) campaign.getCampaign().getPropertyByAbbr(property));
+            player2PropertyIndexes.add(campaign.getCampaign().getTileIndexByAbbr(property));
+        }
+
+
+        if (isTradeValid(player1, player2, player1Properties, player2Properties, player1Cash, player2Cash)
+                && inputData.isConfirmTrade()) {
+            trade(player1, player2, player1Properties, player2Properties, player1Cash, player2Cash);
             tradeOutputData outputMessage =
-                    new tradeOutputData(true, "You traded" + player1Properties + "and" + player1Cash + "for"
-                            + player2Properties + "and" + player2Cash);
-            output.preformAction(outputMessage);
+                    new tradeOutputData(true, "You traded" + inputData.getPlayer1Properties() + "and" + player1Cash + "for"
+                            + inputData.getPlayer2Properties() + "and" + player2Cash, campaign.getCampaign().getCurrPlayerIndex(),
+                            campaign.getCampaign().getPlayerIndex(player2), player1.getCash(), player2.getCash(),
+                            inputData.getPlayer2Properties(), inputData.getPlayer1Properties(), player2PropertyIndexes, player1PropertyIndexes); ;
+            output.performAction(outputMessage);
         } else {
             tradeOutputData outputMessage =
                     new tradeOutputData(false, "Trade failed" + player2.getName()
-                            + "Declined your trade");
-            output.preformAction(outputMessage);
+                            + "Declined your trade",campaign.getCampaign().getCurrPlayerIndex(),
+                            campaign.getCampaign().getPlayerIndex(player2), player1.getCash(), player2.getCash(),
+                            inputData.getPlayer2Properties(), inputData.getPlayer1Properties(),player2PropertyIndexes, player1PropertyIndexes);
+            output.performAction(outputMessage);
         }
     }
-
-    @Override
-    public void preformAction(tradeInputData inputData) {
-
+    //Getters and Setters
+    public tradeOutputBoundary getOutput() {
+        return output;
     }
+
 
 }
 
