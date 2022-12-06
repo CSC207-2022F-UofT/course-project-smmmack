@@ -1,5 +1,7 @@
 package ViewModel;
 
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +17,9 @@ public class PlayerViewModel {
      * The number of turns the player need to stay in jail. Int implementation allows sentences longer than 1 turn.
      */
     private int jailTurn;
+    private int position;
+    private int color;
     //TODO: in order to use ownership indicators, we need the indicator picture files here as instance variables
-    //TODO: in order to let player panel show different color for each player, a color instance variable is needed
 
     /**
      * Create a new PlayerVM object with these default parameters: <br>
@@ -26,11 +29,12 @@ public class PlayerViewModel {
      *
      * @param name the name of the player
      */
-    public PlayerViewModel(String name) {
+    public PlayerViewModel(String name, int color) {
         this.name = name;
         this.cash = 0;
         this.propertyAbbrs = new ArrayList<>();
         this.jailTurn = 0;
+        this.color = color;
     }
 
     //setters
@@ -51,6 +55,14 @@ public class PlayerViewModel {
         this.propertyAbbrs = new ArrayList<>(propertyAbbrs);
     }
 
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
     //getters
 
     public String getName() {
@@ -68,4 +80,13 @@ public class PlayerViewModel {
     public int getJailTurn() {
         return jailTurn;
     }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public Color getColor() {
+        return new Color(color);
+    }
 }
+
