@@ -1,17 +1,25 @@
 package ConfirmBuyPropertyUseCase;
 
-import ViewModel.CommandPanelViewModel;
-import ViewModel.PlayerPanelViewModel;
+import ViewModel.*;
 
 public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoundary {
 
-    CommandPanelViewModel commandPanelViewModel;
-    PlayerPanelViewModel playerPanelViewModel;
+    private final CommandPanelViewModel commandPanelViewModel;
+    private final PlayerPanelViewModel playerPanelViewModel;
+    private final BoardPanelViewModel boardPanelViewModel;
+    private final PlayerViewModel playerViewModel;
+    private final TileViewModel tileViewModel;
 
     public ConfirmBuyPropertyPresenter(CommandPanelViewModel commandPanelViewModel,
-                                       PlayerPanelViewModel playerPanelViewModel) {
+                                       PlayerPanelViewModel playerPanelViewModel,
+                                       BoardPanelViewModel boardPanelViewModel,
+                                       PlayerViewModel playerViewModel,
+                                       TileViewModel tileViewModel) {
         this.commandPanelViewModel = commandPanelViewModel;
         this.playerPanelViewModel = playerPanelViewModel;
+        this.boardPanelViewModel = boardPanelViewModel;
+        this.playerViewModel = playerViewModel;
+        this.tileViewModel = tileViewModel;
     }
 
     /**
@@ -27,16 +35,12 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
     @Override
     public void performAction(ConfirmBuyPropertyOutputData buyPropertyOutputData){
         String message = buyPropertyOutputData.getMessage();
-
-        if(buyPropertyOutputData.confirmPurchase){
-            commandPanelViewModel.appendOutput(message);
-            playerPanelViewModel.notifyListeners();
-        } else {
-            commandPanelViewModel.appendError(message);
-            playerPanelViewModel.notifyListeners();;
-        }
-
-        //MARK WHEN, call the notifyListener() (So that to indicate you make a change) PlayerPanelViewModel.
+        commandPanelViewModel.appendCommandLine(message, buyPropertyOutputData.getConfirmPurchase());
+        PlayerViewModel playerVM = playerPanelViewModel.getPlayerVMAt(buyPropertyOutputData.getPlayerIndex());
+        TileViewModel tileVM = boardPanelViewModel.getTileVMAt(playerVM.getPosition());
+        tileVM.setOwnershipIndex(buyPropertyOutputData.playerIndex);
+        playerVM.
+        playerPanelViewModel.notifyListeners();
 
     }
 }

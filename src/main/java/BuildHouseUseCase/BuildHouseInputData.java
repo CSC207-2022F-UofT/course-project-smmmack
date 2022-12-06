@@ -1,26 +1,42 @@
 package BuildHouseUseCase;
 
+import Properties.Property;
+
 public class BuildHouseInputData {
 
-    String buildHouseArgument;
+    int playerIndexBuilds;
+    Property property;
+    int numberOfHouse;
 
-    /**
-     *
-     * @param buildHouseArgument The argument indicating that the player wants to build
-     *                           buildings on which property and how many buildings that
-     *                           the player wants to build.
-     */
 
-    public BuildHouseInputData(String buildHouseArgument){
+    public BuildHouseInputData(int playerIndexBuilds, Property property, int numberOfHouse){
 
-        this.buildHouseArgument = buildHouseArgument;
+        this.playerIndexBuilds = playerIndexBuilds;
+        this.property = property;
+        this.numberOfHouse = numberOfHouse;
     }
 
-    public String isBuildHouseArgument(){
-        return buildHouseArgument;
+    public int getPlayerIndexBuilds() {
+        return playerIndexBuilds;
     }
 
-    public void setBuildHouseArgument(String buildHouseArgument){
-        this.buildHouseArgument = buildHouseArgument;
+    public void setPlayerIndexBuilds(int playerIndexBuilds) {
+        this.playerIndexBuilds = playerIndexBuilds;
+    }
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+
+    public int getNumberOfHouse() {
+        return numberOfHouse;
+    }
+
+    public void setNumberOfHouse(int numberOfHouse) {
+        this.numberOfHouse = numberOfHouse;
     }
 }

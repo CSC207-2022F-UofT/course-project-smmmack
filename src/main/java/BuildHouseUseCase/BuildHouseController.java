@@ -1,18 +1,39 @@
 package BuildHouseUseCase;
 
-public class BuildHouseController {
+import MainEntities.Campaign;
+import MainEntities.CampaignAccess;
+import Properties.Property;
+import UseCaseUniversal.CommandPerformer;
+
+public class BuildHouseController implements CommandPerformer {
 
     BuildHouseInputBoundary buildHouseInputBoundary;
-    final String buildHouseArgument;
+    CampaignAccess campaignAccess;
 
-    public BuildHouseController(BuildHouseInputBoundary buildHouseInputBoundary, String buildHouseArgument){
+    public BuildHouseController(BuildHouseInputBoundary buildHouseInputBoundary, CampaignAccess campaignAccess){
         this.buildHouseInputBoundary = buildHouseInputBoundary;
-        this.buildHouseArgument = buildHouseArgument;
+        this.campaignAccess = campaignAccess;
     }
 
-    public void performAction() throws Exception{
-        BuildHouseInputData buildHouseInputData = new BuildHouseInputData(buildHouseArgument);
+    public void performAction(String command) throws Exception{
+        Campaign campaign = campaignAccess.getCampaign();
+        String[] buildHouseArguments;
+        buildHouseArguments = command.split(" ");
+        String buildHouseCommand = buildHouseArguments[0];
+        int playerIndexBuilds = Integer.parseInt(buildHouseArguments[1]);
+        String propertyToBuild = buildHouseArguments[2];
+        Property property = campaign.getPropertyByAbbr(propertyToBuild);
+        int numberOfHouse = Integer.parseInt(buildHouseArguments[3]);
+        BuildHouseInputData buildHouseInputData = new BuildHouseInputData(playerIndexBuilds, property, numberOfHouse);
         buildHouseInputBoundary.performAction(buildHouseInputData);
+    }
+
+    public void performCommand(String command){
+        try {
+            performAction(command);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // Getter & Setters:
@@ -25,7 +46,6 @@ public class BuildHouseController {
         this.buildHouseInputBoundary = buildHouseInputBoundary;
     }
 
-    public String isConfirm() {
-        return buildHouseArgument;
-    }
+    // Problem with the player index input.
+    // "build_house player_name property_name number_of_buildings"
 }

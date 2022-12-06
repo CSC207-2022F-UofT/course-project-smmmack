@@ -5,20 +5,23 @@ import UseCaseUniversal.CommandPerformer;
 public class ConfirmBuyPropertyController implements CommandPerformer {
 
     private ConfirmBuyPropertyInputBoundary inputBoundaryBuyProperty;
-    private boolean decision;
 
-    public ConfirmBuyPropertyController(ConfirmBuyPropertyInputBoundary inputBoundaryBuyProperty,
-                                        boolean decision) {
+    public ConfirmBuyPropertyController(ConfirmBuyPropertyInputBoundary inputBoundaryBuyProperty) {
         this.inputBoundaryBuyProperty = inputBoundaryBuyProperty;
-        this.decision = decision;
     }
 
-    void performAction(String command) throws Exception{
+    // The string command input that the player types when the question to initiate buy property is asked.
+    // The command can either be yes if the player wants to purchase the landed on property, no otherwise.
+    // If any command other than yes or no is received, throws error indicating the input is not found.
+
+    public void performCommand(String command) throws Exception {
         boolean decision;
-        if(command.equals("yes")) {
+        if (command.equals("yes")){
             decision = true;
-        } else {
+        } else if (command.equals("no")) {
             decision = false;
+        } else {
+            throw new Exception("Error: Input not found.");
         }
         ConfirmBuyPropertyInputData inputData = new ConfirmBuyPropertyInputData(decision);
         inputBoundaryBuyProperty.performAction(inputData);
@@ -30,25 +33,9 @@ public class ConfirmBuyPropertyController implements CommandPerformer {
         return inputBoundaryBuyProperty;
     }
 
-    public boolean getDecision(){
-        return decision;
-    }
-
     // Setters:
 
     public void setInputBoundaryBuyProperty(ConfirmBuyPropertyInputBoundary inputBoundaryBuyProperty){
         this.inputBoundaryBuyProperty = inputBoundaryBuyProperty;
-    }
-
-    public void setDecision(boolean decision){
-        this.decision = decision;
-    }
-
-    public void performCommand(String command){
-        try {
-            performAction(command);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 }

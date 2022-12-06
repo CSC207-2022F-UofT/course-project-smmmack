@@ -19,6 +19,8 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
 
     }
 
+    // Campaign Getter & Setter:
+
     public CampaignAccess getCampaignAccess() {
         return campaignAccess;
     }
@@ -73,14 +75,6 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
         } return message;
     }
 
-    public void linkPlayerIndexWithPropertyIndex(){
-        Campaign campaign = campaignAccess.getCampaign();
-        int currPlayerIndex = campaign.getCurrPlayerIndex();
-        PropertyTile currPropertyTile = (PropertyTile) campaign.getTileAt(currPlayerIndex);
-        int currPropertyIndex = campaign.getTileIndex(currPropertyTile);
-
-    }
-
     @Override
     public void performAction(ConfirmBuyPropertyInputData buyPropertyInputData) throws Exception{
         int message = buyProperty(campaignAccess);
@@ -89,23 +83,32 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
         Player currPlayer = campaign.getCurrentPlayer();
         PropertyTile currPropertyTile = (PropertyTile) campaign.getTileUnderPlayer(currPlayer);
         Property currProperty = currPropertyTile.getProperty();
-        int currPlayerIndex = campaign.getCurrPlayerIndex();
-        int currPropertyIndex = campaign.getTileIndex(currPropertyTile);
 
         try {
+            // Case 1: The player successfully purchases the landed on property.
             if (message == 1) {
                 outputDataMessage = new ConfirmBuyPropertyOutputData("You have purchased "
-                        + currProperty.getName() + " for " + currProperty.getPrice() + ".",true);
-            } else if (message == 2) {
-                outputDataMessage = new ConfirmBuyPropertyOutputData(currProperty.getName() +
-                        " is already purchased by "  + currProperty.getOwner(), false);
-            } else {
-                outputDataMessage = new ConfirmBuyPropertyOutputData("Not have enough funds.",
-                        false);
+                        + currProperty.getName() + " for " + currProperty.getPrice() + ".","output",
+                        campaign.getCurrPlayerIndex());
             }
-        } catch (Exception buyProperty) {
+            // Case 2: The player cannot purchase the landed on property, the property is already owned.
+
+            else if (message == 2) {
+                outputDataMessage = new ConfirmBuyPropertyOutputData(currProperty.getName() +
+                        " is already purchased by "  + currProperty.getOwner(), "warning",
+                        campaign.getCurrPlayerIndex());
+            }
+            // Case 3: The player cannot purchase the landed on property, the player does not have enough funds.
+
+            else {
+                outputDataMessage = new ConfirmBuyPropertyOutputData("Not have enough funds.",
+                        "warning", campaign.getCurrPlayerIndex());
+            }
+        } // Otherwise, throws error that the purchase cannot proceed.
+
+        catch (Exception buyProperty) {
             outputDataMessage = new ConfirmBuyPropertyOutputData("Error: Purchase cannot proceed.",
-                    false);
+                    "error", campaign.getCurrPlayerIndex());
         } result.performAction(outputDataMessage);
     }
 

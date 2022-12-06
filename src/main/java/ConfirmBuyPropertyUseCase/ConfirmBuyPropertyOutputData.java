@@ -3,7 +3,8 @@ package ConfirmBuyPropertyUseCase;
 public class ConfirmBuyPropertyOutputData {
 
     String message;
-    boolean confirmPurchase;
+    String confirmPurchase;
+    int playerIndex;
 
     /**
      *
@@ -13,11 +14,15 @@ public class ConfirmBuyPropertyOutputData {
      *
      * @param confirmPurchase The boolean parameter indicating whether the purchase is verified; true for
      *                        successful purchase, false otherwise.
+     *
+     * @param playerIndex The integer parameter indicating the player's index who attempts to buy the
+     *                    landed on property.
      */
 
-    public ConfirmBuyPropertyOutputData(String message, boolean confirmPurchase){
+    public ConfirmBuyPropertyOutputData(String message, String confirmPurchase, int playerIndex){
         this.message = message;
         this.confirmPurchase = confirmPurchase;
+        this.playerIndex = playerIndex;
     }
 
     // Getters:
@@ -26,8 +31,12 @@ public class ConfirmBuyPropertyOutputData {
         return message;
     }
 
-    public boolean getConfirmPurchase(){
+    public String getConfirmPurchase(){
         return confirmPurchase;
+    }
+
+    public int getPlayerIndex(){
+        return playerIndex;
     }
 
     // Setters:
@@ -36,8 +45,12 @@ public class ConfirmBuyPropertyOutputData {
         this.message = message;
     }
 
-    public void setConfirmPurchase(boolean confirmPurchase){
+    public void setConfirmPurchase(String confirmPurchase){
         this.confirmPurchase = confirmPurchase;
+    }
+
+    public void setPlayerIndex(int playerIndex){
+        this.playerIndex = playerIndex;
     }
 
 }

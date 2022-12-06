@@ -10,6 +10,9 @@ public class InitiateBuyPropertyOutputData {
      * @param question The question, offering the decision to purchase the landed on
      *                 property, introduced to the player when it is confirmed that
      *                 the player is landed on a property tile
+     * @param checkPropertyTileQuestion Tracks whether a question, offering the decision
+     *                                  to purchase the landed on property, is asked or
+     *                                  not; true if the question is asked, false otherwise.
      */
 
 
