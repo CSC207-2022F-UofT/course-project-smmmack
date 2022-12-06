@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 
+
 public class tradePresenter implements tradeOutputBoundary {
     private CommandPanelViewModel commandPanelVM;
     private PlayerPanelViewModel playerPanelVM;
