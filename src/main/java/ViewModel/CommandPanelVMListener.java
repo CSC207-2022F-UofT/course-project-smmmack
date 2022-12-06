@@ -7,3 +7,4 @@ public interface CommandPanelVMListener {
      */
     void performAction(CommandPanelViewModel viewModel);
 }
+
