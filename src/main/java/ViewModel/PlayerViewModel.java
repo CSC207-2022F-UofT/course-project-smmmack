@@ -1,5 +1,6 @@
 package ViewModel;
 
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -88,3 +89,4 @@ public class PlayerViewModel {
         return new Color(color);
     }
 }
+

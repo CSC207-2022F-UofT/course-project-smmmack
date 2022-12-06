@@ -10,7 +10,10 @@ import java.util.List;
  */
 public class CommandPanelViewModel {
     private List<CommandLineViewModel> commandLineVMs;
+
     private List<CommandPanelVMListener> listeners;
+
+   
 
     public CommandPanelViewModel() {
         this.commandLineVMs = new ArrayList<>();
@@ -65,4 +68,6 @@ public class CommandPanelViewModel {
             listener.performAction();
         }
     }
-}
+
+
+
