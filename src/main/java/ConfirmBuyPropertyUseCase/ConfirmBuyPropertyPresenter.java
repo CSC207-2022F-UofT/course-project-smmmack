@@ -1,13 +1,17 @@
 package ConfirmBuyPropertyUseCase;
 
 import ViewModel.CommandPanelViewModel;
+import ViewModel.PlayerPanelViewModel;
 
 public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoundary {
 
     CommandPanelViewModel commandPanelViewModel;
+    PlayerPanelViewModel playerPanelViewModel;
 
-    public ConfirmBuyPropertyPresenter(CommandPanelViewModel commandPanelViewModel) {
+    public ConfirmBuyPropertyPresenter(CommandPanelViewModel commandPanelViewModel,
+                                       PlayerPanelViewModel playerPanelViewModel) {
         this.commandPanelViewModel = commandPanelViewModel;
+        this.playerPanelViewModel = playerPanelViewModel;
     }
 
     /**
@@ -26,8 +30,13 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
 
         if(buyPropertyOutputData.confirmPurchase){
             commandPanelViewModel.appendOutput(message);
+            playerPanelViewModel.notifyListeners();
         } else {
-            commandPanelViewModel.appendOutput(message);
+            commandPanelViewModel.appendError(message);
+            playerPanelViewModel.notifyListeners();;
         }
+
+        //MARK WHEN, call the notifyListener() (So that to indicate you make a change) PlayerPanelViewModel.
+
     }
 }

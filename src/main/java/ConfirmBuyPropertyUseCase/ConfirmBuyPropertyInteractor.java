@@ -1,5 +1,6 @@
 package ConfirmBuyPropertyUseCase;
 
+import MainEntities.Campaign;
 import MainEntities.CampaignAccess;
 import MainEntities.Player;
 import Properties.Property;
@@ -8,18 +9,13 @@ import Tiles.PropertyTile;
 public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoundary {
 
     private final ConfirmBuyPropertyOutputBoundary result;
-    private final Property property;
-    private final Player player;
     private CampaignAccess campaignAccess;
 
 
     public ConfirmBuyPropertyInteractor(ConfirmBuyPropertyOutputBoundary buyPropertyOutputBoundary,
-                                        CampaignAccess campaignAccess, Player player, Property property) {
-        PropertyTile propertyTile;
-        propertyTile = (PropertyTile) campaignAccess.getCampaign().getTileUnderPlayer(player);
+                                        CampaignAccess campaignAccess) {
         this.result = buyPropertyOutputBoundary;
-        this.player = campaignAccess.getCampaign().getCurrentPlayer();
-        this.property = propertyTile.getProperty();
+        this.campaignAccess = campaignAccess;
 
     }
 
@@ -56,16 +52,20 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
      */
 
     public int buyProperty(CampaignAccess campaignAccess){
+
+        Campaign campaign = campaignAccess.getCampaign();
         int message;
-        int currPlayerIndex = campaignAccess.getCampaign().getCurrPlayerIndex();
-        PropertyTile currPropertyTile = (PropertyTile) campaignAccess.getCampaign().getTileAt(currPlayerIndex);
-        if (!(currPropertyTile.getProperty().getOwner() == null)){
+        int currPlayerIndex = campaign.getCurrPlayerIndex();
+        Player currPlayer = campaign.getCurrentPlayer();
+        PropertyTile currPropertyTile = (PropertyTile) campaign.getTileAt(currPlayerIndex);
+        Property currProperty = currPropertyTile.getProperty();
+
+        if (!(currProperty.getOwner() == null)){
             message = 0;
         } else {
-            if (campaignAccess.getCampaign().getCurrentPlayer().getCash() >= currPropertyTile.getProperty().getPrice()){
-                currPropertyTile.getProperty().setOwner(campaignAccess.getCampaign().getCurrentPlayer());
-                campaignAccess.getCampaign().getCurrentPlayer().loseCash(currPropertyTile.getProperty().getPrice());
-                campaignAccess.getCampaign().getCurrentPlayer().addProperty(currPropertyTile.getProperty());
+            if (currPlayer.getCash() >= currProperty.getPrice()){
+                currPlayer.loseCash(currProperty.getPrice());
+                currPlayer.assignOwnership(currProperty);
                 message = 1;
             } else {
                 message = 2;
@@ -73,17 +73,32 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
         } return message;
     }
 
+    public void linkPlayerIndexWithPropertyIndex(){
+        Campaign campaign = campaignAccess.getCampaign();
+        int currPlayerIndex = campaign.getCurrPlayerIndex();
+        PropertyTile currPropertyTile = (PropertyTile) campaign.getTileAt(currPlayerIndex);
+        int currPropertyIndex = campaign.getTileIndex(currPropertyTile);
+
+    }
+
     @Override
     public void performAction(ConfirmBuyPropertyInputData buyPropertyInputData) throws Exception{
         int message = buyProperty(campaignAccess);
+        Campaign campaign = campaignAccess.getCampaign();
         ConfirmBuyPropertyOutputData outputDataMessage;
+        Player currPlayer = campaign.getCurrentPlayer();
+        PropertyTile currPropertyTile = (PropertyTile) campaign.getTileUnderPlayer(currPlayer);
+        Property currProperty = currPropertyTile.getProperty();
+        int currPlayerIndex = campaign.getCurrPlayerIndex();
+        int currPropertyIndex = campaign.getTileIndex(currPropertyTile);
+
         try {
             if (message == 1) {
-                outputDataMessage = new ConfirmBuyPropertyOutputData("You have purchased this property.",
-                        true);
+                outputDataMessage = new ConfirmBuyPropertyOutputData("You have purchased "
+                        + currProperty.getName() + " for " + currProperty.getPrice() + ".",true);
             } else if (message == 2) {
-                outputDataMessage = new ConfirmBuyPropertyOutputData("This property is already purchased by "
-                        + property.getOwner(), false);
+                outputDataMessage = new ConfirmBuyPropertyOutputData(currProperty.getName() +
+                        " is already purchased by "  + currProperty.getOwner(), false);
             } else {
                 outputDataMessage = new ConfirmBuyPropertyOutputData("Not have enough funds.",
                         false);

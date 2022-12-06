@@ -1,13 +1,17 @@
 package InitiateBuyPropertyUseCase;
 
 import ViewModel.CommandPanelViewModel;
+import ViewModel.InputMapDictionary;
 
 public class InitiateBuyPropertyPresenter implements InitiateBuyPropertyOutputBoundary{
 
     CommandPanelViewModel commandPanelViewModel;
+    InputMapDictionary inputMapDictionary;
 
-    public InitiateBuyPropertyPresenter(CommandPanelViewModel commandPanelViewModel) {
+    public InitiateBuyPropertyPresenter(CommandPanelViewModel commandPanelViewModel,
+                                        InputMapDictionary inputMapDictionary) {
         this.commandPanelViewModel = commandPanelViewModel;
+        this.inputMapDictionary = inputMapDictionary;
     }
 
     /**
@@ -27,8 +31,11 @@ public class InitiateBuyPropertyPresenter implements InitiateBuyPropertyOutputBo
     public void performAction(InitiateBuyPropertyOutputData initiateBuyPropertyOutputData){
         String question = initiateBuyPropertyOutputData.getQuestion();
 
-        if(initiateBuyPropertyOutputData.response){
+        inputMapDictionary.setCurrentMapName("confirm_buy_land");
+
+        if(initiateBuyPropertyOutputData.checkPropertyTileQuestion){
             commandPanelViewModel.appendOutput(question);
+
         } else {
             commandPanelViewModel.appendError(question);
         }

@@ -1,6 +1,8 @@
 package ConfirmBuyPropertyUseCase;
 
-public class ConfirmBuyPropertyController {
+import UseCaseUniversal.CommandPerformer;
+
+public class ConfirmBuyPropertyController implements CommandPerformer {
 
     private ConfirmBuyPropertyInputBoundary inputBoundaryBuyProperty;
     private boolean decision;
@@ -11,7 +13,13 @@ public class ConfirmBuyPropertyController {
         this.decision = decision;
     }
 
-    void performAction() throws Exception{
+    void performAction(String command) throws Exception{
+        boolean decision;
+        if(command.equals("yes")) {
+            decision = true;
+        } else {
+            decision = false;
+        }
         ConfirmBuyPropertyInputData inputData = new ConfirmBuyPropertyInputData(decision);
         inputBoundaryBuyProperty.performAction(inputData);
     }
@@ -34,5 +42,13 @@ public class ConfirmBuyPropertyController {
 
     public void setDecision(boolean decision){
         this.decision = decision;
+    }
+
+    public void performCommand(String command){
+        try {
+            performAction(command);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
