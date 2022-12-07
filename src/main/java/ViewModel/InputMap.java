@@ -124,7 +124,7 @@ public class InputMap {
      * @param command the command string (user input)
      * @throws InvalidParameterException when the input is not found.
      */
-    public void call(String command) throws InvalidParameterException {
+    public void call(String command) throws Exception {
         CommandPerformer performer = this.getPerformer(command);
         if (performer != null) {
             performer.performCommand(command);
