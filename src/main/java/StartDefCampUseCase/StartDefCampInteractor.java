@@ -30,6 +30,13 @@ public class StartDefCampInteractor implements StartDefCampInputBoundary {
     public void performAction(StartDefCampInputData inputData) {
         //create new campaign and assign it to the campaign access
         int playerNum = inputData.getPlayerNum();
+
+        // If the input player number is not in valid range
+        if (playerNum < DefaultCampaignFactory.MIN_PLAYER_NUM || DefaultCampaignFactory.MAX_PLAYER_NUM < playerNum) {
+            String message = "The number of players must be between " + DefaultCampaignFactory.MIN_PLAYER_NUM  +
+                    "and " + DefaultCampaignFactory.MAX_PLAYER_NUM + ".";
+            outputBoundary.performAction(new StartDefCampOutputData(message));
+        }
         CampaignFactory factory = new DefaultCampaignFactory(playerNum);
         Campaign campaign = factory.create();
         this.campaignAccess.setCampaign(campaign);
