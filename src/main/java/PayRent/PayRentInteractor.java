@@ -9,14 +9,15 @@ public class PayRentInteractor implements PayRent.PayRentInputBoundary {
 
     private PayRent.PayRentOutputBoundary payRentOutputBoundary;
     private CampaignAccess campaignAccess;
-    Player rentee;
-    Player renter;
-    Tile propertyLandedOn;
-    int rentMoney;
+    private Player rentee;
+    private Player renter;
+    private Tile propertyLandedOn;
+    private int rentMoney;
 
     /**
      * Constructor for PayRentInteractor
      * @param payRentOutputBoundary output boundary
+     * @param campaignAccess all information about the game: the board, players, etc.
      */
     public PayRentInteractor(PayRent.PayRentOutputBoundary payRentOutputBoundary, CampaignAccess campaignAccess) {
         this.payRentOutputBoundary = payRentOutputBoundary;
@@ -29,7 +30,7 @@ public class PayRentInteractor implements PayRent.PayRentInputBoundary {
 
     /**
      *
-     * @param payRentInputData input data for PayRent
+     * @param payRentInputData input data for PayRent, this is empty
      */
     @Override
     public void performAction(PayRentInputData payRentInputData) throws Exception {
@@ -58,10 +59,47 @@ public class PayRentInteractor implements PayRent.PayRentInputBoundary {
     public PayRent.PayRentOutputBoundary getPayRentOutputBoundary(){
         return payRentOutputBoundary;
     }
+    public CampaignAccess getCampaignAccess(){
+        return this.campaignAccess;
+    }
+    public Player getRentee(){
+        return this.rentee;
+    }
+    public Player getRenter(){
+        return this.renter;
+    }
+
+    public Tile getPropertyLandedOn(){
+        return this.propertyLandedOn;
+    }
+
+    public int getRentMoney(){
+        return this.rentMoney;
+    }
 
     // setters
     public void setPayRentOutputBoundary(PayRent.PayRentOutputBoundary payRentOutputBoundary){
         this.payRentOutputBoundary = payRentOutputBoundary;
+    }
+
+    public void setCampaignAccess(CampaignAccess campaignAccess){
+        this.campaignAccess = campaignAccess;
+    }
+
+    public void setRentee(Player rentee){
+        this.rentee = rentee;
+    }
+
+    public void setRenter(Player renter){
+        this.renter = renter;
+    }
+
+    public void setTile(Tile propertyLandedOn){
+        this.propertyLandedOn = propertyLandedOn;
+    }
+
+    public void setRentMoney(int rentMoney){
+        this.rentMoney = rentMoney;
     }
 
 }
