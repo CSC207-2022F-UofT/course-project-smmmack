@@ -8,11 +8,15 @@ public class AdvanceOutputData {
 
     int playerIndex;
 
-    public AdvanceOutputData(String advanceMessage, boolean isAdvanceSuccess, int playerLocation, int playerIndex) {
+    boolean updateInputMap;
+
+    public AdvanceOutputData(String advanceMessage, boolean isAdvanceSuccess, int playerLocation, int playerIndex,
+                             boolean updateInputMap) {
         this.advanceMessage = advanceMessage;
         this.isAdvanceSuccess = isAdvanceSuccess;
         this.playerLocation = playerLocation;
         this.playerIndex = playerIndex;
+        this.updateInputMap = updateInputMap;
     }
 
     //Getter and Setter Methods
@@ -32,6 +36,10 @@ public class AdvanceOutputData {
         return playerLocation;
     }
 
+    public boolean isUpdateInputMap() {
+        return updateInputMap;
+    }
+
     public void setAdvanceMessage(String advanceMessage) {
         this.advanceMessage = advanceMessage;
     }
@@ -46,6 +54,10 @@ public class AdvanceOutputData {
 
     public void setPlayerIndex(int playerIndex) {
         this.playerIndex = playerIndex;
+    }
+
+    public void setUpdateInputMap(boolean updateInputMap) {
+        this.updateInputMap = updateInputMap;
     }
 }
 

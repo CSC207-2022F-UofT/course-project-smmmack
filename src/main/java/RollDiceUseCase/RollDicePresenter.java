@@ -31,9 +31,5 @@ public class RollDicePresenter implements RollDiceOutputBoundary{
             commandPanelViewModel.appendWarning(diceRollMessage);
         }
 
-        //boardPanelViewModel.
-
-        //keep reference of input map dictionary, board panel vm update
-
     }
 }

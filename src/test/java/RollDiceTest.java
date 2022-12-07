@@ -34,8 +34,7 @@ public class RollDiceTest {
 
         // Set up RollDice classes.
         this.advanceOutputBoundary = new AdvanceTestPresenter();
-        this.advanceInputBoundary = new AdvanceInteractor(advanceOutputBoundary, defCampaignAccess,
-                inputMapDict);
+        this.advanceInputBoundary = new AdvanceInteractor(advanceOutputBoundary, defCampaignAccess);
         this.rollDiceOutputBoundary = new RollDiceTestPresenter();
         this.rollDiceInputBoundary = new RollDiceInteractor(rollDiceOutputBoundary,defCampaignAccess,
                 advanceInputBoundary);

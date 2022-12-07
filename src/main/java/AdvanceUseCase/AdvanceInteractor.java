@@ -16,20 +16,19 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
     final AdvanceOutputBoundary output;
 
     final CampaignAccess campaign;
-    InputMapDictionary inputMapDict;
 
-    public AdvanceInteractor(AdvanceOutputBoundary output, CampaignAccess campaign, InputMapDictionary inputMapDict) {
+    public AdvanceInteractor(AdvanceOutputBoundary output, CampaignAccess campaign) {
         this.output = output;
         this.campaign = campaign;
-        this.inputMapDict = inputMapDict;
     }
 
     /**
      * Advances the player to a new tile based off of diceSum. Calls on performTileAction to allow the user to
      * perform the tile's corresponding action.
      * @param diceSum the result of two dice rolls
+     * @return if inputMap should be updated in ViewModel layer.
      */
-    public void advancePlayer(int diceSum) throws Exception {
+    public boolean advancePlayer(int diceSum) throws Exception {
 
         Player player = campaign.getCampaign().getCurrentPlayer();
         GameBoard board = campaign.getCampaign().getBoard();
@@ -40,48 +39,48 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
         if (tilesMoved > board.getSize()){
             player.setLocation(tilesMoved - board.getSize());
             player.gainCash(200);
-            performTileAction(player.getLocation());
         }
         else {
             player.setLocation(tilesMoved);
-            performTileAction(player.getLocation());
         }
+
+        return performTileAction(player.getLocation());
     }
 
     /**
      * Allows the player to make an action based off the tile they are on.
      * @param tileIndex the index of the tile that the player is on.
+     * @return if inputMap should be updated in ViewModel layer.
      */
-    public void performTileAction(int tileIndex) throws Exception {
+    public boolean performTileAction(int tileIndex) throws Exception {
         GameBoard board = campaign.getCampaign().getBoard();
         Tile tile = board.getTileAt(tileIndex);
 
         if (tile instanceof DrawCardTile){
             // Calls on DrawCard use case after it is finished.
-            inputMapDict.setCurrentMapName("after_move");
+            return true;
         } else if (tile instanceof GoToJailTile) {
             // Calls on GoToJail use case after it is finished.
-            inputMapDict.setCurrentMapName("after_move");
+            return true;
         } else if (tile instanceof JailTile) {
             // Do nothing as the tile has no user actions.
-            inputMapDict.setCurrentMapName("after_move");
-            return;
+            return true;
         } else if (tile instanceof ParkingTile) {
             // Do nothing as the tile has no user actions.
-            inputMapDict.setCurrentMapName("after_move");
-            return;
+            return true;
         } else if (tile instanceof PropertyTile) {
             // Calls on BuyProperty and PayRent use case after it is finished.
             // What happens if the property is owned? If it isn't?
 
             if (((PropertyTile) tile).getProperty().isOwnerless()) {
-                inputMapDict.setCurrentMapName("after_move");
+                return true;
             }
             else {
                 // TODO
+                return false;
             }
         } else if (tile instanceof StartTile) {
-            inputMapDict.setCurrentMapName("after_move");
+            return true;
         }
         else{
             throw new Exception("Tile not found.");
@@ -101,20 +100,22 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
     public void performAction(AdvanceInputData input) throws Exception {
 
         Player player = campaign.getCampaign().getCurrentPlayer();
+        boolean updateInputMap;
 
         try {
             if (input.isConfirmRoll()) {
-                advancePlayer(input.diceSum);
+                updateInputMap = advancePlayer(input.diceSum);
                 AdvanceOutputData outputMessage =
                         new AdvanceOutputData("You have landed on this tile: " + player.getLocation(),
-                                true, player.getLocation(), campaign.getCampaign().getCurrPlayerIndex());
+                                true, player.getLocation(), campaign.getCampaign().getCurrPlayerIndex(),
+                                updateInputMap);
                 output.performAction(outputMessage);
             }
         }
         catch (Exception e){
             AdvanceOutputData outputMessage =
                     new AdvanceOutputData("Error: Tile not found", false,
-                            player.getLocation(), campaign.getCampaign().getCurrPlayerIndex());
+                            player.getLocation(), campaign.getCampaign().getCurrPlayerIndex(), false);
             output.performAction(outputMessage);
         }
     }

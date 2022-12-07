@@ -31,8 +31,7 @@ public class AdvanceTest {
         this.defCampaignAccess = new CampaignAccess();
         this.defCampaignAccess.setCampaign(defCampaign);
         this.advanceOutputBoundary = new AdvanceTestPresenter();
-        this.advanceInputBoundary = new AdvanceInteractor(advanceOutputBoundary, defCampaignAccess,
-                inputMapDict);
+        this.advanceInputBoundary = new AdvanceInteractor(advanceOutputBoundary, defCampaignAccess);
     }
 
     /**

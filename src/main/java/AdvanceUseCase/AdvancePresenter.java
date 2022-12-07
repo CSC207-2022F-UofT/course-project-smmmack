@@ -1,9 +1,6 @@
 package AdvanceUseCase;
 
-import ViewModel.BoardPanelViewModel;
-import ViewModel.PlayerPanelViewModel;
-import ViewModel.PlayerViewModel;
-import ViewModel.CommandPanelViewModel;
+import ViewModel.*;
 
 public class AdvancePresenter implements AdvanceOutputBoundary {
 
@@ -13,11 +10,14 @@ public class AdvancePresenter implements AdvanceOutputBoundary {
 
     PlayerPanelViewModel playerPanelViewModel;
 
+    InputMapDictionary inputMapDictionary;
+
     public AdvancePresenter(CommandPanelViewModel commandPanelViewModel, BoardPanelViewModel boardPanelViewModel,
-                            PlayerPanelViewModel playerPanelViewModel){
+                            PlayerPanelViewModel playerPanelViewModel, InputMapDictionary inputMapDictionary){
         this.commandPanelViewModel = commandPanelViewModel;
         this.boardPanelViewModel = boardPanelViewModel;
         this.playerPanelViewModel = playerPanelViewModel;
+        this.inputMapDictionary = inputMapDictionary;
     }
 
     /**
@@ -38,12 +38,16 @@ public class AdvancePresenter implements AdvanceOutputBoundary {
             playerVM.setPosition(outputData.getPlayerLocation());
 
             playerPanelViewModel.notifyListeners();
-            commandPanelViewModel.notifyListeners();
         } else {
             commandPanelViewModel.appendError(advanceMessage);
-
-            commandPanelViewModel.notifyListeners();
         }
+
+        if (outputData.isUpdateInputMap()){
+            inputMapDictionary.setCurrentMapName("after_move");
+
+        }
+
+        commandPanelViewModel.notifyListeners();
     }
 
 }
