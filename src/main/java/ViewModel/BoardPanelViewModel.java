@@ -14,6 +14,7 @@ import java.util.List;
 public class BoardPanelViewModel {
     private int width;
     private int height;
+    private String picPath;
     private TileViewModel[] tileVMs;
     private List<BoardPanelVMListener> listeners;
     private List<PlayerViewModel> playerVMs;
@@ -73,6 +74,10 @@ public class BoardPanelViewModel {
         this.listeners = listeners;
     }
 
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
     //getters
 
     public int getWidth() {
@@ -99,6 +104,10 @@ public class BoardPanelViewModel {
         return playerVMs;
     }
 
+    public String getPicPath() {
+        return picPath;
+    }
+
     //other getters
 
     public int getSize() {
@@ -122,7 +131,7 @@ public class BoardPanelViewModel {
 
     public void notifyListeners() {
         for (BoardPanelVMListener listener: listeners) {
-            listener.performAction();
+            listener.performAction(this);
         }
     }
 }
