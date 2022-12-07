@@ -13,7 +13,6 @@ public class CommandPanelViewModel {
 
     private List<CommandPanelVMListener> listeners;
 
-   
 
     public CommandPanelViewModel() {
         this.commandLineVMs = new ArrayList<>();
@@ -53,6 +52,7 @@ public class CommandPanelViewModel {
     public void appendError(String message) {
         this.commandLineVMs.add(CommandLineViewModel.getErrorVM(message));
     }
+
     public void addListener(CommandPanelVMListener listener) {
         this.listeners.add(listener);
     }

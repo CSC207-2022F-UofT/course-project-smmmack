@@ -119,6 +119,7 @@ public class NormalProperty extends Property implements Serializable {
         return hotelPrice;
     }
 
+
     //other getters
     @Override
     public int getRent(Player target) {
