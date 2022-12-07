@@ -1,23 +1,26 @@
 package ViewModel;
 
-import Tiles.Tile;
-
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * BoardPanelViewModel is a view model that contains an array of TileViewModels. It also contains all information
- * needed by the board panel in the view. <br>
+ * needed by the board panel in the view. It also includes the location of miniatures. <br>
  * As the BoardPanel is a picture, it might also need methods to get the coordinates of different tiles, so that the
  * program can put the chess, ownership indicator, and houses at the correct place. <br>
  * Just the same as GameBoard, BoardPanelViewModel has final width and height, and both are no less than 2.
  */
 public class BoardPanelViewModel {
-    private final int width;
-    private final int height;
+    private int width;
+    private int height;
     private TileViewModel[] tileVMs;
     private List<BoardPanelVMListener> listeners;
+    private List<PlayerViewModel> playerVMs;
+
+    public BoardPanelViewModel() throws InvalidParameterException {
+        this(2, 2);
+    }
 
     public BoardPanelViewModel(int width, int height) throws InvalidParameterException {
         if (width < 2 || height < 2) {
@@ -27,6 +30,7 @@ public class BoardPanelViewModel {
         this.height = height;
         this.tileVMs = new TileViewModel[getSize()];
         this.listeners = new ArrayList<>();
+        this.playerVMs = new ArrayList<>();
     }
 
     //setters
@@ -53,6 +57,22 @@ public class BoardPanelViewModel {
         tileVMs[index] = tileVM;
     }
 
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setPlayerVMs(List<PlayerViewModel> playerVMs) {
+        this.playerVMs = playerVMs;
+    }
+
+    public void setListeners(List<BoardPanelVMListener> listeners) {
+        this.listeners = listeners;
+    }
+
     //getters
 
     public int getWidth() {
@@ -75,10 +95,18 @@ public class BoardPanelViewModel {
         }
     }
 
+    public List<PlayerViewModel> getPlayerVMs() {
+        return playerVMs;
+    }
+
     //other getters
 
     public int getSize() {
         return width * 2 + height * 2 - 4;
+    }
+
+    public PlayerViewModel getPlayerVMAt(int index) {
+        return playerVMs.get(index);
     }
 
     //other setters

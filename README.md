@@ -1,39 +1,50 @@
-# Project Template
+# UofTorontopoly Monopoly Game
 
-This is a template repository for CSC 207 projects. 
-This repository contains starter code for a gradle project.
-It also contains workflow documents that give instructions on how to manage your Github repository and how to use Github Projects for efficient collaboration.
+Are you a monopoly lover? 
 
-## Checklist For Your Project
-- [ ] Verify the correct settings for your project repository
-- [ ] Set up Github Projects
-- [ ] Create the implementation plan using issues and Github Projects
-- [ ] Create deveopment branches for your features
-- [ ] Use pull requests to merge finished features into main branch
-- [ ] Conduct code reviews
+Or maybe it is your first time playing Monopoly? 
 
-**If your team has trouble with any of these steps, please ask on Piazza. For example, with how GitHub Classroom works, your team *may* not have permissions to do some of the first few steps, in which case we'll post alternative instructions as needed.**
+Then that is one of the most exciting versions of Monopoly that you will ever play...
+Let's introduce you with the ***University of Toronto themed Monopoly Game***, **UofTorontopoly**! 
 
-## Workflow Documents
+That is exactly the right game for you if you are a current UofT student, or maybe an alumni,
+or a professor at UofT, or a future student that is planning to apply
+to UofT. This Monopoly game is based on all of the locations
+that you might be familiar with on the UofT campus. Enjoy the game,
+refresh your memories of UofT while playing, and buy all your
+best study locations of UofT on the UofTorontopoly Game!
 
-* Github Workflow: Please refer to the workflow that was introduced in the first lab. You should follow this when working on your code. The following document provides additional details too.
 
-* [Project Planning and Development Guide](project_plan_dev.md): This document helps you to understand how to create and maintain a project plan for your class project. **This document helps you to complete the Implementation Plan Milestone.**
+***Creators:***
 
-## Gradle Project
-Import this project into your Intellij editor. It should automatically recognise this as a gradle repository.
-The starter code was built using SDK version 11.0.1. Ensure that you are using this version for this project. (You can, of course, change the SDK version as per your requirement if your team has all agreed to use a different version)
+*Alphabetical order according to last names.*
 
-You have been provided with two starter files for demonstration: HelloWorld and HelloWorldTest.
+* Xinyan Lyu
+* Maria Mustard
+* Sinem Soylemezoglu
+* Kamran Takesh
+* Adeline Wang
+* Celina Yueh
+* Yang Zhenze
 
-You will find HelloWorld in `src/main/java/tutorial` directory. Right click on the HelloWorld file and click on `Run HelloWorld.main()`.
-This should run the program and print on your console.
+*Our Mission*
 
-You will find HelloWorldTest in `src/test/java/tutorial` directory. Right click on the HelloWorldTest file and click on `Run HelloWorldTest`.
-All tests should pass. Your team can remove this sample of how testing works once you start adding your project code to the repo.
+Implementing an original University of Toronto themed Monopoly Game, 
+based on Clean Architecture Design Patterns and Solid Principles.
 
-Moving forward, we expect you to maintain this project structure. You *should* use Gradle as the build environment, but it is fine if your team prefers to use something else -- just remove the gradle files and push your preferred project setup. Assuming you stick with Gradle, your source code should go into `src/main/java` (you can keep creating more subdirectories as per your project requirement). Every source class can auto-generate a test file for you. For example, open HelloWorld.java file and click on the `HelloWorld` variable as shown in the image below. You should see an option `Generate` and on clicking this your should see an option `Test`. Clicking on this will generate a JUnit test file for `HelloWorld` class. This was used to generate the `HelloWorldTest`.
+## Things to Remember Before Starting to Play:
+- [ ] First things first, please read the UofTorontopoly Manual.
+- [ ] Verify that you are playing between 2-8 players.
+- [ ] Please create a username for each player.
+- [ ] All the players wil be initiated with a fixed amount of Monopoly cash at the start of the game.
+- [ ] Each player will have consecutive turns, set at the start of the game.
+- [ ] For the rest of the game rules and how to play, please refer to the UofTorontopoly Manual below.
 
-![image](https://user-images.githubusercontent.com/5333020/196066655-d3c97bf4-fdbd-46b0-b6ae-aeb8dbcf351d.png)
+**Work in progress, not the final version.**
 
-You can create another simple class and try generating a test for this class.
+## UofTorontopoly Manual
+
+**Work in progress, not the final version.**
+
+
+

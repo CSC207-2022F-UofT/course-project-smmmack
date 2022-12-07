@@ -98,6 +98,7 @@ public class NormalProperty extends Property implements Serializable {
     }
 
     //getters
+    @Override
     public int getHouseLevel() {
         return houseLevel;
     }
@@ -117,6 +118,7 @@ public class NormalProperty extends Property implements Serializable {
     public int getHotelPrice() {
         return hotelPrice;
     }
+
 
     //other getters
     @Override
