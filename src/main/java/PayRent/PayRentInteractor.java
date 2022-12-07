@@ -14,6 +14,10 @@ public class PayRentInteractor implements PayRent.PayRentInputBoundary {
     private Tile propertyLandedOn;
     private int rentMoney;
 
+    public PayRentInteractor(){
+
+    }
+
     /**
      * Constructor for PayRentInteractor
      * @param payRentOutputBoundary output boundary

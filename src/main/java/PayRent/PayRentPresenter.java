@@ -10,6 +10,10 @@ public class PayRentPresenter implements PayRentOutputBoundary{
     PlayerPanelViewModel playerPanelViewModel;
     CommandPanelViewModel commandPanelViewModel;
 
+    public PayRentPresenter(){
+
+    }
+
 
     public PayRentPresenter(PlayerPanelViewModel playerPanelViewModel, CommandPanelViewModel commandPanelViewModel){
 
