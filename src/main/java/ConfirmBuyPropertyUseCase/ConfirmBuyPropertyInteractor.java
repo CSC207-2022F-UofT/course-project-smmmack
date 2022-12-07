@@ -32,8 +32,8 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
     /**
      *
      * @param decision The decision of the player rather to purchase or not purchase
-     *                 the landed on property. If decision is true, then the player attempts
-     *                 to purchase the property with buyProperty().
+     *                 the landed on property. If decision is true corresponding to 'yes',
+     *                 then the player attempts to purchase the property with buyProperty().
      */
 
     public void decisionBuyProperty(boolean decision){
@@ -89,26 +89,26 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
             if (message == 1) {
                 outputDataMessage = new ConfirmBuyPropertyOutputData("You have purchased "
                         + currProperty.getName() + " for " + currProperty.getPrice() + ".","output",
-                        campaign.getCurrPlayerIndex());
+                        campaign.getCurrPlayerIndex(), currProperty.getAbbreviation());
             }
             // Case 2: The player cannot purchase the landed on property, the property is already owned.
 
             else if (message == 2) {
                 outputDataMessage = new ConfirmBuyPropertyOutputData(currProperty.getName() +
                         " is already purchased by "  + currProperty.getOwner(), "warning",
-                        campaign.getCurrPlayerIndex());
+                        campaign.getCurrPlayerIndex(), currProperty.getAbbreviation());
             }
             // Case 3: The player cannot purchase the landed on property, the player does not have enough funds.
 
             else {
                 outputDataMessage = new ConfirmBuyPropertyOutputData("Not have enough funds.",
-                        "warning", campaign.getCurrPlayerIndex());
+                        "warning", campaign.getCurrPlayerIndex(), currProperty.getAbbreviation());
             }
         } // Otherwise, throws error that the purchase cannot proceed.
 
         catch (Exception buyProperty) {
             outputDataMessage = new ConfirmBuyPropertyOutputData("Error: Purchase cannot proceed.",
-                    "error", campaign.getCurrPlayerIndex());
+                    "error", campaign.getCurrPlayerIndex(), currProperty.getAbbreviation());
         } result.performAction(outputDataMessage);
     }
 

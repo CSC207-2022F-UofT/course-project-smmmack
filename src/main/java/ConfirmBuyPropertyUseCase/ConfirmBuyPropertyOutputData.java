@@ -5,6 +5,7 @@ public class ConfirmBuyPropertyOutputData {
     String message;
     String confirmPurchase;
     int playerIndex;
+    String propertyAbbreviation;
 
     /**
      *
@@ -17,12 +18,16 @@ public class ConfirmBuyPropertyOutputData {
      *
      * @param playerIndex The integer parameter indicating the player's index who attempts to buy the
      *                    landed on property.
+     *
+     * @param propertyAbbreviation The String parameter indicating the landed on property's abbreviation.
      */
 
-    public ConfirmBuyPropertyOutputData(String message, String confirmPurchase, int playerIndex){
+    public ConfirmBuyPropertyOutputData(String message, String confirmPurchase, int playerIndex,
+                                        String propertyAbbreviation){
         this.message = message;
         this.confirmPurchase = confirmPurchase;
         this.playerIndex = playerIndex;
+        this.propertyAbbreviation = propertyAbbreviation;
     }
 
     // Getters:
@@ -39,6 +44,10 @@ public class ConfirmBuyPropertyOutputData {
         return playerIndex;
     }
 
+    public String getPropertyAbbreviation() {
+        return propertyAbbreviation;
+    }
+
     // Setters:
 
     public void setMessage(String message) {
@@ -53,4 +62,7 @@ public class ConfirmBuyPropertyOutputData {
         this.playerIndex = playerIndex;
     }
 
+    public void setPropertyAbbreviation(String propertyAbbreviation) {
+        this.propertyAbbreviation = propertyAbbreviation;
+    }
 }

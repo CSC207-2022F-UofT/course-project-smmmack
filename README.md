@@ -44,14 +44,6 @@ based on Clean Architecture Design Patterns and Solid Principles.
 
 ## UofTorontopoly Manual
 
-**Starting The Game**
-When the Game Screen is open..
-1. Please click the icon _ to start a new game if you want to start a new game.
-2. Please click the icon _ to resume a previously saved game.
-
-**Setting the Game to Play**
-
-
 **Work in progress, not the final version.**
 
 

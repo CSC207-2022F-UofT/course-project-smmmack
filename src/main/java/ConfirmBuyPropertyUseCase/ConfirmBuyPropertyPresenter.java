@@ -2,6 +2,9 @@ package ConfirmBuyPropertyUseCase;
 
 import ViewModel.*;
 
+import java.util.Collections;
+import java.util.List;
+
 public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoundary {
 
     private final CommandPanelViewModel commandPanelViewModel;
@@ -38,8 +41,10 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
         commandPanelViewModel.appendCommandLine(message, buyPropertyOutputData.getConfirmPurchase());
         PlayerViewModel playerVM = playerPanelViewModel.getPlayerVMAt(buyPropertyOutputData.getPlayerIndex());
         TileViewModel tileVM = boardPanelViewModel.getTileVMAt(playerVM.getPosition());
+        List<String> propertyVM = Collections.singletonList(buyPropertyOutputData.getPropertyAbbreviation());
+        playerVM.addPropertyAbbrs(propertyVM);
         tileVM.setOwnershipIndex(buyPropertyOutputData.playerIndex);
-        playerVM.
+        playerVM.addPropertyAbbrs(propertyVM);
         playerPanelViewModel.notifyListeners();
 
     }
