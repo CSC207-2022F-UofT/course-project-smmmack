@@ -1,7 +1,8 @@
 package DrawCardUseCase;
+// Need to change package name
 
 /**
- * The DrawCardController takes in DrawCardInputBoundary that can be used by the DrawCardInteractor.
+ * The DrawCardController takes in DrawCardInputBoundary that can be used by the DrawCardInteractor
  */
 public class DrawCardController {
     private DrawCardInputBoundary inputBoundary;
