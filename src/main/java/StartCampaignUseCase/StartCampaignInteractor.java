@@ -55,6 +55,7 @@ public class StartCampaignInteractor implements StartCampaignInputBoundary {
         ArrayList<Integer> playerCashes = new ArrayList<>();
         ArrayList<ArrayList<String>> playerPropertyLists = new ArrayList<>();
         ArrayList<Integer> playerLocations = new ArrayList<>();
+        //TODO: player colors need to be correctly passed from interactors to presenters
         ArrayList<Integer> playerColors = new ArrayList<>();
         for (int i = 0; i < playerNum; i ++) {
             Player player = campaign.getPlayerAt(i);

@@ -23,6 +23,7 @@ public class StartCampaignPresenter implements StartCampaignOutputBoundary {
     }
 
     //TODO: update this performAction to update all view models
+    //TODO: player colors need to be correctly passed from interactors to presenters
     @Override
     public void performAction(StartCampaignOutputData outputData) {
         // Set up player panel VM
