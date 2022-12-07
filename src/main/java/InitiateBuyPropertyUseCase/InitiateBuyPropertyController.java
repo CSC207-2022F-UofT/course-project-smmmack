@@ -1,7 +1,6 @@
 package InitiateBuyPropertyUseCase;
 
-
-public class InitiateBuyPropertyController {
+public class InitiateBuyPropertyController{
 
     private InitiateBuyPropertyInputBoundary inputBoundaryInitiatePurchase;
     private final boolean landedOnPropertyTile;

@@ -1,7 +1,6 @@
 package InitiateBuyPropertyUseCase;
 
-import ConfirmBuyPropertyUseCase.ConfirmBuyPropertyInputBoundary;
-import ConfirmBuyPropertyUseCase.ConfirmBuyPropertyInputData;
+import MainEntities.Campaign;
 import MainEntities.CampaignAccess;
 import MainEntities.Player;
 import Properties.Property;
@@ -9,39 +8,38 @@ import Tiles.PropertyTile;
 
 public class InitiateBuyPropertyInteractor implements InitiateBuyPropertyInputBoundary{
     private final InitiateBuyPropertyOutputBoundary output;
-    CampaignAccess campaignAccess;
-    ConfirmBuyPropertyInputBoundary confirmBuyPropertyInputBoundary;
-    ConfirmBuyPropertyInputData confirmBuyPropertyInputData;
-    Player player;
-    Property property;
+    private CampaignAccess campaignAccess;
 
 
     public InitiateBuyPropertyInteractor(InitiateBuyPropertyOutputBoundary output,
-                                         CampaignAccess campaignAccess,
-                                         ConfirmBuyPropertyInputBoundary confirmBuyPropertyInputBoundary,
-                                         ConfirmBuyPropertyInputData confirmBuyPropertyInputData,
-                                         Player player, Property property){
+                                         CampaignAccess campaignAccess){
         this.output = output;
         this.campaignAccess = campaignAccess;
-        this.confirmBuyPropertyInputBoundary = confirmBuyPropertyInputBoundary;
-        this.confirmBuyPropertyInputData = confirmBuyPropertyInputData;
-        this.player = player;
-        this.property = property;
 
+    }
+
+    // CampaignAccess Getter & Setter:
+
+    public CampaignAccess getCampaignAccess() {
+        return campaignAccess;
+    }
+
+    public void setCampaignAccess(CampaignAccess campaignAccess) {
+        this.campaignAccess = campaignAccess;
     }
 
     /**
      *
-     * @return Returns true if the player lands on a Property tile, and refers
-     *         to initiateBuyLand() function, otherwise returns false.
+     * @return Returns true if the player lands on a Property tile,
+     *         otherwise returns false.
      */
 
     public boolean checkLandOnPropertyTile(){
-        int currPlayerIndex = campaignAccess.getCampaign().getCurrPlayerIndex();
-        Player player = campaignAccess.getCampaign().getPlayerAt(currPlayerIndex);
-        if(campaignAccess.getCampaign().getTileUnderPlayer(player) instanceof PropertyTile){
-            PropertyTile currPropertyTile = (PropertyTile) campaignAccess.getCampaign().getTileUnderPlayer(player);
-            initiateBuyLand(player, currPropertyTile.getProperty());
+        Campaign campaign = campaignAccess.getCampaign();
+        int currPlayerIndex = campaign.getCurrPlayerIndex();
+        Player player = campaign.getPlayerAt(currPlayerIndex);
+        if(campaign.getTileUnderPlayer(player) instanceof PropertyTile){
+            PropertyTile currPropertyTile = (PropertyTile) campaign.getTileUnderPlayer(player);
             return true;
         } else {
             return false;
@@ -49,48 +47,33 @@ public class InitiateBuyPropertyInteractor implements InitiateBuyPropertyInputBo
 
     }
 
-    /**
-     * References to the Confirm Buy property use case when the property lands on a property tile.
-     * The player can either decide to attempt to purchasing the landed on property or not.
-     */
-
-    public void initiateBuyLand(Player player, Property property){
-        ConfirmBuyPropertyInputData confirmBuyPropertyInputData = new ConfirmBuyPropertyInputData(true);
-        if (confirmBuyPropertyInputData.getDecision()) {
-            try {
-                confirmBuyPropertyInputBoundary.performAction(confirmBuyPropertyInputData);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-
     @Override
     public void performAction(InitiateBuyPropertyInputData initiateBuyPropertyInputData) throws Exception{
-        initiateBuyLand(player, property);
+        Campaign campaign = campaignAccess.getCampaign();
+        Player currPlayer = campaign.getCurrentPlayer();
+        PropertyTile currPropertyTile = (PropertyTile) campaign.getTileUnderPlayer(currPlayer);
+        Property currProperty = currPropertyTile.getProperty();
         InitiateBuyPropertyOutputData initiateOutputDataQuestion;
 
-        // The player lands on a Property Tile.
+        try {
+            if (checkLandOnPropertyTile()) {
+                // The player lands on a Property Tile; whether the player wants to purchase the
+                // landed on property is asked to the player.
+                initiateOutputDataQuestion = new InitiateBuyPropertyOutputData("Would you like to " +
+                        " purchase " + currProperty.getName() + " for " +
+                        currProperty.getPrice() + "?", true);
+            } else {
+                // The player does not land on a Property Tile; thus no question is asked.
+                initiateOutputDataQuestion = new InitiateBuyPropertyOutputData(null,
+                        false);
+            }
 
-        if (checkLandOnPropertyTile()){
-            // The player decides to attempt purchasing the landed on property, when the question is introduced.
-            initiateOutputDataQuestion = new InitiateBuyPropertyOutputData("Would you like to " +
-                    " purchase " + property.getName() + " for "
-                    + property.getPrice() + "?", confirmBuyPropertyInputData.getDecision());
+            } catch (Exception exception) {
+            initiateOutputDataQuestion = new InitiateBuyPropertyOutputData(null,
+                    false);
+
         }
-
-        // The player does not land on a Property Tile.
-
-        else
-
-        {
-            initiateOutputDataQuestion = new InitiateBuyPropertyOutputData(null, false);
-        }
-
         output.performAction(initiateOutputDataQuestion);
-
-
     }
 
 

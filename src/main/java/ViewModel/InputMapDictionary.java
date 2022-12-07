@@ -84,7 +84,7 @@ public class InputMapDictionary {
         return maps.get(currentMapName);
     }
 
-    public void callOnCurrentMap(String command) {
+    public void callOnCurrentMap(String command) throws Exception {
         InputMap map = getCurrentMap();
         map.call(command);
     }
