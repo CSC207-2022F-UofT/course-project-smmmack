@@ -12,6 +12,10 @@ public class DrawCardInteractor implements DrawCardInputBoundary {
     private DrawCardOutputBoundary drawCardOutputBoundary;
     private CampaignAccess campaignAccess;
 
+    // Empty Constructor
+    public DrawCardInteractor() {
+    }
+
     public DrawCardInteractor(DrawCardOutputBoundary drawCardOutputBoundary, CampaignAccess campaignAccess) {
         this.drawCardOutputBoundary = drawCardOutputBoundary;
         this.campaignAccess = campaignAccess;

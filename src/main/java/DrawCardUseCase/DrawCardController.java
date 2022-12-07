@@ -7,6 +7,10 @@ package DrawCardUseCase;
 public class DrawCardController {
     private DrawCardInputBoundary inputBoundary;
 
+    // Empty Constructor
+    public DrawCardController() {
+    }
+
     public DrawCardController(DrawCardInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
     }

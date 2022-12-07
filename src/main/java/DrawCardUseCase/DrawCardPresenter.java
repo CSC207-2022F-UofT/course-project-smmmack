@@ -10,6 +10,10 @@ public class DrawCardPresenter implements DrawCardOutputBoundary{
     private CommandPanelViewModel commandPanelVM;
     private PlayerPanelViewModel playerPanelVM;
 
+    // Empty Constructor
+    public DrawCardPresenter() {
+    }
+
     public DrawCardPresenter(CommandPanelViewModel commandPanelVM, PlayerPanelViewModel playerPanelVM){
         this.commandPanelVM = commandPanelVM;
         this.playerPanelVM = playerPanelVM;
