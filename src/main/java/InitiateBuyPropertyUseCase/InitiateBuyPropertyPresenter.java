@@ -3,6 +3,7 @@ package InitiateBuyPropertyUseCase;
 import ViewModel.CommandPanelViewModel;
 import ViewModel.InputMapDictionary;
 
+
 public class InitiateBuyPropertyPresenter implements InitiateBuyPropertyOutputBoundary{
 
     CommandPanelViewModel commandPanelViewModel;

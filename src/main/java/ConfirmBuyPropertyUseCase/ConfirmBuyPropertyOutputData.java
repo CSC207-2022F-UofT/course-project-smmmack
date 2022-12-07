@@ -37,7 +37,7 @@ public class ConfirmBuyPropertyOutputData {
     public String getMessage() {
         return message;
     }
-
+    
     public String getConfirmPurchase(){
         return confirmPurchase;
     }
@@ -53,13 +53,11 @@ public class ConfirmBuyPropertyOutputData {
     public String getPropertyAbbreviation() {
         return propertyAbbreviation;
     }
-
     // Setters:
 
     public void setMessage(String message) {
         this.message = message;
     }
-
     public void setConfirmPurchase(String confirmPurchase){
         this.confirmPurchase = confirmPurchase;
     }

@@ -9,6 +9,7 @@ public class ConfirmBuyPropertyInputData {
      *                 the landed on property; yes corresponds to true if the
      *                 player attempts to purchase the landed on property; no
      *                 corresponds to false otherwise.
+
      */
 
     public ConfirmBuyPropertyInputData(boolean decision) {

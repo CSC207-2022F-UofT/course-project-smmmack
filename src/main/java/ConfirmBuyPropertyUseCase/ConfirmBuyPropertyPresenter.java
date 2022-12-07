@@ -1,7 +1,6 @@
 package ConfirmBuyPropertyUseCase;
 
 import ViewModel.*;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -58,6 +57,5 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
         tileVM.setOwnershipIndex(buyPropertyOutputData.playerIndex);
         playerVM.addPropertyAbbrs(propertyVM);
         playerPanelViewModel.notifyListeners();
-
     }
 }

@@ -1,5 +1,6 @@
 package ConfirmBuyPropertyUseCase;
 
+
 import MainEntities.Campaign;
 import MainEntities.CampaignAccess;
 import MainEntities.Player;
@@ -16,7 +17,6 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
                                         CampaignAccess campaignAccess) {
         this.result = buyPropertyOutputBoundary;
         this.campaignAccess = campaignAccess;
-
     }
 
     // Campaign Getter & Setter:
