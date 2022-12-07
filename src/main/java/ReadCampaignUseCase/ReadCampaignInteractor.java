@@ -19,7 +19,7 @@ public class ReadCampaignInteractor implements ReadCampaignInputBoundary {
     public void performAction(ReadCampaignInputData inputData) {
         String relativePath = inputData.getRelativePath();
         try {
-            FileInputStream fileStream = new FileInputStream(relativePath);
+            FileInputStream fileStream = new FileInputStream(ROOT_PATH + relativePath);
             ObjectInputStream objectStream = new ObjectInputStream(fileStream);
             Campaign campaign = (Campaign) objectStream.readObject();
             campaignAccess.setCampaign(campaign);
