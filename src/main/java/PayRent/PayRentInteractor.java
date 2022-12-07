@@ -9,6 +9,10 @@ public class PayRentInteractor implements PayRent.PayRentInputBoundary {
 
     private PayRent.PayRentOutputBoundary payRentOutputBoundary;
     private CampaignAccess campaignAccess;
+    Player rentee;
+    Player renter;
+    Tile propertyLandedOn;
+    int rentMoney;
 
     /**
      * Constructor for PayRentInteractor
@@ -17,6 +21,10 @@ public class PayRentInteractor implements PayRent.PayRentInputBoundary {
     public PayRentInteractor(PayRent.PayRentOutputBoundary payRentOutputBoundary, CampaignAccess campaignAccess) {
         this.payRentOutputBoundary = payRentOutputBoundary;
         this.campaignAccess = campaignAccess;
+        this.rentee = campaignAccess.getCampaign().getCurrentPlayer();
+        this.propertyLandedOn = campaignAccess.getCampaign().getTileUnderPlayer(rentee);
+        this.renter = ((PropertyTile) propertyLandedOn).getProperty().getOwner();
+        this.rentMoney = ((PropertyTile) propertyLandedOn).getProperty().getRent(rentee);
     }
 
     /**
@@ -25,11 +33,6 @@ public class PayRentInteractor implements PayRent.PayRentInputBoundary {
      */
     @Override
     public void performAction(PayRentInputData payRentInputData) throws Exception {
-
-        Player rentee = campaignAccess.getCampaign().getCurrentPlayer();
-        Tile propertyLandedOn = campaignAccess.getCampaign().getTileUnderPlayer(rentee);
-        Player renter = ((PropertyTile) propertyLandedOn).getProperty().getOwner();
-        int rentMoney = ((PropertyTile) propertyLandedOn).getProperty().getRent(rentee);
 
         rentee.loseCash(rentMoney);
         renter.gainCash(rentMoney);
