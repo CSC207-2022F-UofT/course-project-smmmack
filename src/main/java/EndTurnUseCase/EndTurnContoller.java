@@ -14,4 +14,12 @@ public class EndTurnContoller implements CommandPerformer {
         inputBoundary.performAction(new EndTurnInputData());
 
     }
+
+    public void setInputBoundary(EndTurnInputBoundary inputBoundary) {
+        this.inputBoundary = inputBoundary;
+    }
+
+    public EndTurnInputBoundary getInputBoundary() {
+        return inputBoundary;
+    }
 }

@@ -1,3 +1,6 @@
+import EndTurnUseCase.EndTurnContoller;
+import EndTurnUseCase.EndTurnInteractor;
+import EndTurnUseCase.EndTurnPresenter;
 import MainEntities.CampaignAccess;
 import ReadCampaignUseCase.*;
 import SaveCampaignUseCase.*;
@@ -49,6 +52,14 @@ public class GameMain {
         saveCampaignInteractor.setCampaignAccess(campaignAccess);
         saveCampaignInteractor.setOutputBoundary(saveCampaignPresenter);
 
+        //Set up end turn use case
+        EndTurnInteractor endTurnInteractor = new EndTurnInteractor();
+        EndTurnContoller endTurnContoller = new EndTurnContoller();
+        EndTurnPresenter endTurnPresenter = new EndTurnPresenter();
+        endTurnContoller.setInputBoundary(endTurnInteractor);
+        endTurnInteractor.setOutputBoundary(endTurnPresenter);
+        endTurnInteractor.setCampaignAccess(campaignAccess);
+
         //Set up input maps and input map dictionary
         InputMapDictionary mapDictionary = new InputMapDictionary();
 
@@ -69,6 +80,8 @@ public class GameMain {
         mapDictionary.addInputMap(buyLandConfirmMap);
 
         InputMap afterMoveMap = new InputMap("after_move");
+        afterMoveMap.addAppendix(anyTimeMap);
+        afterMoveMap.putCommand("end_turn", endTurnContoller);
         mapDictionary.addInputMap(afterMoveMap);
 
         mapDictionary.setInitialMapName("unstarted");
