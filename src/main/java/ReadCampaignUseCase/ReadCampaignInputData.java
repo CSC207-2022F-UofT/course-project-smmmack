@@ -1,21 +1,21 @@
 package ReadCampaignUseCase;
 
 public class ReadCampaignInputData {
-    private String address;
+    private String relativePath;
 
-    public ReadCampaignInputData(String address) {
-        this.address = address;
+    public ReadCampaignInputData(String relativePath) {
+        this.relativePath = relativePath;
     }
 
     //getters
 
-    public String getAddress() {
-        return address;
+    public String getRelativePath() {
+        return relativePath;
     }
 
     //setters
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setRelativePath(String relativePath) {
+        this.relativePath = relativePath;
     }
 }

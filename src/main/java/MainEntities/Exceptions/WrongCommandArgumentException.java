@@ -1,4 +1,4 @@
-package Exceptions;
+package MainEntities.Exceptions;
 
 /**
  * WrongCommandArgumentException is an Exception that will only be thrown when the player put in wrong input argument.

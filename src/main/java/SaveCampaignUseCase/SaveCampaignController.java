@@ -1,10 +1,14 @@
 package SaveCampaignUseCase;
 
-import Exceptions.WrongCommandArgumentException;
+import MainEntities.Exceptions.WrongCommandArgumentException;
 import UseCaseUniversal.CommandPerformer;
 
 public class SaveCampaignController implements CommandPerformer {
     private SaveCampaignInputBoundary inputBoundary;
+
+    public SaveCampaignController() {
+
+    }
 
     public SaveCampaignController(SaveCampaignInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
@@ -20,8 +24,8 @@ public class SaveCampaignController implements CommandPerformer {
         String[] words = command.split("\\s+");
         if (words.length != 2)
             throw new WrongCommandArgumentException("This command only takes in one parameter");
-        String address = words[1];
-        SaveCampaignInputData inputData = new SaveCampaignInputData(address);
+        String relativePath = words[1];
+        SaveCampaignInputData inputData = new SaveCampaignInputData(relativePath);
         inputBoundary.performAction(inputData);
     }
 

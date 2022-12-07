@@ -24,6 +24,8 @@ public class CommandPanel extends JPanel implements CommandPanelVMListener {
     public CommandPanel(CommandPanelViewModel viewModel) {
         this.textArea = new JTextArea("OutputArea");
         textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
         textArea.setColumns(32);
 
         this.textField = new JTextField("inputField");
@@ -52,7 +54,7 @@ public class CommandPanel extends JPanel implements CommandPanelVMListener {
                     // If the current input map has the command
                     if (mapDict.hasCommand(command)) {
                         try {
-                            mapDict.callOnCurrentMap(command);
+                            mapDict.callOnCurrentMap(input);
                         }
                         //If an exception is thrown from the deeper layers
                         catch (Exception e) {

@@ -1,10 +1,14 @@
 package StartDefCampUseCase;
 
-import Exceptions.WrongCommandArgumentException;
+import MainEntities.Exceptions.WrongCommandArgumentException;
 import UseCaseUniversal.CommandPerformer;
 
 public class StartDefCampController implements CommandPerformer {
     private StartDefCampInputBoundary inputBoundary;
+
+    public StartDefCampController() {
+
+    }
 
     public StartDefCampController(StartDefCampInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;

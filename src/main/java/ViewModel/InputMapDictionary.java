@@ -108,4 +108,9 @@ public class InputMapDictionary {
     public boolean hasCommand(String command) {
         return hasCurrentMap() && validCurrentMap() && getCurrentMap().hasCommand(command);
     }
+
+    // Other setters
+    public void addInputMap(InputMap map) {
+        this.maps.put(map.getName(), map);
+    }
 }

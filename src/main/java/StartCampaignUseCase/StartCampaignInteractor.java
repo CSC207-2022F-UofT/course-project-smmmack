@@ -15,6 +15,10 @@ public class StartCampaignInteractor implements StartCampaignInputBoundary {
     private CampaignAccess campaignAccess;
     private StartCampaignOutputBoundary outputBoundary;
 
+    public StartCampaignInteractor() {
+
+    }
+
     public StartCampaignInteractor(CampaignAccess campaignAccess, StartCampaignOutputBoundary outputBoundary) {
         this.campaignAccess = campaignAccess;
         this.outputBoundary = outputBoundary;
@@ -55,7 +59,6 @@ public class StartCampaignInteractor implements StartCampaignInputBoundary {
         ArrayList<Integer> playerCashes = new ArrayList<>();
         ArrayList<ArrayList<String>> playerPropertyLists = new ArrayList<>();
         ArrayList<Integer> playerLocations = new ArrayList<>();
-        //TODO: player colors need to be correctly passed from interactors to presenters
         ArrayList<Integer> playerColors = new ArrayList<>();
         for (int i = 0; i < playerNum; i ++) {
             Player player = campaign.getPlayerAt(i);
@@ -90,6 +93,7 @@ public class StartCampaignInteractor implements StartCampaignInputBoundary {
         outputData.setHouseLevels(houseLevels);
         outputData.setOwnershipIndexes(ownershipIndexes);
         outputData.setMortgagedList(mortgagedList);
+        outputData.setPlayerColors(playerColors);
 
         // Call the presenter
         outputBoundary.performAction(outputData);

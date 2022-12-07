@@ -1,12 +1,14 @@
 package ReadCampaignUseCase;
 
-import Exceptions.WrongCommandArgumentException;
+import MainEntities.Exceptions.WrongCommandArgumentException;
 import UseCaseUniversal.CommandPerformer;
-
-import java.security.InvalidParameterException;
 
 public class ReadCampaignController implements CommandPerformer {
     private ReadCampaignInputBoundary inputBoundary;
+
+    public ReadCampaignController() {
+
+    }
 
     public ReadCampaignController(ReadCampaignInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;

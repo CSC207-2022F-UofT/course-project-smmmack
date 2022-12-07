@@ -13,6 +13,10 @@ public class StartDefCampInteractor implements StartDefCampInputBoundary {
     private StartDefCampOutputBoundary outputBoundary;
     private StartCampaignInputBoundary startCampaignInputBoundary;
 
+    public StartDefCampInteractor() {
+
+    }
+
     public StartDefCampInteractor(CampaignAccess campaignAccess, StartDefCampOutputBoundary outputBoundary) {
         this.campaignAccess = campaignAccess;
         this.outputBoundary = outputBoundary;

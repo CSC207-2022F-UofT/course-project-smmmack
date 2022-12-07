@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
 public class ReadCampaignInteractor implements ReadCampaignInputBoundary {
+    public static final String ROOT_PATH = "saves/";
 
     private CampaignAccess campaignAccess;
     private ReadCampaignOutputBoundary outputBoundary;
@@ -16,19 +17,20 @@ public class ReadCampaignInteractor implements ReadCampaignInputBoundary {
 
     @Override
     public void performAction(ReadCampaignInputData inputData) {
-        String address = inputData.getAddress();
+        String relativePath = inputData.getRelativePath();
         try {
-            FileInputStream fileStream = new FileInputStream(address);
+            FileInputStream fileStream = new FileInputStream(relativePath);
             ObjectInputStream objectStream = new ObjectInputStream(fileStream);
             Campaign campaign = (Campaign) objectStream.readObject();
+            campaignAccess.setCampaign(campaign);
             objectStream.close();
             fileStream.close();
-            String message = "You have successfully read game from: " + address;
+            String message = "You have successfully read game from: " + relativePath;
             outputBoundary.performAction(new ReadCampaignOutputData(true, message));
             String campaignName = "campaign from file";
             nextInputBoundary.performAction(new StartCampaignInputData(campaignName));
         } catch (Exception e) {
-            String message = "Unable to read game save from address " + address +
+            String message = "Unable to read game save from address " + ROOT_PATH + relativePath +
                     " because of exception (" + e.getClass() + "): " + e.getMessage();
             outputBoundary.performAction(new ReadCampaignOutputData(false, message));
         }
