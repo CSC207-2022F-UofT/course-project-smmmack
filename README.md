@@ -40,7 +40,7 @@ based on Clean Architecture Design Patterns and Solid Principles.
 - [ ] Each player will have consecutive turns, set at the start of the game.
 - [ ] For the rest of the game rules and how to play, please refer to the UofTorontopoly Manual below.
 
-**Work in progress, not the final version.** 
+**Work in progress, not the final version.**  
 
 ## UofTorontopoly Manual
 
