@@ -64,11 +64,10 @@ public class CommandPanelViewModel {
     //other methods
 
     public void notifyListeners() {
-        for (CommandPanelVMListener listener : listeners) {
-            listener.performAction();
+        for (CommandPanelVMListener listener: listeners) {
+            listener.performAction(this);
         }
     }
 }
-
 
 

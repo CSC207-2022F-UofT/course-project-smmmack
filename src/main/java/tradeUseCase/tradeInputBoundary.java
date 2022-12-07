@@ -3,12 +3,11 @@ package tradeUseCase;
 import SaveCampaignUseCase.SaveCampaignInputData;
 
 public interface tradeInputBoundary {
+    // void performAction(tradeInputData inputData);
 
     /**
      * Displays the trade menu.
-     * @param input
      */
     void performAction(tradeInputData inputData);
 
-    void preformAction(tradeInputData inputData);
 }
