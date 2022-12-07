@@ -10,8 +10,8 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
     private final CommandPanelViewModel commandPanelViewModel;
     private final PlayerPanelViewModel playerPanelViewModel;
     private final BoardPanelViewModel boardPanelViewModel;
-    private final PlayerViewModel playerViewModel;
     private final TileViewModel tileViewModel;
+    private final PlayerViewModel playerViewModel;
 
     public ConfirmBuyPropertyPresenter(CommandPanelViewModel commandPanelViewModel,
                                        PlayerPanelViewModel playerPanelViewModel,
@@ -23,6 +23,16 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
         this.boardPanelViewModel = boardPanelViewModel;
         this.playerViewModel = playerViewModel;
         this.tileViewModel = tileViewModel;
+    }
+
+    // Getters:
+
+    public TileViewModel getTileViewModel() {
+        return tileViewModel;
+    }
+
+    public PlayerViewModel getPlayerViewModel() {
+        return playerViewModel;
     }
 
     /**
@@ -42,6 +52,8 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
         PlayerViewModel playerVM = playerPanelViewModel.getPlayerVMAt(buyPropertyOutputData.getPlayerIndex());
         TileViewModel tileVM = boardPanelViewModel.getTileVMAt(playerVM.getPosition());
         List<String> propertyVM = Collections.singletonList(buyPropertyOutputData.getPropertyAbbreviation());
+        int playerCashAfterPurchase = buyPropertyOutputData.getPlayerCashAfterPurchase();
+        playerPanelViewModel.getPlayerVMAt(buyPropertyOutputData.getPlayerIndex()).setCash(playerCashAfterPurchase);
         playerVM.addPropertyAbbrs(propertyVM);
         tileVM.setOwnershipIndex(buyPropertyOutputData.playerIndex);
         playerVM.addPropertyAbbrs(propertyVM);

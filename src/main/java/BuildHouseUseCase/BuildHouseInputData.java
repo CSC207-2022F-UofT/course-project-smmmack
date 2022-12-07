@@ -3,32 +3,29 @@ package BuildHouseUseCase;
 import Properties.Property;
 
 public class BuildHouseInputData {
-
-    int playerIndexBuilds;
-    Property property;
+    String property;
     int numberOfHouse;
 
+    /**
+     *
+     * @param property The property selected by the current player to build house(s) on.
+     * @param numberOfHouse The integer amount indicating the number of house(s) the
+     *                      player wants to build on the selected property.
+     */
 
-    public BuildHouseInputData(int playerIndexBuilds, Property property, int numberOfHouse){
 
-        this.playerIndexBuilds = playerIndexBuilds;
+    public BuildHouseInputData(String property, int numberOfHouse){
+
         this.property = property;
         this.numberOfHouse = numberOfHouse;
     }
 
-    public int getPlayerIndexBuilds() {
-        return playerIndexBuilds;
-    }
 
-    public void setPlayerIndexBuilds(int playerIndexBuilds) {
-        this.playerIndexBuilds = playerIndexBuilds;
-    }
-
-    public Property getProperty() {
+    public String getProperty() {
         return property;
     }
 
-    public void setProperty(Property property) {
+    public void setProperty(String property) {
         this.property = property;
     }
 

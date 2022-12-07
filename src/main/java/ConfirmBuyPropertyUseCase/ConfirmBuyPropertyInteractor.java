@@ -54,7 +54,6 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
      */
 
     public int buyProperty(CampaignAccess campaignAccess){
-
         Campaign campaign = campaignAccess.getCampaign();
         int message;
         int currPlayerIndex = campaign.getCurrPlayerIndex();
@@ -83,32 +82,35 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
         Player currPlayer = campaign.getCurrentPlayer();
         PropertyTile currPropertyTile = (PropertyTile) campaign.getTileUnderPlayer(currPlayer);
         Property currProperty = currPropertyTile.getProperty();
+        int playerCashAfterPurchase = currPlayer.getCash() - currProperty.getPrice();
 
         try {
             // Case 1: The player successfully purchases the landed on property.
             if (message == 1) {
                 outputDataMessage = new ConfirmBuyPropertyOutputData("You have purchased "
                         + currProperty.getName() + " for " + currProperty.getPrice() + ".","output",
-                        campaign.getCurrPlayerIndex(), currProperty.getAbbreviation());
+                        campaign.getCurrPlayerIndex(), playerCashAfterPurchase, currProperty.getAbbreviation());
             }
             // Case 2: The player cannot purchase the landed on property, the property is already owned.
 
             else if (message == 2) {
                 outputDataMessage = new ConfirmBuyPropertyOutputData(currProperty.getName() +
                         " is already purchased by "  + currProperty.getOwner(), "warning",
-                        campaign.getCurrPlayerIndex(), currProperty.getAbbreviation());
+                        campaign.getCurrPlayerIndex(), playerCashAfterPurchase, currProperty.getAbbreviation());
             }
             // Case 3: The player cannot purchase the landed on property, the player does not have enough funds.
 
             else {
                 outputDataMessage = new ConfirmBuyPropertyOutputData("Not have enough funds.",
-                        "warning", campaign.getCurrPlayerIndex(), currProperty.getAbbreviation());
+                        "warning", campaign.getCurrPlayerIndex(), playerCashAfterPurchase,
+                        currProperty.getAbbreviation());
             }
         } // Otherwise, throws error that the purchase cannot proceed.
 
         catch (Exception buyProperty) {
             outputDataMessage = new ConfirmBuyPropertyOutputData("Error: Purchase cannot proceed.",
-                    "error", campaign.getCurrPlayerIndex(), currProperty.getAbbreviation());
+                    "error", campaign.getCurrPlayerIndex(), playerCashAfterPurchase,
+                    currProperty.getAbbreviation());
         } result.performAction(outputDataMessage);
     }
 

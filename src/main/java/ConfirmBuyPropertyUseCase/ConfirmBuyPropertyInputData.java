@@ -5,10 +5,10 @@ public class ConfirmBuyPropertyInputData {
 
     /**
      *
-     * @param decision The decision of attempting to purchase the landed on
-     *                 property; yes corresponds to true if the player attempts
-     *                 to purchase the landed on property; no corresponds to
-     *                 false otherwise.
+     * @param decision The boolean, decision indicating the attempt to purchase
+     *                 the landed on property; yes corresponds to true if the
+     *                 player attempts to purchase the landed on property; no
+     *                 corresponds to false otherwise.
      */
 
     public ConfirmBuyPropertyInputData(boolean decision) {

@@ -1,30 +1,26 @@
 package BuildHouseUseCase;
 
-import MainEntities.Campaign;
-import MainEntities.CampaignAccess;
-import Properties.Property;
 import UseCaseUniversal.CommandPerformer;
 
 public class BuildHouseController implements CommandPerformer {
 
     BuildHouseInputBoundary buildHouseInputBoundary;
-    CampaignAccess campaignAccess;
 
-    public BuildHouseController(BuildHouseInputBoundary buildHouseInputBoundary, CampaignAccess campaignAccess){
+    public BuildHouseController(BuildHouseInputBoundary buildHouseInputBoundary){
         this.buildHouseInputBoundary = buildHouseInputBoundary;
-        this.campaignAccess = campaignAccess;
     }
 
+    // The string command input that the player types when it is the current player's turn.
+    // The command declares the command to build house(s), the property that the player selects to
+    // build house(s) on, and the number of house(s) that the player wants to build on the selected
+    // property. If any command other than these received, throws error.
+
     public void performAction(String command) throws Exception{
-        Campaign campaign = campaignAccess.getCampaign();
         String[] buildHouseArguments;
-        buildHouseArguments = command.split(" ");
-        String buildHouseCommand = buildHouseArguments[0];
-        int playerIndexBuilds = Integer.parseInt(buildHouseArguments[1]);
-        String propertyToBuild = buildHouseArguments[2];
-        Property property = campaign.getPropertyByAbbr(propertyToBuild);
-        int numberOfHouse = Integer.parseInt(buildHouseArguments[3]);
-        BuildHouseInputData buildHouseInputData = new BuildHouseInputData(playerIndexBuilds, property, numberOfHouse);
+        buildHouseArguments = command.split("\\s+");
+        String property = buildHouseArguments[1];
+        int numberOfHouse = Integer.parseInt(buildHouseArguments[2]);
+        BuildHouseInputData buildHouseInputData = new BuildHouseInputData(property, numberOfHouse);
         buildHouseInputBoundary.performAction(buildHouseInputData);
     }
 
@@ -45,7 +41,4 @@ public class BuildHouseController implements CommandPerformer {
     public void setBuildHouseInputBoundary(BuildHouseInputBoundary buildHouseInputBoundary) {
         this.buildHouseInputBoundary = buildHouseInputBoundary;
     }
-
-    // Problem with the player index input.
-    // "build_house player_name property_name number_of_buildings"
 }

@@ -5,6 +5,7 @@ public class ConfirmBuyPropertyOutputData {
     String message;
     String confirmPurchase;
     int playerIndex;
+    int playerCashAfterPurchase;
     String propertyAbbreviation;
 
     /**
@@ -23,10 +24,11 @@ public class ConfirmBuyPropertyOutputData {
      */
 
     public ConfirmBuyPropertyOutputData(String message, String confirmPurchase, int playerIndex,
-                                        String propertyAbbreviation){
+                                        int playerCashAfterPurchase, String propertyAbbreviation){
         this.message = message;
         this.confirmPurchase = confirmPurchase;
         this.playerIndex = playerIndex;
+        this.playerCashAfterPurchase = playerCashAfterPurchase;
         this.propertyAbbreviation = propertyAbbreviation;
     }
 
@@ -42,6 +44,10 @@ public class ConfirmBuyPropertyOutputData {
 
     public int getPlayerIndex(){
         return playerIndex;
+    }
+
+    public int getPlayerCashAfterPurchase() {
+        return playerCashAfterPurchase;
     }
 
     public String getPropertyAbbreviation() {
@@ -60,6 +66,10 @@ public class ConfirmBuyPropertyOutputData {
 
     public void setPlayerIndex(int playerIndex){
         this.playerIndex = playerIndex;
+    }
+
+    public void setPlayerCashAfterPurchase(int playerCashAfterPurchase) {
+        this.playerCashAfterPurchase = playerCashAfterPurchase;
     }
 
     public void setPropertyAbbreviation(String propertyAbbreviation) {

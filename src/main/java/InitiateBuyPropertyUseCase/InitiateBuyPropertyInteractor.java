@@ -18,13 +18,11 @@ public class InitiateBuyPropertyInteractor implements InitiateBuyPropertyInputBo
 
     }
 
-    // Getter:
+    // CampaignAccess Getter & Setter:
 
     public CampaignAccess getCampaignAccess() {
         return campaignAccess;
     }
-
-    // Setter:
 
     public void setCampaignAccess(CampaignAccess campaignAccess) {
         this.campaignAccess = campaignAccess;
