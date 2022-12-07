@@ -19,11 +19,11 @@ public class DrawCardPresenter implements DrawCardOutputBoundary{
         String message = drawCardOutputData.getMessage();
         this.commandPanelVM.appendOutput(message);
         PlayerViewModel playerVM1 = playerPanelVM.getPlayerVMAt(drawCardOutputData.getPlayerIndex());
-        if (drawCardOutputData.getPositive()){
-            playerVM1.setCash(playerVM1.getCash() + drawCardOutputData.getCash());
+        if (drawCardOutputData.getIsGainCash()){
+            playerVM1.setCash(playerVM1.getCash() + drawCardOutputData.getCashAmount());
         }
         else {
-            playerVM1.setCash(playerVM1.getCash() - drawCardOutputData.getCash());
+            playerVM1.setCash(playerVM1.getCash() - drawCardOutputData.getCashAmount());
         }
         playerPanelVM.notifyListeners();
     }
