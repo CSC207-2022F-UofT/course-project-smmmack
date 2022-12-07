@@ -78,14 +78,34 @@ public class InputMapDictionary {
     //other getters
 
     public InputMap getCurrentMap() throws InvalidParameterException {
-        if (Objects.equals(currentMapName, NO_MAP)) {
+        if (! hasCurrentMap()) {
             throw new InvalidParameterException("The input map dictionary has no current map.");
+        } else if (! validCurrentMap()){
+            throw new InvalidParameterException("The input map dictionary does not have input map matching the name");
         }
         return maps.get(currentMapName);
     }
 
-    public void callOnCurrentMap(String command) {
+    public void callOnCurrentMap(String command) throws Exception {
         InputMap map = getCurrentMap();
         map.call(command);
+    }
+
+    public boolean hasCurrentMap() {
+        return ! Objects.equals(currentMapName, NO_MAP);
+    }
+
+    public boolean validCurrentMap() {
+        return maps.containsKey(currentMapName);
+    }
+
+    /**
+     * Return true if the input map dictionary has a current map, and has a valid current map, and current map has the
+     * given command.
+     * @param command the command to be found in the current input map of the input map dictionary
+     * @return a boolean variable indicating if the command exists
+     */
+    public boolean hasCommand(String command) {
+        return hasCurrentMap() && validCurrentMap() && getCurrentMap().hasCommand(command);
     }
 }
