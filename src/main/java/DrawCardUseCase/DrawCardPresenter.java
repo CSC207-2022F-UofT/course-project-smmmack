@@ -5,7 +5,7 @@ import ViewModel.*;
  * This class updates the view models for the PlayerViewModel and CommandLineViewModel
  */
 
-public class DrawCardPresenter implements DrawCardOutputBoundary{
+public class DrawCardPresenter implements DrawCardOutputBoundary{ 
     private CommandPanelViewModel commandPanelVM;
     private PlayerPanelViewModel playerPanelVM;
 
