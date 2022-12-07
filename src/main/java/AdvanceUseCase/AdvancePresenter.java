@@ -1,14 +1,23 @@
 package AdvanceUseCase;
 
-import ViewModel.CommandLineViewModel;
+import ViewModel.BoardPanelViewModel;
+import ViewModel.PlayerPanelViewModel;
+import ViewModel.PlayerViewModel;
 import ViewModel.CommandPanelViewModel;
 
-public class AdvancePresenter implements AdvanceOutputBoundary{
+public class AdvancePresenter implements AdvanceOutputBoundary {
 
     CommandPanelViewModel commandPanelViewModel;
 
-    public AdvancePresenter(CommandPanelViewModel commandPanelViewModel){
+    BoardPanelViewModel boardPanelViewModel;
+
+    PlayerPanelViewModel playerPanelViewModel;
+
+    public AdvancePresenter(CommandPanelViewModel commandPanelViewModel, BoardPanelViewModel boardPanelViewModel,
+                            PlayerPanelViewModel playerPanelViewModel){
         this.commandPanelViewModel = commandPanelViewModel;
+        this.boardPanelViewModel = boardPanelViewModel;
+        this.playerPanelViewModel = playerPanelViewModel;
     }
 
     /**
@@ -18,11 +27,22 @@ public class AdvancePresenter implements AdvanceOutputBoundary{
      */
     @Override
     public void performAction(AdvanceOutputData outputData){
+
+        int playerIndex = outputData.getPlayerIndex();
+
+        PlayerViewModel playerVM = playerPanelViewModel.getPlayerVMAt(playerIndex);
+
         String advanceMessage = outputData.getAdvanceMessage();
         if (outputData.isAdvanceSuccess()){
             commandPanelViewModel.appendOutput(advanceMessage);
+            playerVM.setPosition(outputData.getPlayerLocation());
+
+            playerPanelViewModel.notifyListeners();
+            commandPanelViewModel.notifyListeners();
         } else {
             commandPanelViewModel.appendError(advanceMessage);
+
+            commandPanelViewModel.notifyListeners();
         }
     }
 
