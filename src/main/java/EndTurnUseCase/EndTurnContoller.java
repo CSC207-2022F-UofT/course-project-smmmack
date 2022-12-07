@@ -6,6 +6,12 @@ import UseCaseUniversal.CommandPerformer;
 public class EndTurnContoller implements CommandPerformer {
     private EndTurnInputBoundary inputBoundary;
 
+    /**
+     * The command accepted by this controller should be in the following pattern: <br>
+     * end_turn <br>
+     * no parameters are accepted
+     * @param command the command string (user input)
+     */
     @Override
     public void performCommand(String command) throws Exception {
         String[] words = command.split("\\s+");
