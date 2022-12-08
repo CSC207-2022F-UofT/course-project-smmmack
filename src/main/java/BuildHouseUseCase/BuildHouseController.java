@@ -22,6 +22,7 @@ public class BuildHouseController implements CommandPerformer {
      * @throws Exception Throws exception otherwise, in case the command is
      *                   not entered according to the format.
      */
+
     public void performAction(String command) throws Exception{
         String[] buildHouseArguments;
         buildHouseArguments = command.split("\\s+");
@@ -44,7 +45,6 @@ public class BuildHouseController implements CommandPerformer {
     public BuildHouseInputBoundary getBuildHouseInputBoundary() {
         return buildHouseInputBoundary;
     }
-
     public void setBuildHouseInputBoundary(BuildHouseInputBoundary buildHouseInputBoundary) {
         this.buildHouseInputBoundary = buildHouseInputBoundary;
     }

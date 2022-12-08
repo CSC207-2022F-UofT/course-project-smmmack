@@ -21,7 +21,6 @@ public class InitiateBuyPropertyController{
     }
 
     // Getters:
-
     public InitiateBuyPropertyInputBoundary getInputBoundaryInitiatePurchase() {
         return inputBoundaryInitiatePurchase;
     }
@@ -31,7 +30,6 @@ public class InitiateBuyPropertyController{
     }
 
     // Setters:
-
     public void setInputInitiatePurchase(InitiateBuyPropertyInputBoundary inputInitiatePurchase) {
         this.inputBoundaryInitiatePurchase = inputInitiatePurchase;
     }

@@ -37,13 +37,11 @@ public class ConfirmBuyPropertyController implements CommandPerformer {
     }
 
     // Getters:
-
     public ConfirmBuyPropertyInputBoundary getInputBoundaryBuyProperty(){
         return inputBoundaryBuyProperty;
     }
     
     // Setters:
-
     public void setInputBoundaryBuyProperty(ConfirmBuyPropertyInputBoundary inputBoundaryBuyProperty){
         this.inputBoundaryBuyProperty = inputBoundaryBuyProperty;
     }
