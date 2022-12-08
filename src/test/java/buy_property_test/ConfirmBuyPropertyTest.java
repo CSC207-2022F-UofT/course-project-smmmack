@@ -11,6 +11,7 @@ import ViewModel.InputMapDictionary;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
 
@@ -24,7 +25,7 @@ public class ConfirmBuyPropertyTest {
         inputMapDictionary = new InputMapDictionary();
     }
 
-    @Before
+    @BeforeEach
     public void ConfirmBuyPropertySetUp(){
         DefaultCampaignFactory defaultCampaignFactory = new DefaultCampaignFactory(4);
         Campaign defaultCampaign = defaultCampaignFactory.create();
