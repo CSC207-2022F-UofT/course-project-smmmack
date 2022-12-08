@@ -24,7 +24,7 @@ public class PayRentTests {
         Player player2 = campaignAccess.getCampaign().getPlayerCalled("p2");
 
         Property land1 = campaignAccess.getCampaign().getPropertyByAbbr("L1");
-        land1.setOwner(player2);
+        land1.assignOwnership(player2);
 
         player1.setLocation(1);
 
@@ -61,7 +61,7 @@ public class PayRentTests {
         Player player2 = campaignAccess.getCampaign().getPlayerCalled("p2");
 
         NormalProperty land1 = (NormalProperty) campaignAccess.getCampaign().getPropertyByAbbr("L1");
-        land1.setOwner(player2);
+        land1.assignOwnership(player2);
         land1.houseUp();
 
         player1.setLocation(1);
@@ -98,7 +98,7 @@ public class PayRentTests {
         Player player2 = campaignAccess.getCampaign().getPlayerCalled("p2");
 
         NormalProperty land1 = (NormalProperty) campaignAccess.getCampaign().getPropertyByAbbr("L1");
-        land1.setOwner(player2);
+        land1.assignOwnership(player2);
         land1.houseUp();
         land1.houseUp();
 
@@ -134,10 +134,10 @@ public class PayRentTests {
 
         Player player1 = campaignAccess.getCampaign().getPlayerCalled("p1");
         Player player2 = campaignAccess.getCampaign().getPlayerCalled("p2");
-        player1.setCash(-50);
+        player1.loseCash(-50);
 
         NormalProperty land1 = (NormalProperty) campaignAccess.getCampaign().getPropertyByAbbr("L1");
-        land1.setOwner(player2);
+        land1.assignOwnership(player2);
         land1.houseUp();
         land1.houseUp();
         land1.houseUp();
@@ -162,5 +162,46 @@ public class PayRentTests {
         Assertions.assertEquals(player2CashAfter, 1250);
 
     }
+
+    /**
+     * Test PayRent when the rentee lands on a property where the renter owns all the same coloured property of that the
+     * property the rentee landed on
+     * @throws Exception if there is an error
+     */
+    @Test
+    public void PayRentTestsSameColouredProperty() throws Exception {
+
+        Campaign defaultCampaignFactory = new DefaultCampaignFactory(2).create();
+        CampaignAccess campaignAccess = new CampaignAccess();
+        campaignAccess.setCampaign(defaultCampaignFactory);
+
+        Player player1 = campaignAccess.getCampaign().getPlayerCalled("p1");
+        Player player2 = campaignAccess.getCampaign().getPlayerCalled("p2");
+
+        NormalProperty land1 = (NormalProperty) campaignAccess.getCampaign().getPropertyByAbbr("L1");
+        NormalProperty land2 = (NormalProperty) campaignAccess.getCampaign().getPropertyByAbbr("L2");
+        land1.assignOwnership(player2);
+        land2.assignOwnership(player2);
+
+        player1.setLocation(1);
+
+        PayRent.PayRentInputData payRentInputData = new PayRent.PayRentInputData();
+        PayRent.PayRentOutputBoundary payRentOutputBoundary = new PayRent.PayRentOutputBoundary() {
+            @Override
+            public void performAction(String payRentOutputData) {}
+        };
+
+        PayRent.PayRentInteractor payRentInteractor = new PayRent.PayRentInteractor(payRentOutputBoundary, campaignAccess);
+        payRentInteractor.performAction(payRentInputData);
+
+        int player1CashAfter = player1.getCash();
+        int player2CashAfter = player2.getCash();
+
+        Assertions.assertEquals(player1CashAfter, 996);
+        Assertions.assertEquals(player2CashAfter, 1004);
+
+    }
+
+
 
 }
