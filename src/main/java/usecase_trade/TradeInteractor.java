@@ -109,7 +109,7 @@ public class TradeInteractor implements TradeInputBoundary {
     public TradeOutputBoundary getOutput() {
         return output;
     }
-    public void setOutput(tradeOutputBoundary output) {
+    public void setOutput(TradeOutputBoundary output) {
         this.output = output;
     }
     public CampaignAccess getCampaign() {
@@ -117,17 +117,6 @@ public class TradeInteractor implements TradeInputBoundary {
     }
     public void setCampaign(CampaignAccess campaign) {
         this.campaign = campaign;
-    }
-    public tradeInputData getInputData() {
-        return inputData;
-    }
-    public void setInputData(tradeInputData inputData) {
-        this.inputData = inputData;
-    }
-
-
-    public void setOutput(TradeOutputBoundary output) {
-        this.output = output;
     }
 
     public void setCampaignAccess(CampaignAccess campaign) {
