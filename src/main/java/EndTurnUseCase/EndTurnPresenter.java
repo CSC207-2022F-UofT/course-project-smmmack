@@ -2,9 +2,11 @@ package EndTurnUseCase;
 
 import ViewModel.CommandPanelViewModel;
 import ViewModel.InputMapDictionary;
+import ViewModel.PlayerPanelViewModel;
 
 public class EndTurnPresenter implements EndTurnOutputBoundary {
     private CommandPanelViewModel commandPanelVM;
+    private PlayerPanelViewModel playerPanelVM;
     private InputMapDictionary mapDictionary;
 
     @Override
@@ -12,7 +14,10 @@ public class EndTurnPresenter implements EndTurnOutputBoundary {
         commandPanelVM.appendOutput(outputData.getMessage());
         commandPanelVM.notifyListeners();
 
-        mapDictionary.setCurrentMapName("before_move");
+        playerPanelVM.getPlayerVMAt(outputData.getPlayerIndex()).setJailTurn(outputData.getPlayerJailTurn());
+        playerPanelVM.notifyListeners();
+
+        mapDictionary.setCurrentMapName(outputData.getNextState());
     }
 
     //setters
@@ -25,6 +30,10 @@ public class EndTurnPresenter implements EndTurnOutputBoundary {
         this.mapDictionary = mapDictionary;
     }
 
+    public void setPlayerPanelVM(PlayerPanelViewModel playerPanelVM) {
+        this.playerPanelVM = playerPanelVM;
+    }
+
     // getters
 
     public CommandPanelViewModel getCommandPanelVM() {
@@ -33,5 +42,9 @@ public class EndTurnPresenter implements EndTurnOutputBoundary {
 
     public InputMapDictionary getMapDictionary() {
         return mapDictionary;
+    }
+
+    public PlayerPanelViewModel getPlayerPanelVM() {
+        return playerPanelVM;
     }
 }
