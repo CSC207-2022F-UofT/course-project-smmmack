@@ -8,13 +8,17 @@ import Properties.Property;
 
 public class BuildHouseInteractor implements BuildHouseInputBoundary {
 
-    private final BuildHouseOutputBoundary buildHouseOutputBoundary;
+    private BuildHouseOutputBoundary buildHouseOutputBoundary;
 
     private CampaignAccess campaignAccess;
 
     public BuildHouseInteractor(BuildHouseOutputBoundary buildHouseOutputBoundary, CampaignAccess campaignAccess) {
         this.buildHouseOutputBoundary = buildHouseOutputBoundary;
         this.campaignAccess = campaignAccess;
+    }
+
+    public BuildHouseInteractor(){
+
     }
 
     // CampaignAccess Getter & Setter:
