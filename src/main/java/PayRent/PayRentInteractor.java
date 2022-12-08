@@ -1,43 +1,109 @@
 package PayRent;
 
-public class PayRentInteractor implements PayRentInputBoundary{
+import MainEntities.CampaignAccess;
+import MainEntities.Player;
+import Tiles.PropertyTile;
+import Tiles.Tile;
 
-    final PayRentOutputBoundary payRentOutputBoundary;
-    final PayRentPresenter payRentPresenter;
+public class PayRentInteractor implements PayRent.PayRentInputBoundary {
 
-    public PayRentInteractor(PayRentOutputBoundary payRentOutputBoundary,PayRentPresenter payRentPresenter) {
-        this.payRentOutputBoundary = payRentOutputBoundary;
-        this.payRentPresenter = payRentPresenter;
+    private PayRent.PayRentOutputBoundary payRentOutputBoundary;
+    private CampaignAccess campaignAccess;
+    private Player rentee;
+    private Player renter;
+    private Tile propertyLandedOn;
+    private int rentMoney;
+
+    public PayRentInteractor(){
+
     }
-
 
     /**
-     * For prepareFailView:
-     * - If the player does not have enough money to pay the rent, send a fail message return("player does not have
-     * enough money to pay the rent")
+     * Constructor for PayRentInteractor
+     * @param payRentOutputBoundary output boundary
+     * @param campaignAccess all information about the game: the board, players, etc.
+     */
+    public PayRentInteractor(PayRent.PayRentOutputBoundary payRentOutputBoundary, CampaignAccess campaignAccess) {
+        this.payRentOutputBoundary = payRentOutputBoundary;
+        this.campaignAccess = campaignAccess;
+        this.rentee = campaignAccess.getCampaign().getCurrentPlayer();
+        this.propertyLandedOn = campaignAccess.getCampaign().getTileUnderPlayer(rentee);
+        this.renter = ((PropertyTile) propertyLandedOn).getProperty().getOwner();
+        this.rentMoney = ((PropertyTile) propertyLandedOn).getProperty().getRent(rentee);
+    }
 
-     * For prepareSuccessView:
-     * - if the property is mortgaged, no rent is paid
-     * - otherwise, return a success message that Player has paid the rent
-
-     * @param payRentInputData input data
-     * @return returns a string based on whether payRentMoney was successful or not
+    /**
+     *
+     * @param payRentInputData input data for PayRent, this is empty
      */
     @Override
-    public PayRentOutputData create(PayRentInputData payRentInputData) {
+    public void performAction(PayRentInputData payRentInputData) throws Exception {
 
-        if (payRentInputData.getRentee().getCash() < payRentInputData.getRentMoney()){
-            return payRentOutputBoundary.prepareFailView("Player does have enough money to pay the rent.");
-        }
+        rentee.loseCash(rentMoney);
+        renter.gainCash(rentMoney);
 
-        if(payRentInputData.getIsMortgaged()){
-            return payRentOutputBoundary.prepareSuccessView(
-                    "No rent is paid as this property is mortgaged.");
-        }
+        String outputMessage = rentee.getName() + " paid $" + rentMoney + "of rent money to " + renter.getName();
 
-        payRentInputData.getRentee().setCash(payRentInputData.getRentee().getCash() -
-                payRentInputData.getPropertyLandedOn().getRent(payRentInputData.getRentee()));
-        return payRentOutputBoundary.prepareSuccessView(payRentInputData.getRentee() + " paid " +
-                payRentInputData.getRentMoney() + "of rent money to " + payRentInputData.getRenter());
+        int renteeIndex = campaignAccess.getCampaign().getCurrPlayerIndex();
+
+        int renterIndex = campaignAccess.getCampaign().getPlayerIndex(renter);
+
+        String outputData = renteeIndex+ "@" + renterIndex + "@" + rentee.getCash() + "@" + renter.getCash() + "@" +
+                outputMessage;
+
+        PayRent.PayRentOutputData payRentOutputData = new PayRent.PayRentOutputData(outputData);
+
+
+        payRentOutputBoundary.performAction(String.valueOf(payRentOutputData));
+
+
     }
+
+    // getters
+    public PayRent.PayRentOutputBoundary getPayRentOutputBoundary(){
+        return payRentOutputBoundary;
+    }
+    public CampaignAccess getCampaignAccess(){
+        return this.campaignAccess;
+    }
+    public Player getRentee(){
+        return this.rentee;
+    }
+    public Player getRenter(){
+        return this.renter;
+    }
+
+    public Tile getPropertyLandedOn(){
+        return this.propertyLandedOn;
+    }
+
+    public int getRentMoney(){
+        return this.rentMoney;
+    }
+
+    // setters
+    public void setPayRentOutputBoundary(PayRent.PayRentOutputBoundary payRentOutputBoundary){
+        this.payRentOutputBoundary = payRentOutputBoundary;
+    }
+
+    public void setCampaignAccess(CampaignAccess campaignAccess){
+        this.campaignAccess = campaignAccess;
+    }
+
+    public void setRentee(Player rentee){
+        this.rentee = rentee;
+    }
+
+    public void setRenter(Player renter){
+        this.renter = renter;
+    }
+
+    public void setTile(Tile propertyLandedOn){
+        this.propertyLandedOn = propertyLandedOn;
+    }
+
+    public void setRentMoney(int rentMoney){
+        this.rentMoney = rentMoney;
+    }
+
 }
