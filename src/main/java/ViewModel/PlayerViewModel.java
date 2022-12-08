@@ -1,5 +1,6 @@
 package ViewModel;
 
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,10 @@ public class PlayerViewModel {
         this.propertyAbbrs = new ArrayList<>(propertyAbbrs);
     }
 
+    public void addPropertyAbbrs(List<String> propertyAbbrs) {
+        this.propertyAbbrs.addAll(propertyAbbrs);
+    }
+
     public void setPosition(int position) {
         this.position = position;
     }
@@ -88,3 +93,4 @@ public class PlayerViewModel {
         return new Color(color);
     }
 }
+

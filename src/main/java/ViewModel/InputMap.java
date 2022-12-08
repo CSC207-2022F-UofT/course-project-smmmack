@@ -18,8 +18,10 @@ public class InputMap {
     private String name;
     private Map<String, CommandPerformer> map;
     /**
-     * Appendix are input maps that adds to the commands specified in the input map. typically, it’s for commands that
-     * can be called anytime, so that we don’t need to write these commands in every input map.
+
+     * Appendix are input maps that adds to the commands specified in the input map. typically, it's for commands that
+     * can be called anytime, so that we don't need to write these commands in every input map.
+
      */
     private List<InputMap> appendices;
 

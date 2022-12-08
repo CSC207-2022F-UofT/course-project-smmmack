@@ -80,32 +80,32 @@ public class DefaultCampaignFactory implements CampaignFactory {
 
     public Deck createCChestDeck() {
         Card card1 = new GainCashCard(
-                "Bank Error",
-                "Bank error in your favor, gain 200 dollars",
+                "Tuition Error",
+                "Tuition error in your favor, gain 200 Tbucks",
                 "community chest",
                 200
         );
         Card card2 = new LoseCashCard(
-                "Doctor's Fee",
-                "Pay doctor's fee, 50 dollars",
+                "Lost T-Card Fee",
+                "Pay T-Card Fee, 50 Tbucks",
                 "community chest",
                 50
         );
         Card card3 = new GainCashCard(
-                "Stock Sale",
-                "You get 50 dollars from stock sale",
+                "Textbook Sale",
+                "You get 50 Tbucks from your textbook sale",
                 "community chest",
                 50
         );
         Card card4 = new GainCashCard(
-                "Holiday Fund",
-                "Holiday fund matures, receive 100 dollars",
+                "Computer Science Grant Awarded",
+                "Comp Sci grant received, receive 100 Tbucks",
                 "community chest",
                 100
         );
         Card card5 = new LoseCashCard(
-                "Doctor's Fee",
-                "Pay hospital fee of 150 dollars",
+                "Failed Class Fee!",
+                "You failed a class and have to re-take it in summer, pay 150 Tbucks",
                 "community chest",
                 150
         );
@@ -120,34 +120,34 @@ public class DefaultCampaignFactory implements CampaignFactory {
 
     public Deck createChanceDeck() {
         Card card1 = new GainCashCard(
-                "Bank Dividend",
-                "Bank pays you dividend of 50 dollars",
+                "Your friend payed you back!",
+                "Friend payed you back money you forget he owed, collect 50 Tbucks",
                 "chance",
                 200
         );
         Card card2 = new LoseCashCard(
-                "Elected Chairman",
-                "You've been elected chairman, pay 150 dollars",
+                "Made honor Roll",
+                "You've made honor, pay 150 Tbucks",
                 "chance",
                 150
         );
         Card card3 = new LoseCashCard(
-                "General Repair",
-                "Your properties need repair, pay 100 dollars",
+                "Mental Health Break",
+                "You take a mental health break, pay 100 Tbucks",
                 "chance",
                 100
         );
         Card card4 = new GainCashCard(
-                "Bitcoin Investment",
-                "Your investment in bitcoin profited, receive 200 dollars",
-                "chance",
-                200
-        );
-        Card card5 = new GainCashCard(
-                "Life Insurance",
-                "Life Insurance matures, collect 100 dollars",
+                "Found Cash",
+                "You find money scrunched up in the bottom of your bag, collect 100 Tbucks",
                 "chance",
                 100
+        );
+        Card card5 = new GainCashCard(
+                "Parents sent money",
+                "Your parents sent you money, collect 200 Tbucks",
+                "chance",
+                200
         );
         Deck deck = new Deck("chance");
         deck.putCard(card5);
@@ -178,10 +178,13 @@ public class DefaultCampaignFactory implements CampaignFactory {
         //Assign all property tiles, using parallel lists to store the corresponding tile parameters
         int propertyNum = 22;
         String[] nameList = new String[] {
-                "Land1", "Land2", "Land3", "Land4", "Land5",
-                "Land6", "Land7", "Land8", "Land9", "Land10", "Land11",
-                "Land12", "Land13", "Land14", "Land15", "Land16", "Land17",
-                "Land18", "Land19", "Land20", "Land21", "Land22"
+                "New College Dining Hall", "New College Residence", "Morrison Hall", "Brennan Hall",
+                "Lash Miller Chemical Laboratory", "Willson Hall", "Bahen Center", "Myhal Centre",
+                "University College", "Trinity College", "Hart House",
+                "Sydney Smith Hall", "Woodsworth College", "Varsity Center",
+                "The Maddies", "Queens Park", "Medical Science Building",
+                "Royal Ontario Museum", "Gerstein Library", "Sigma Chi Fraternity House",
+                "Robarts Library", "Rotman School of Business"
         };
         String[] abbreviationList = new String[] {
                 "L1", "L2", "L3", "L4", "L5",

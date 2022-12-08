@@ -80,4 +80,6 @@ public class CommandLineViewModel {
     public String getType() {
         return type;
     }
+
 }
+
