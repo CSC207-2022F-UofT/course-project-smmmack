@@ -41,7 +41,7 @@ public class BuildHouseTest {
     @Test
     public void testBuildHouseSuccessfulBuild() throws Exception {
         BuildHouseInputData buildHouseInputData =
-                new BuildHouseInputData("Morrison Hall", 3);
+                new BuildHouseInputData("L3", 3);
         Player player = campaignAccess.getCampaign().getCurrentPlayer();
         player.setCash(10000);
         int initialBalance = player.getCash();
@@ -55,9 +55,9 @@ public class BuildHouseTest {
         }
         player.setProperties(sameColourPropertyList);
         Property property1 =
-                campaignAccess.getCampaign().getPropertyByAbbr("Brennan Hall");
+                campaignAccess.getCampaign().getPropertyByAbbr("L4");
         Property property2 =
-                campaignAccess.getCampaign().getPropertyByAbbr("Lash Miller Chemical Laboratory");
+                campaignAccess.getCampaign().getPropertyByAbbr("L5");
         NormalProperty normalProperty1 = (NormalProperty) property1;
         NormalProperty normalProperty2 = (NormalProperty) property2;
         normalProperty1.setHouseLevel(2);
@@ -77,7 +77,7 @@ public class BuildHouseTest {
     @Test
     public void testBuildHouseUnsuccessfulBuildNotEnoughFunds() throws Exception {
         BuildHouseInputData buildHouseInputData =
-                new BuildHouseInputData("Morrison Hall", 3);
+                new BuildHouseInputData("L3", 3);
         Player player = campaignAccess.getCampaign().getCurrentPlayer();
         player.setCash(1);
         int initialBalance = player.getCash();
@@ -91,9 +91,9 @@ public class BuildHouseTest {
         }
         player.setProperties(sameColourPropertyList);
         Property property1 =
-                campaignAccess.getCampaign().getPropertyByAbbr("Brennan Hall");
+                campaignAccess.getCampaign().getPropertyByAbbr("L4");
         Property property2 =
-                campaignAccess.getCampaign().getPropertyByAbbr("Lash Miller Chemical Laboratory");
+                campaignAccess.getCampaign().getPropertyByAbbr("L5");
         NormalProperty normalProperty1 = (NormalProperty) property1;
         NormalProperty normalProperty2 = (NormalProperty) property2;
         normalProperty1.setHouseLevel(2);
@@ -112,7 +112,7 @@ public class BuildHouseTest {
     @Test
     public void testBuildHouseUnsuccessfulBuildHouseLevelError() throws Exception {
         BuildHouseInputData buildHouseInputData =
-                new BuildHouseInputData("Bahen Center", 3);
+                new BuildHouseInputData("L6", 3);
         Player player = campaignAccess.getCampaign().getCurrentPlayer();
         player.setCash(10000);
         int initialBalance = player.getCash();
@@ -126,9 +126,9 @@ public class BuildHouseTest {
         }
         player.setProperties(sameColourPropertyList);
         Property property1 =
-                campaignAccess.getCampaign().getPropertyByAbbr("Willson Hall");
+                campaignAccess.getCampaign().getPropertyByAbbr("L7");
         Property property2 =
-                campaignAccess.getCampaign().getPropertyByAbbr("Myhal Centre");
+                campaignAccess.getCampaign().getPropertyByAbbr("L8");
         NormalProperty normalProperty1 = (NormalProperty) property1;
         NormalProperty normalProperty2 = (NormalProperty) property2;
         normalProperty1.setHouseLevel(0);
@@ -151,7 +151,7 @@ public class BuildHouseTest {
     @Test
     public void testBuildHouseUnsuccessfulBuildSameColourPropertyError() throws Exception {
         BuildHouseInputData buildHouseInputData =
-                new BuildHouseInputData("Morrison Hall", 1);
+                new BuildHouseInputData("L3", 1);
         Player player = campaignAccess.getCampaign().getCurrentPlayer();
         player.setCash(1000);
         int initialBalance = player.getCash();
@@ -159,7 +159,7 @@ public class BuildHouseTest {
         NormalProperty normalProperty = (NormalProperty) property;
         List<Property> sameColourPropertyList = new ArrayList<Property>();
         Property property1 =
-                campaignAccess.getCampaign().getPropertyByAbbr("Brennan Hall");
+                campaignAccess.getCampaign().getPropertyByAbbr("L5");
         sameColourPropertyList.add(property1);
         sameColourPropertyList.add(property);
         property.assignOwnership(player);
@@ -186,7 +186,7 @@ public class BuildHouseTest {
     @Test
     public void testBuildHouseUnsuccessfulBuildMaxHouseLevelExceedError() throws Exception {
         BuildHouseInputData buildHouseInputData =
-                new BuildHouseInputData("Robarts Library", 6);
+                new BuildHouseInputData("L21", 6);
         Player player = campaignAccess.getCampaign().getCurrentPlayer();
         player.setCash(100000);
         int initialBalance = player.getCash();
@@ -201,7 +201,7 @@ public class BuildHouseTest {
         }
         player.setProperties(sameColourPropertyList);
         Property property2 =
-                campaignAccess.getCampaign().getPropertyByAbbr("Rotman School of Business");
+                campaignAccess.getCampaign().getPropertyByAbbr("L22");
         NormalProperty normalProperty2 = (NormalProperty) property2;
         normalProperty2.setHouseLevel(5);
         buildHouseInputBoundary.performAction(buildHouseInputData);
