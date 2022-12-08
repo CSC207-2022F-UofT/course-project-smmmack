@@ -1,16 +1,22 @@
 package RollDiceUseCase;
 
 import AdvanceUseCase.AdvanceOutputBoundary;
-import ViewModel.CommandLineViewModel;
-import ViewModel.CommandPanelViewModel;
+import ViewModel.*;
 
 public class RollDicePresenter implements RollDiceOutputBoundary{
 
     CommandPanelViewModel commandPanelViewModel;
+    BoardPanelViewModel boardPanelViewModel;
 
-    public RollDicePresenter(CommandPanelViewModel commandPanelViewModel){
+    public RollDicePresenter(CommandPanelViewModel commandPanelViewModel, BoardPanelViewModel boardPanelViewModel,
+                             InputMapDictionary inputMapDict){
         this.commandPanelViewModel = commandPanelViewModel;
+        this.boardPanelViewModel = boardPanelViewModel;
+
     }
+
+    public RollDicePresenter(){}
+
 
     /**
      * Displays the results of the dice roll.
@@ -27,8 +33,6 @@ public class RollDicePresenter implements RollDiceOutputBoundary{
         else{
             commandPanelViewModel.appendWarning(diceRollMessage);
         }
-
-        //keep reference of input map dictionary, board panel vm update
 
     }
 }
