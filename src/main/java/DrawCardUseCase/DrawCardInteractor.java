@@ -31,44 +31,29 @@ public class DrawCardInteractor implements DrawCardInputBoundary {
 
     /**
      * @param deckType The String of the type of Deck that the player has to draw on.
-     * @return An integer message informing the player about the card that they drew. There are 2 types of messages
-     * indicated as 1 or 2. If the message equals to 1, then the card they have drawn is a GainCashCard.
-     * If the message equals to 2, then the card they have drawn is a LoseCashCard.
-     * At the end, if the player has insufficient funds in their account after the card is preformed,
-     * then a message is shown that the player has become bankrupt.
+     * This method will use the getDrawnCard method to update the Player's funds and display a method including the
+     * drawnCard's name and description, which will include how much money is lost or gained.
      */
-    public int performCard(String deckType, Player player) {
-        Card drawnCard = getDrawnCard(deckType);
-        int message = 0;
-        if (drawnCard instanceof GainCashCard) {
-            player.gainCash(((GainCashCard) drawnCard).getAmount());
-            message = 1;
-        } else if (drawnCard instanceof LoseCashCard) {
-            player.gainCash(((LoseCashCard) drawnCard).getAmount());
-            message = 2;
-        }
-        return message;
-    }
 
     @Override
     public void performAction(DrawCardInputData drawCardInput, String deckType) throws Exception {
         Player player = campaignAccess.getCampaign().getCurrentPlayer();
-        int message = performCard(deckType, player);
-        Card drawnCard = getDrawnCard(deckType);
         DrawCardOutputData outputMessage;
-        if (player.getCash() > 0) {
-            if (message == 1) {
-                outputMessage = new DrawCardOutputData("You gained:" + ((GainCashCard) drawnCard).getAmount()
-                        + ":)", true, campaignAccess.getCampaign().getCurrPlayerIndex(),
-                        ((GainCashCard) drawnCard).getAmount(), true);
-            } else { //(drawnCard instanceof LoseCashCard)
-                outputMessage = new DrawCardOutputData("You lost:" + ((LoseCashCard) drawnCard).getAmount()
-                        + ":(", true, campaignAccess.getCampaign().getCurrPlayerIndex(),
-                        ((LoseCashCard) drawnCard).getAmount(), false);
-            }
-        } else {
-            outputMessage = new DrawCardOutputData("You have insufficient funds. You are out of the game."
-                    , false, campaignAccess.getCampaign().getCurrPlayerIndex(), 0, false);
+        Card drawnCard = getDrawnCard(deckType);
+        if (drawnCard instanceof GainCashCard) {
+            player.gainCash(((GainCashCard) drawnCard).getAmount());
+            outputMessage = new DrawCardOutputData("You drew the card:" + drawnCard.getName() + ":" +
+                    drawnCard.getDescription(), true, campaignAccess.getCampaign().getCurrPlayerIndex(),
+                    ((GainCashCard) drawnCard).getAmount(), true);
+        } else if (drawnCard instanceof LoseCashCard) {
+            player.loseCash(((LoseCashCard) drawnCard).getAmount());
+            outputMessage = new DrawCardOutputData("You drew the card:" + drawnCard.getName() + ":" +
+                    drawnCard.getDescription(),true, campaignAccess.getCampaign().getCurrPlayerIndex(),
+                    ((LoseCashCard) drawnCard).getAmount(), false);
+        }
+        else {
+            outputMessage = new DrawCardOutputData("Error: not valid", false, 0,
+                    0, false);
         }
         campaignAccess.getCampaign().getDeck(deckType).putCard(drawnCard);
         drawCardOutputBoundary.performAction(outputMessage, deckType);

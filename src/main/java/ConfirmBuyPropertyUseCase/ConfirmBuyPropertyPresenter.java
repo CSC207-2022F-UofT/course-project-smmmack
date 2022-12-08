@@ -28,7 +28,7 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
 
     }
 
-    // Getters:
+    // Getters & Setters:
 
     public TileViewModel getTileViewModel() {
         return tileViewModel;
@@ -36,6 +36,38 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
 
     public PlayerViewModel getPlayerViewModel() {
         return playerViewModel;
+    }
+
+    public CommandPanelViewModel getCommandPanelViewModel() {
+        return commandPanelViewModel;
+    }
+
+    public void setCommandPanelViewModel(CommandPanelViewModel commandPanelViewModel) {
+        this.commandPanelViewModel = commandPanelViewModel;
+    }
+
+    public PlayerPanelViewModel getPlayerPanelViewModel() {
+        return playerPanelViewModel;
+    }
+
+    public void setPlayerPanelViewModel(PlayerPanelViewModel playerPanelViewModel) {
+        this.playerPanelViewModel = playerPanelViewModel;
+    }
+
+    public BoardPanelViewModel getBoardPanelViewModel() {
+        return boardPanelViewModel;
+    }
+
+    public void setBoardPanelViewModel(BoardPanelViewModel boardPanelViewModel) {
+        this.boardPanelViewModel = boardPanelViewModel;
+    }
+
+    public void setTileViewModel(TileViewModel tileViewModel) {
+        this.tileViewModel = tileViewModel;
+    }
+
+    public void setPlayerViewModel(PlayerViewModel playerViewModel) {
+        this.playerViewModel = playerViewModel;
     }
 
     /**

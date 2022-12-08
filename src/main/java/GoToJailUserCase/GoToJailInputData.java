@@ -11,6 +11,7 @@ public class GoToJailInputData {
         this.tileIndex = tileIndex;
     }
 
+
     public boolean getJail() {
         return inJail;
     }

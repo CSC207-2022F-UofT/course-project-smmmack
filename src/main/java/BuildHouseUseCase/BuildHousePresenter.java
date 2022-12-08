@@ -25,6 +25,39 @@ public class BuildHousePresenter implements BuildHouseOutputBoundary {
 
     }
 
+    // Getters & Setters:
+    public CommandPanelViewModel getCommandPanelViewModel() {
+        return commandPanelViewModel;
+    }
+
+    public void setCommandPanelViewModel(CommandPanelViewModel commandPanelViewModel) {
+        this.commandPanelViewModel = commandPanelViewModel;
+    }
+
+    public PlayerPanelViewModel getPlayerPanelViewModel() {
+        return playerPanelViewModel;
+    }
+
+    public void setPlayerPanelViewModel(PlayerPanelViewModel playerPanelViewModel) {
+        this.playerPanelViewModel = playerPanelViewModel;
+    }
+
+    public TileViewModel getTileViewModel() {
+        return tileViewModel;
+    }
+
+    public void setTileViewModel(TileViewModel tileViewModel) {
+        this.tileViewModel = tileViewModel;
+    }
+
+    public BoardPanelViewModel getBoardPanelViewModel() {
+        return boardPanelViewModel;
+    }
+
+    public void setBoardPanelViewModel(BoardPanelViewModel boardPanelViewModel) {
+        this.boardPanelViewModel = boardPanelViewModel;
+    }
+
     /**
      * Update the ViewModel's command panel about the successful or unsuccessful attempt to
      * build houses on the selected property; if successfully verified, update the ViewModel's tile

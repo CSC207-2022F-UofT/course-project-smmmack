@@ -11,7 +11,6 @@ public class ConfirmBuyPropertyInputData {
      *                 corresponds to false otherwise.
 
      */
-
     public ConfirmBuyPropertyInputData(boolean decision) {
         this.decision = decision;
     }

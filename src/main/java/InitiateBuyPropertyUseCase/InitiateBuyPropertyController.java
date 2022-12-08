@@ -15,13 +15,7 @@ public class InitiateBuyPropertyController{
 
     }
 
-    void performAction() throws Exception{
-        InitiateBuyPropertyInputData inputData = new InitiateBuyPropertyInputData(landedOnPropertyTile);
-        inputBoundaryInitiatePurchase.performAction(inputData);
-    }
-
-    // Getters:
-
+    // Getters & Setters:
     public InitiateBuyPropertyInputBoundary getInputBoundaryInitiatePurchase() {
         return inputBoundaryInitiatePurchase;
     }
@@ -30,9 +24,16 @@ public class InitiateBuyPropertyController{
         return landedOnPropertyTile;
     }
 
-    // Setters:
+    public void setInputBoundaryInitiatePurchase(InitiateBuyPropertyInputBoundary inputBoundaryInitiatePurchase) {
+        this.inputBoundaryInitiatePurchase = inputBoundaryInitiatePurchase;
+    }
 
-    public void setInputInitiatePurchase(InitiateBuyPropertyInputBoundary inputInitiatePurchase) {
-        this.inputBoundaryInitiatePurchase = inputInitiatePurchase;
+    public void setLandedOnPropertyTile(boolean landedOnPropertyTile) {
+        this.landedOnPropertyTile = landedOnPropertyTile;
+    }
+
+    void performAction() throws Exception{
+        InitiateBuyPropertyInputData inputData = new InitiateBuyPropertyInputData(landedOnPropertyTile);
+        inputBoundaryInitiatePurchase.performAction(inputData);
     }
 }
