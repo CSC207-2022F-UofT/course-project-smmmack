@@ -7,7 +7,7 @@ import Properties.Property;
 import Tiles.PropertyTile;
 
 public class InitiateBuyPropertyInteractor implements InitiateBuyPropertyInputBoundary{
-    private final InitiateBuyPropertyOutputBoundary output;
+    private InitiateBuyPropertyOutputBoundary output;
     private CampaignAccess campaignAccess;
 
 
@@ -15,6 +15,10 @@ public class InitiateBuyPropertyInteractor implements InitiateBuyPropertyInputBo
                                          CampaignAccess campaignAccess){
         this.output = output;
         this.campaignAccess = campaignAccess;
+
+    }
+
+    public InitiateBuyPropertyInteractor(){
 
     }
 

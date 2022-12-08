@@ -15,6 +15,10 @@ public class InitiateBuyPropertyPresenter implements InitiateBuyPropertyOutputBo
         this.inputMapDictionary = inputMapDictionary;
     }
 
+    public InitiateBuyPropertyPresenter(){
+
+    }
+
     /**
      * Update the ViewModel's panel with the question asking the player whether the player
      * wants to purchase the property or not; the decision of the player can be yes if the player
