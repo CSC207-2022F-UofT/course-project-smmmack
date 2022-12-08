@@ -8,7 +8,7 @@ import Tiles.PropertyTile;
 
 public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoundary {
 
-    private final ConfirmBuyPropertyOutputBoundary result;
+    private ConfirmBuyPropertyOutputBoundary result;
     private CampaignAccess campaignAccess;
 
 
@@ -16,6 +16,10 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
                                         CampaignAccess campaignAccess) {
         this.result = buyPropertyOutputBoundary;
         this.campaignAccess = campaignAccess;
+
+    }
+
+    public ConfirmBuyPropertyInteractor(){
 
     }
 

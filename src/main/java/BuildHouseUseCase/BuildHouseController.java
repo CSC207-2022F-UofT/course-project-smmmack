@@ -10,6 +10,10 @@ public class BuildHouseController implements CommandPerformer {
         this.buildHouseInputBoundary = buildHouseInputBoundary;
     }
 
+    public BuildHouseController(){
+
+    }
+
     // The string command input that the player types when it is the current player's turn.
     // The command declares the command to build house(s), the property that the player selects to
     // build house(s) on, and the number of house(s) that the player wants to build on the selected

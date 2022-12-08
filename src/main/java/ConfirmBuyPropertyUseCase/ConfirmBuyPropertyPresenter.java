@@ -7,11 +7,11 @@ import java.util.List;
 
 public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoundary {
 
-    private final CommandPanelViewModel commandPanelViewModel;
-    private final PlayerPanelViewModel playerPanelViewModel;
-    private final BoardPanelViewModel boardPanelViewModel;
-    private final TileViewModel tileViewModel;
-    private final PlayerViewModel playerViewModel;
+    private CommandPanelViewModel commandPanelViewModel;
+    private PlayerPanelViewModel playerPanelViewModel;
+    private BoardPanelViewModel boardPanelViewModel;
+    private TileViewModel tileViewModel;
+    private PlayerViewModel playerViewModel;
 
     public ConfirmBuyPropertyPresenter(CommandPanelViewModel commandPanelViewModel,
                                        PlayerPanelViewModel playerPanelViewModel,
@@ -23,6 +23,10 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
         this.boardPanelViewModel = boardPanelViewModel;
         this.playerViewModel = playerViewModel;
         this.tileViewModel = tileViewModel;
+    }
+
+    public ConfirmBuyPropertyPresenter(){
+
     }
 
     // Getters:

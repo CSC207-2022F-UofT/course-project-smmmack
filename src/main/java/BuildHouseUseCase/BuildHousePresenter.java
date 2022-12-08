@@ -21,6 +21,10 @@ public class BuildHousePresenter implements BuildHouseOutputBoundary {
         this.boardPanelViewModel = boardPanelViewModel;
     }
 
+    public BuildHousePresenter(){
+
+    }
+
     /**
      * Update the ViewModel's command panel about the successful or unsuccessful attempt to
      * build houses on the selected property; if successfully verified, update the ViewModel's tile

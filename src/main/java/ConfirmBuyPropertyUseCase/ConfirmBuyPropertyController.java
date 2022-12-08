@@ -10,6 +10,10 @@ public class ConfirmBuyPropertyController implements CommandPerformer {
         this.inputBoundaryBuyProperty = inputBoundaryBuyProperty;
     }
 
+    public ConfirmBuyPropertyController(){
+
+    }
+
     // The string command input that the player types when the question to initiate buy property is asked.
     // The command can either be yes if the player wants to purchase the landed on property, no otherwise.
     // If any command other than yes or no is received, throws error indicating the input is not found.
