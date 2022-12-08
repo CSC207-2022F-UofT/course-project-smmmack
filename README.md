@@ -81,7 +81,7 @@ Each player starts with 1000 Tbucks. It is up to the player what they want to do
    
 ***Game Commands:***
    
-To perfrom any actions, the players must write the following commands into the command line, corresponding to an action.
+To perform any actions, the players must write the following commands into the command line, corresponding to an action.
 
 Saving/Starting a Game:
 "read_campaign": Read from a save file to resume a game.
