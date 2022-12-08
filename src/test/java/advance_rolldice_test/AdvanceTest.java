@@ -1,3 +1,5 @@
+package advance_rolldice_test;
+
 import AdvanceUseCase.*;
 import MainEntities.CampaignAccess;
 import MainEntities.Campaign;
