@@ -9,19 +9,14 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
     private CommandPanelViewModel commandPanelViewModel;
     private PlayerPanelViewModel playerPanelViewModel;
     private BoardPanelViewModel boardPanelViewModel;
-    private TileViewModel tileViewModel;
-    private PlayerViewModel playerViewModel;
+    private InputMapDictionary mapDictionary;
 
     public ConfirmBuyPropertyPresenter(CommandPanelViewModel commandPanelViewModel,
                                        PlayerPanelViewModel playerPanelViewModel,
-                                       BoardPanelViewModel boardPanelViewModel,
-                                       PlayerViewModel playerViewModel,
-                                       TileViewModel tileViewModel) {
+                                       BoardPanelViewModel boardPanelViewModel) {
         this.commandPanelViewModel = commandPanelViewModel;
         this.playerPanelViewModel = playerPanelViewModel;
         this.boardPanelViewModel = boardPanelViewModel;
-        this.playerViewModel = playerViewModel;
-        this.tileViewModel = tileViewModel;
     }
 
     public ConfirmBuyPropertyPresenter(){
@@ -29,14 +24,6 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
     }
 
     // Getters & Setters:
-
-    public TileViewModel getTileViewModel() {
-        return tileViewModel;
-    }
-
-    public PlayerViewModel getPlayerViewModel() {
-        return playerViewModel;
-    }
 
     public CommandPanelViewModel getCommandPanelViewModel() {
         return commandPanelViewModel;
@@ -48,6 +35,10 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
 
     public PlayerPanelViewModel getPlayerPanelViewModel() {
         return playerPanelViewModel;
+    }
+
+    public InputMapDictionary getMapDictionary() {
+        return mapDictionary;
     }
 
     public void setPlayerPanelViewModel(PlayerPanelViewModel playerPanelViewModel) {
@@ -62,12 +53,8 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
         this.boardPanelViewModel = boardPanelViewModel;
     }
 
-    public void setTileViewModel(TileViewModel tileViewModel) {
-        this.tileViewModel = tileViewModel;
-    }
-
-    public void setPlayerViewModel(PlayerViewModel playerViewModel) {
-        this.playerViewModel = playerViewModel;
+    public void setMapDictionary(InputMapDictionary mapDictionary) {
+        this.mapDictionary = mapDictionary;
     }
 
     /**
@@ -93,5 +80,9 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
         tileVM.setOwnershipIndex(buyPropertyOutputData.playerIndex);
         playerVM.addPropertyAbbrs(propertyVM);
         playerPanelViewModel.notifyListeners();
+        boardPanelViewModel.notifyListeners();
+        commandPanelViewModel.notifyListeners();
+        mapDictionary.setCurrentMapName("after_move");
+
     }
 }
