@@ -85,7 +85,7 @@ To perform any actions, the players must write the following commands into the c
 
 Saving/Starting a Game:
 "read_campaign": Read from a save file to resume a game.
-"start_default_campaign": Start a new campaign.
+"start_default_campaign x" : Start a new campaign with x players. x should be an integer between and including 2 and 8.
 
 Before A Player Moves:
 "save_campaign": Save the current campaign.
