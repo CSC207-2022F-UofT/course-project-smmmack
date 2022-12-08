@@ -7,7 +7,6 @@ import Properties.NormalProperty;
 import Properties.Property;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class BuildHouseInteractor implements BuildHouseInputBoundary {
@@ -33,6 +32,16 @@ public class BuildHouseInteractor implements BuildHouseInputBoundary {
 
     public void setCampaignAccess(CampaignAccess campaignAccess) {
         this.campaignAccess = campaignAccess;
+    }
+
+    // BuildHouseOutputBoundary Getter & Setter:
+
+    public BuildHouseOutputBoundary getBuildHouseOutputBoundary() {
+        return buildHouseOutputBoundary;
+    }
+
+    public void setBuildHouseOutputBoundary(BuildHouseOutputBoundary buildHouseOutputBoundary) {
+        this.buildHouseOutputBoundary = buildHouseOutputBoundary;
     }
 
     /** Criteria(s): 1. The player must be the owner of the selected property.

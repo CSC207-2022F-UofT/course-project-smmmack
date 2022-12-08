@@ -23,7 +23,7 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
 
     }
 
-    // Campaign Getter & Setter:
+    // CampaignAccess Getter & Setter:
 
     public CampaignAccess getCampaignAccess() {
         return campaignAccess;
@@ -31,6 +31,17 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
 
     public void setCampaignAccess(CampaignAccess campaignAccess) {
         this.campaignAccess = campaignAccess;
+    }
+
+    // ConfirmBuyPropertyOutputBoundary Getter & Setter:
+
+
+    public ConfirmBuyPropertyOutputBoundary getResult() {
+        return result;
+    }
+
+    public void setResult(ConfirmBuyPropertyOutputBoundary result) {
+        this.result = result;
     }
 
     /**

@@ -32,6 +32,16 @@ public class InitiateBuyPropertyInteractor implements InitiateBuyPropertyInputBo
         this.campaignAccess = campaignAccess;
     }
 
+    // InitiateBuyPropertyOutputBoundary Getter & Setter:
+
+    public InitiateBuyPropertyOutputBoundary getOutput() {
+        return output;
+    }
+
+    public void setOutput(InitiateBuyPropertyOutputBoundary output) {
+        this.output = output;
+    }
+
     /**
      *
      * @return Returns true if the player lands on a Property tile,
