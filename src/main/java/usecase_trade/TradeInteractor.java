@@ -36,12 +36,10 @@ public class TradeInteractor implements TradeInputBoundary {
         player2.setCash(player2.getCash() - player2Cash + player1Cash);
         for (NormalProperty property : player1Properties) {
             player1.removeProperty(property);
-            player2.addProperty(property);
             player2.assignOwnership(property);
         }
         for (NormalProperty property : player2Properties) {
             player2.removeProperty(property);
-            player1.addProperty(property);
             player1.assignOwnership(property);
         }
     }
@@ -55,9 +53,9 @@ public class TradeInteractor implements TradeInputBoundary {
                                 ArrayList<NormalProperty> player2Properties, int player1Cash, int player2Cash) {
         if (player1Cash < player1.getCash() && player2Cash < player2.getCash()) {
             for (Property property : player1.getProperties()) {
-                if (player1Properties.contains(property) && property.getHouseLevel() == 0) {
+                if ((player1Properties.contains(property) ||player1Properties.size() == 0) && property.getHouseLevel() == 0) {
                     for (Property property2 : player2.getProperties()) {
-                        if (player2Properties.contains(property2) && property2.getHouseLevel() == 0) {
+                        if ((player2Properties.contains(property2) || player2Properties.size() == 0) && property2.getHouseLevel() == 0) {
                             return true;
                         }
                     }
@@ -77,8 +75,8 @@ public class TradeInteractor implements TradeInputBoundary {
         int player2Cash = inputData.getPlayer2Cash();
         ArrayList<NormalProperty> player1Properties = new ArrayList<>();
         ArrayList<NormalProperty> player2Properties = new ArrayList<>();
-        List<Integer> player1PropertyIndexes = null;
-        List<Integer> player2PropertyIndexes = null;
+        List<Integer> player1PropertyIndexes = new ArrayList<>();
+        List<Integer> player2PropertyIndexes =  new ArrayList<>();
         for (String property : inputData.getPlayer1Properties()) {
             player1Properties.add((NormalProperty) campaign.getCampaign().getPropertyByAbbr(property));
             player1PropertyIndexes.add(campaign.getCampaign().getTileIndexByAbbr(property));
@@ -111,6 +109,22 @@ public class TradeInteractor implements TradeInputBoundary {
     public TradeOutputBoundary getOutput() {
         return output;
     }
+    public void setOutput(tradeOutputBoundary output) {
+        this.output = output;
+    }
+    public CampaignAccess getCampaign() {
+        return campaign;
+    }
+    public void setCampaign(CampaignAccess campaign) {
+        this.campaign = campaign;
+    }
+    public tradeInputData getInputData() {
+        return inputData;
+    }
+    public void setInputData(tradeInputData inputData) {
+        this.inputData = inputData;
+    }
+
 
     public void setOutput(TradeOutputBoundary output) {
         this.output = output;

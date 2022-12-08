@@ -29,8 +29,8 @@ public class BuildHouseTest {
         Campaign defaultCampaign = defaultCampaignFactory.create();
         this.campaignAccess = new CampaignAccess();
         this.campaignAccess.setCampaign(defaultCampaign);
-        this.buildHouseInputBoundary = new BuildHouseInteractor();
         this.buildHouseOutputBoundary = new BuildHouseTestPresenter();
+        this.buildHouseInputBoundary = new BuildHouseInteractor(buildHouseOutputBoundary, campaignAccess);
     }
 
     /**

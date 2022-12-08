@@ -30,8 +30,9 @@ public class ConfirmBuyPropertyTest {
         Campaign defaultCampaign = defaultCampaignFactory.create();
         this.campaignAccess = new CampaignAccess();
         this.campaignAccess.setCampaign(defaultCampaign);
-        this.confirmBuyPropertyInputBoundary = new ConfirmBuyPropertyInteractor();
         this.confirmBuyPropertyOutputBoundary= new ConfirmBuyPropertyPresenter();
+        this.confirmBuyPropertyInputBoundary = new ConfirmBuyPropertyInteractor(confirmBuyPropertyOutputBoundary,
+                campaignAccess);
     }
 
     /**
