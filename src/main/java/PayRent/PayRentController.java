@@ -8,9 +8,7 @@ public class PayRentController {
 
     private PayRent.PayRentInputBoundary payRentInputBoundary;
 
-    public PayRentController(){
-
-    }
+    public PayRentController(){}
 
     public PayRentController(PayRent.PayRentInputBoundary payRentInputBoundary) {
         this.payRentInputBoundary = payRentInputBoundary;
