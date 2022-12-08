@@ -86,4 +86,30 @@ public class RollDiceInteractor implements RollDiceInputBoundary{
             output.performAction(outputMessage);
         }
     }
+
+    // Getters and Setters
+
+    public RollDiceOutputBoundary getOutput() {
+        return output;
+    }
+
+    public AdvanceInputBoundary getAdvanceInputBoundary() {
+        return advanceInputBoundary;
+    }
+
+    public CampaignAccess getCampaignAccess() {
+        return campaignAccess;
+    }
+
+    public void setAdvanceInputBoundary(AdvanceInputBoundary advanceInputBoundary) {
+        this.advanceInputBoundary = advanceInputBoundary;
+    }
+
+    public void setCampaignAccess(CampaignAccess campaignAccess) {
+        this.campaignAccess = campaignAccess;
+    }
+
+    public void setOutput(RollDiceOutputBoundary output) {
+        this.output = output;
+    }
 }
