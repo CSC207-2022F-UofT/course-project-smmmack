@@ -19,6 +19,23 @@ public class InitiateBuyPropertyPresenter implements InitiateBuyPropertyOutputBo
 
     }
 
+    // Getters & Setters:
+    public CommandPanelViewModel getCommandPanelViewModel() {
+        return commandPanelViewModel;
+    }
+
+    public void setCommandPanelViewModel(CommandPanelViewModel commandPanelViewModel) {
+        this.commandPanelViewModel = commandPanelViewModel;
+    }
+
+    public InputMapDictionary getInputMapDictionary() {
+        return inputMapDictionary;
+    }
+
+    public void setInputMapDictionary(InputMapDictionary inputMapDictionary) {
+        this.inputMapDictionary = inputMapDictionary;
+    }
+
     /**
      * Update the ViewModel's panel with the question asking the player whether the player
      * wants to purchase the property or not; the decision of the player can be yes if the player

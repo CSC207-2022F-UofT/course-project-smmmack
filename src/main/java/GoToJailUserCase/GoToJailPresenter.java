@@ -14,6 +14,34 @@ public class GoToJailPresenter implements GoToJailOutputBoundary{
         this.boardPanelViewModel = boardPanelViewModel;
     }
 
+    public BoardPanelViewModel getBoardPanelViewModel() {
+        return boardPanelViewModel;
+    }
+
+    public CommandPanelViewModel getCommandPanelViewModel() {
+        return commandPanelViewModel;
+    }
+
+    public PlayerPanelViewModel getJailPlayerPanelViewModel() {
+        return jailPlayerPanelViewModel;
+    }
+
+    public void setBoardPanelViewModel(BoardPanelViewModel boardPanelViewModel) {
+        this.boardPanelViewModel = boardPanelViewModel;
+    }
+
+    public void setCommandPanelViewModel(CommandPanelViewModel commandPanelViewModel) {
+        this.commandPanelViewModel = commandPanelViewModel;
+    }
+
+    public void setJailPlayerPanelViewModel(PlayerPanelViewModel jailPlayerPanelViewModel) {
+        this.jailPlayerPanelViewModel = jailPlayerPanelViewModel;
+    }
+
+    public GoToJailPresenter(){
+
+    }
+
     @Override
     public void performAction(GoToJailOutputData output) {
         jailPlayerPanelViewModel.getPlayerVMAt(output.getPlayerIndex()).setJailTurn(1);

@@ -37,6 +37,7 @@ public class BuildHouseTest {
      * Tests the successful build case for build house.
      * @throws Exception Throws exception otherwise.
      */
+
     @Test
     public void testBuildHouseSuccessfulBuild() throws Exception {
         BuildHouseInputData buildHouseInputData =
@@ -73,6 +74,7 @@ public class BuildHouseTest {
      * Tests the unsuccessful build house case due to not having enough funds.
      * @throws Exception Throws exception otherwise.
      */
+
     @Test
     public void testBuildHouseUnsuccessfulBuildNotEnoughFunds() throws Exception {
         BuildHouseInputData buildHouseInputData =
@@ -108,6 +110,7 @@ public class BuildHouseTest {
      * Tests the unsuccessful build case due to house level error.
      * @throws Exception Throws exception otherwise.
      */
+
     @Test
     public void testBuildHouseUnsuccessfulBuildHouseLevelError() throws Exception {
         BuildHouseInputData buildHouseInputData =

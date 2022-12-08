@@ -38,6 +38,7 @@ public class ConfirmBuyPropertyTest {
      * Tests the successful attempt of purchase.
      * @throws Exception Throws exception otherwise.
      */
+
     @Test
     public void testConfirmBuyPropertyConfirmedPurchase() throws Exception{
         Player player = campaignAccess.getCampaign().getCurrentPlayer();
@@ -62,6 +63,7 @@ public class ConfirmBuyPropertyTest {
      * Tests the unsuccessful attempt of purchase.
      * @throws Exception Throws exception otherwise.
      */
+
     @Test
     public void testConfirmBuyPropertyUnconfirmedPurchase() throws Exception{
         Player player = campaignAccess.getCampaign().getCurrentPlayer();

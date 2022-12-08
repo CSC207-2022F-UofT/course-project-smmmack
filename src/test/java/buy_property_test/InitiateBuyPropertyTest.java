@@ -40,6 +40,7 @@ public class InitiateBuyPropertyTest {
      * Tests whether the player is landed on a Property Tile.
      * @throws Exception If the tile is not found.
      */
+
     @Test
     public void testInitiateBuyPropertyCheckPropertyTile() throws Exception {
         Player player = campaignAccess.getCampaign().getCurrentPlayer();
