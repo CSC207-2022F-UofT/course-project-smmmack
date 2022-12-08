@@ -28,9 +28,27 @@ public class RollDiceController implements CommandPerformer{
         RollDiceInputData inputData = new RollDiceInputData(isUserInputValid());
     }
 
-
     @Override
     public void performCommand(String command) {
         performAction();
+    }
+
+    // Getters and Setters
+
+
+    public RollDiceInputBoundary getInputBoundary() {
+        return inputBoundary;
+    }
+
+    public String getUserInput() {
+        return userInput;
+    }
+
+    public void setUserInput(String userInput) {
+        this.userInput = userInput;
+    }
+
+    public void setInputBoundary(RollDiceInputBoundary inputBoundary) {
+        this.inputBoundary = inputBoundary;
     }
 }

@@ -33,4 +33,20 @@ public class RollDicePresenter implements RollDiceOutputBoundary{
         }
 
     }
+
+    public BoardPanelViewModel getBoardPanelViewModel() {
+        return boardPanelViewModel;
+    }
+
+    public CommandPanelViewModel getCommandPanelViewModel() {
+        return commandPanelViewModel;
+    }
+
+    public void setBoardPanelViewModel(BoardPanelViewModel boardPanelViewModel) {
+        this.boardPanelViewModel = boardPanelViewModel;
+    }
+
+    public void setCommandPanelViewModel(CommandPanelViewModel commandPanelViewModel) {
+        this.commandPanelViewModel = commandPanelViewModel;
+    }
 }
