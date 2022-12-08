@@ -78,3 +78,22 @@ Each player starts with 1000 Tbucks. It is up to the player what they want to do
 
 7. Last and most important rule is to have fun! Enjoy buying/selling/trading your favourite or least favourite
    places at the University of Toronto!!
+   
+***Game Commands:***
+   
+To perform any actions, the players must write the following commands into the command line, corresponding to an action.
+
+Saving/Starting a Game:
+"read_campaign": Read from a save file to resume a game.
+"start_default_campaign": Start a new campaign.
+
+Before A Player Moves:
+"save_campaign": Save the current campaign.
+"roll": Roll the dice for the current player.
+
+Buy Land:
+"yes": Confirm buy land
+"no": Decline buy land
+
+After a turn:
+"end_turn": End the cirrent player's turn and move to the next.
