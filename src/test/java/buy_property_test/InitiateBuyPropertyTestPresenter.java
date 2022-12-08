@@ -9,4 +9,5 @@ public class InitiateBuyPropertyTestPresenter implements InitiateBuyPropertyOutp
     public void performAction(InitiateBuyPropertyOutputData initiateBuyPropertyOutputData) {
         // Returns void for the Initiate Buy Property use case.
     }
+
 }

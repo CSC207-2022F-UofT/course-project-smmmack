@@ -6,13 +6,10 @@ import MainEntities.Campaign;
 import MainEntities.CampaignAccess;
 import MainEntities.DefaultCampaignFactory;
 import MainEntities.Player;
-import Properties.Property;
 import Tiles.PropertyTile;
 import Tiles.Tile;
 import ViewModel.InputMapDictionary;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 
 public class InitiateBuyPropertyTest {
