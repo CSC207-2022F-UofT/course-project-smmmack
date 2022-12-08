@@ -1,15 +1,20 @@
 package GoToJailUserCase;
 
 import MainEntities.CampaignAccess;
+import ViewModel.InputMapDictionary;
 
 public class GoToJailInteractor implements GoToJailInputBoundary{
     private GoToJailOutputBoundary output;
     private CampaignAccess campaignAccess;
 
 
-    public GoToJailInteractor(GoToJailOutputBoundary output, CampaignAccess campaignAccess) {
+    public GoToJailInteractor(GoToJailOutputBoundary output, CampaignAccess campaignAccess, InputMapDictionary inputMapDict) {
         this.output = output;
         this.campaignAccess = campaignAccess;
+    }
+
+    public GoToJailInteractor (){
+
     }
 
     public CampaignAccess getCampaignAccess() {

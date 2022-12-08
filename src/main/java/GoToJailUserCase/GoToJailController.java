@@ -2,6 +2,9 @@ package GoToJailUserCase;
 
 
 public class GoToJailController {
+    public GoToJailController(){
+
+    }
     private GoToJailInputBoundary inputBoundary;
 
     public GoToJailController(GoToJailInputBoundary inputBoundary) {
