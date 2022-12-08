@@ -1,8 +1,15 @@
 package AdvanceUseCase;
+import GoToJailUserCase.GoToJailInputBoundary;
+import GoToJailUserCase.GoToJailInputData;
+import InitiateBuyPropertyUseCase.InitiateBuyPropertyInputBoundary;
+import InitiateBuyPropertyUseCase.InitiateBuyPropertyInputData;
 import MainEntities.Player;
 import MainEntities.GameBoard;
+import PayRent.PayRentInputBoundary;
+import PayRent.PayRentInputData;
 import Tiles.*;
 import MainEntities.CampaignAccess;
+import DrawCardUseCase.*;
 
 
 public class AdvanceInteractor implements AdvanceInputBoundary{
@@ -11,67 +18,120 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
     AdvanceController.
      */
 
-    final AdvanceOutputBoundary output;
+    AdvanceOutputBoundary output;
+    CampaignAccess campaign;
+    DrawCardInputBoundary drawCardInputBoundary;
+    InitiateBuyPropertyInputBoundary initiateBuyPropertyIP;
+    PayRentInputBoundary payRentInputBoundary;
 
-    final CampaignAccess campaign;
-    final Player player;
-    final GameBoard board;
+    GoToJailInputBoundary jailInputBoundary;
 
+    public AdvanceInteractor(AdvanceOutputBoundary output, CampaignAccess campaign, DrawCardInputBoundary
+            drawCardInputBoundary, InitiateBuyPropertyInputBoundary initiateBuyPropertyIP, PayRentInputBoundary
+                             payRentInputBoundary, GoToJailInputBoundary jailInputBoundary) {
+        this.output = output;
+        this.campaign = campaign;
+        this.drawCardInputBoundary = drawCardInputBoundary;
+        this.initiateBuyPropertyIP = initiateBuyPropertyIP;
+        this.payRentInputBoundary = payRentInputBoundary;
+        this.jailInputBoundary = jailInputBoundary;
+    }
+
+    public AdvanceInteractor(){
+
+    }
+
+    /**
+     * Less constructor variables for testing.
+     */
     public AdvanceInteractor(AdvanceOutputBoundary output, CampaignAccess campaign) {
         this.output = output;
         this.campaign = campaign;
-        this.player = campaign.getCampaign().getCurrentPlayer();
-        this.board = campaign.getCampaign().getBoard();
     }
 
     /**
      * Advances the player to a new tile based off of diceSum. Calls on performTileAction to allow the user to
      * perform the tile's corresponding action.
      * @param diceSum the result of two dice rolls
+     * @return if inputMap should be updated in ViewModel layer.
      */
-    public void advancePlayer(int diceSum) throws Exception {
+    public boolean advancePlayer(int diceSum) throws Exception {
+
+        Player player = campaign.getCampaign().getCurrentPlayer();
+        GameBoard board = campaign.getCampaign().getBoard();
+
         int tilesMoved = diceSum + player.getLocation();
+
         // If the player moves past start, add $200 to the player's cash
         if (tilesMoved > board.getSize()){
-            player.setLocation(board.getSize() - tilesMoved);
+            player.setLocation(tilesMoved - board.getSize());
             player.gainCash(200);
-            performTileAction(player.getLocation());
         }
         else {
-            player.setLocation(diceSum + player.getLocation());
-            performTileAction(player.getLocation());
+            player.setLocation(tilesMoved);
         }
+
+        return performTileAction(player.getLocation());
     }
 
     /**
      * Allows the player to make an action based off the tile they are on.
      * @param tileIndex the index of the tile that the player is on.
+     * @return if inputMap should be updated in ViewModel layer.
      */
-    public void performTileAction(int tileIndex) throws Exception {
-        Tile tile = this.board.getTileAt(tileIndex);
+    public boolean performTileAction(int tileIndex) throws Exception {
+        GameBoard board = campaign.getCampaign().getBoard();
+        Tile tile = board.getTileAt(tileIndex);
 
         if (tile instanceof DrawCardTile){
-            // Calls on DrawCard use case after it is finished.
+            String deckType = ((DrawCardTile) tile).getDeck().getType();
+            DrawCardInputData drawCardInputData = new DrawCardInputData(deckType);
+            drawCardInputBoundary.performAction(drawCardInputData, deckType);
+
+            return true;
         } else if (tile instanceof GoToJailTile) {
-            // Calls on GoToJail use case after it is finished.
+
+            Player currPlayer = campaign.getCampaign().getCurrentPlayer();
+            Tile jailTile = new JailTile();
+            int jailTileIndex = campaign.getCampaign().getBoard().getTileIndex(jailTile);
+
+            GoToJailInputData jailInputData = new GoToJailInputData(true,
+                    campaign.getCampaign().getCurrPlayerIndex(), jailTileIndex);
+            jailInputBoundary.performAction(jailInputData);
+            return true;
+
         } else if (tile instanceof JailTile) {
             // Do nothing as the tile has no user actions.
-            return;
+            return true;
+
         } else if (tile instanceof ParkingTile) {
             // Do nothing as the tile has no user actions.
-            return;
+            return true;
+
         } else if (tile instanceof PropertyTile) {
             // Calls on BuyProperty and PayRent use case after it is finished.
             // What happens if the property is owned? If it isn't?
+
+            if (((PropertyTile) tile).getProperty().isOwnerless()) {
+                InitiateBuyPropertyInputData initiateBuyPropertyInput =
+                        new InitiateBuyPropertyInputData(true);
+                initiateBuyPropertyIP.performAction(initiateBuyPropertyInput);
+                return false;
+            }
+            else { // Call PayRent use case
+                PayRentInputData payRentInput = new PayRentInputData();
+                payRentInputBoundary.performAction(payRentInput);
+                return true;
+            }
         } else if (tile instanceof StartTile) {
-            // Calls on Start Tile use case? Will need to be discussed.
+            return true;
         }
         else{
             throw new Exception("Tile not found.");
         }
     }
 
-    // Todo: may need to change output message depending on tile type.
+
 
     /**
      * Performs the Advance action by moving the player forwards the appropriate number of tiles. The Advance use case
@@ -82,18 +142,24 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
      */
     @Override
     public void performAction(AdvanceInputData input) throws Exception {
+
+        Player player = campaign.getCampaign().getCurrentPlayer();
+        boolean updateInputMap;
+
         try {
             if (input.isConfirmRoll()) {
-                advancePlayer(input.diceSum);
+                updateInputMap = advancePlayer(input.diceSum);
                 AdvanceOutputData outputMessage =
                         new AdvanceOutputData("You have landed on this tile: " + player.getLocation(),
-                                true);
+                                true, player.getLocation(), campaign.getCampaign().getCurrPlayerIndex(),
+                                updateInputMap);
                 output.performAction(outputMessage);
             }
         }
         catch (Exception e){
             AdvanceOutputData outputMessage =
-                    new AdvanceOutputData("Error: Tile not found", false);
+                    new AdvanceOutputData("Error: Tile not found", false,
+                            player.getLocation(), campaign.getCampaign().getCurrPlayerIndex(), false);
             output.performAction(outputMessage);
         }
     }

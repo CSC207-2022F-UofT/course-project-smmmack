@@ -23,7 +23,11 @@ public class InputFieldView implements ActionListener{
         inputLabel.setText("Action in progress. Do not enter anything at this time.");
         String commandInput = textField.getText();
         if (inputMap.hasCommand(commandInput)){
-            inputMap.call(commandInput);
+            try {
+                inputMap.call(commandInput);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
 
         }
         else {

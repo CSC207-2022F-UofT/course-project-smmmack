@@ -3,7 +3,10 @@ package ConfirmBuyPropertyUseCase;
 public class ConfirmBuyPropertyOutputData {
 
     String message;
-    boolean confirmPurchase;
+    String confirmPurchase;
+    int playerIndex;
+    int playerCashAfterPurchase;
+    String propertyAbbreviation;
 
     /**
      *
@@ -13,11 +16,20 @@ public class ConfirmBuyPropertyOutputData {
      *
      * @param confirmPurchase The boolean parameter indicating whether the purchase is verified; true for
      *                        successful purchase, false otherwise.
+     *
+     * @param playerIndex The integer parameter indicating the player's index who attempts to buy the
+     *                    landed on property.
+     *
+     * @param propertyAbbreviation The String parameter indicating the landed on property's abbreviation.
      */
 
-    public ConfirmBuyPropertyOutputData(String message, boolean confirmPurchase){
+    public ConfirmBuyPropertyOutputData(String message, String confirmPurchase, int playerIndex,
+                                        int playerCashAfterPurchase, String propertyAbbreviation){
         this.message = message;
         this.confirmPurchase = confirmPurchase;
+        this.playerIndex = playerIndex;
+        this.playerCashAfterPurchase = playerCashAfterPurchase;
+        this.propertyAbbreviation = propertyAbbreviation;
     }
 
     // Getters:
@@ -25,19 +37,40 @@ public class ConfirmBuyPropertyOutputData {
     public String getMessage() {
         return message;
     }
-
-    public boolean getConfirmPurchase(){
+    
+    public String getConfirmPurchase(){
         return confirmPurchase;
     }
 
+    public int getPlayerIndex(){
+        return playerIndex;
+    }
+
+    public int getPlayerCashAfterPurchase() {
+        return playerCashAfterPurchase;
+    }
+
+    public String getPropertyAbbreviation() {
+        return propertyAbbreviation;
+    }
     // Setters:
 
     public void setMessage(String message) {
         this.message = message;
     }
-
-    public void setConfirmPurchase(boolean confirmPurchase){
+    public void setConfirmPurchase(String confirmPurchase){
         this.confirmPurchase = confirmPurchase;
     }
 
+    public void setPlayerIndex(int playerIndex){
+        this.playerIndex = playerIndex;
+    }
+
+    public void setPlayerCashAfterPurchase(int playerCashAfterPurchase) {
+        this.playerCashAfterPurchase = playerCashAfterPurchase;
+    }
+
+    public void setPropertyAbbreviation(String propertyAbbreviation) {
+        this.propertyAbbreviation = propertyAbbreviation;
+    }
 }

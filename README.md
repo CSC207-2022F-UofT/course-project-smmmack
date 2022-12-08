@@ -1,8 +1,8 @@
 # UofTorontopoly Monopoly Game
 
-Are you a monopoly lover? 
+Are you a monopoly lover?
 
-Or maybe it is your first time playing Monopoly? 
+Or maybe it is your first time playing Monopoly?
 
 Then this is one of the most exciting versions of Monopoly that you will ever play...
 Let's introduce you with the ***University of Toronto themed Monopoly Game***, **UofTorontopoly**! 
@@ -29,7 +29,7 @@ best study locations of UofT on the UofTorontopoly Game!
 
 *Our Mission*
 
-Implementing an original University of Toronto themed Monopoly Game, 
+Implementing an original University of Toronto themed Monopoly Game,
 based on Clean Architecture Design Patterns and Solid Principles.
 
 ## Things to Remember Before Starting to Play:
@@ -40,7 +40,7 @@ based on Clean Architecture Design Patterns and Solid Principles.
 - [ ] Each player will have consecutive turns, set at the start of the game.
 - [ ] For the rest of the game rules and how to play, please refer to the UofTorontopoly Manual below.
 
-**Work in progress, not the final version.**
+**Work in progress, not the final version.**  
 
 ## UofTorontopoly Manual
 

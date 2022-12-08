@@ -1,24 +1,27 @@
 package GoToJailUserCase;
 
 import ViewModel.CommandPanelViewModel;
-import ViewModel.PlayerViewModel;
+import ViewModel.PlayerPanelViewModel;
+import ViewModel.BoardPanelViewModel;
 public class GoToJailPresenter implements GoToJailOutputBoundary{
-    PlayerViewModel jailPlayerViewModel;
-    CommandPanelViewModel commandPanelViewModel;
-    public GoToJailPresenter(PlayerViewModel jailPlayerViewModel, CommandPanelViewModel commandPanelViewModel) {
-        this.jailPlayerViewModel = jailPlayerViewModel;
+    private PlayerPanelViewModel jailPlayerPanelViewModel;
+    private CommandPanelViewModel commandPanelViewModel;
+    private BoardPanelViewModel boardPanelViewModel;
+    public GoToJailPresenter(PlayerPanelViewModel jailPlayerPanelViewModel, CommandPanelViewModel commandPanelViewModel,
+                             BoardPanelViewModel boardPanelViewModel) {
+        this.jailPlayerPanelViewModel = jailPlayerPanelViewModel;
         this.commandPanelViewModel = commandPanelViewModel;
-    }
-
-    @Override
-    public void create(GoToJailOutputData outputData) {
+        this.boardPanelViewModel = boardPanelViewModel;
     }
 
     @Override
     public void performAction(GoToJailOutputData output) {
-        jailPlayerViewModel.setJailTurn(1);
+        jailPlayerPanelViewModel.getPlayerVMAt(output.getPlayerIndex()).setJailTurn(1);
+        jailPlayerPanelViewModel.getPlayerVMAt(output.getPlayerIndex()).setPosition(output.getJailIndex());
         String Message = output.getMessage();
         commandPanelViewModel.appendOutput(Message);
+        jailPlayerPanelViewModel.notifyListeners();
+        boardPanelViewModel.notifyListeners();
     }
 }
 

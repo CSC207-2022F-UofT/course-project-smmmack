@@ -1,13 +1,41 @@
 package ConfirmBuyPropertyUseCase;
 
-import ViewModel.CommandPanelViewModel;
+import ViewModel.*;
+import java.util.Collections;
+import java.util.List;
 
 public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoundary {
 
-    CommandPanelViewModel commandPanelViewModel;
+    private CommandPanelViewModel commandPanelViewModel;
+    private PlayerPanelViewModel playerPanelViewModel;
+    private BoardPanelViewModel boardPanelViewModel;
+    private TileViewModel tileViewModel;
+    private PlayerViewModel playerViewModel;
 
-    public ConfirmBuyPropertyPresenter(CommandPanelViewModel commandPanelViewModel) {
+    public ConfirmBuyPropertyPresenter(CommandPanelViewModel commandPanelViewModel,
+                                       PlayerPanelViewModel playerPanelViewModel,
+                                       BoardPanelViewModel boardPanelViewModel,
+                                       PlayerViewModel playerViewModel,
+                                       TileViewModel tileViewModel) {
         this.commandPanelViewModel = commandPanelViewModel;
+        this.playerPanelViewModel = playerPanelViewModel;
+        this.boardPanelViewModel = boardPanelViewModel;
+        this.playerViewModel = playerViewModel;
+        this.tileViewModel = tileViewModel;
+    }
+
+    public ConfirmBuyPropertyPresenter(){
+
+    }
+
+    // Getters:
+
+    public TileViewModel getTileViewModel() {
+        return tileViewModel;
+    }
+
+    public PlayerViewModel getPlayerViewModel() {
+        return playerViewModel;
     }
 
     /**
@@ -23,11 +51,15 @@ public class ConfirmBuyPropertyPresenter implements ConfirmBuyPropertyOutputBoun
     @Override
     public void performAction(ConfirmBuyPropertyOutputData buyPropertyOutputData){
         String message = buyPropertyOutputData.getMessage();
-
-        if(buyPropertyOutputData.confirmPurchase){
-            commandPanelViewModel.appendOutput(message);
-        } else {
-            commandPanelViewModel.appendOutput(message);
-        }
+        commandPanelViewModel.appendCommandLine(message, buyPropertyOutputData.getConfirmPurchase());
+        PlayerViewModel playerVM = playerPanelViewModel.getPlayerVMAt(buyPropertyOutputData.getPlayerIndex());
+        TileViewModel tileVM = boardPanelViewModel.getTileVMAt(playerVM.getPosition());
+        List<String> propertyVM = Collections.singletonList(buyPropertyOutputData.getPropertyAbbreviation());
+        int playerCashAfterPurchase = buyPropertyOutputData.getPlayerCashAfterPurchase();
+        playerPanelViewModel.getPlayerVMAt(buyPropertyOutputData.getPlayerIndex()).setCash(playerCashAfterPurchase);
+        playerVM.addPropertyAbbrs(propertyVM);
+        tileVM.setOwnershipIndex(buyPropertyOutputData.playerIndex);
+        playerVM.addPropertyAbbrs(propertyVM);
+        playerPanelViewModel.notifyListeners();
     }
 }

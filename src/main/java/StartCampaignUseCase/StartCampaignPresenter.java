@@ -22,7 +22,7 @@ public class StartCampaignPresenter implements StartCampaignOutputBoundary {
         this.mapDictionary = mapDictionary;
     }
 
-    //TODO: update this performAction to update all view models
+
     @Override
     public void performAction(StartCampaignOutputData outputData) {
         // Set up player panel VM
@@ -37,6 +37,7 @@ public class StartCampaignPresenter implements StartCampaignOutputBoundary {
             pVM.setCash(playerCashes.get(i));
             pVM.setPosition(playerLocations.get(i));
             pVM.setPropertyAbbrs(propertyLists.get(i));
+            pVM.setColor(playerColors.get(i));
             players.add(pVM);
         }
         playerPanelVM.setPlayerVMs(players);
