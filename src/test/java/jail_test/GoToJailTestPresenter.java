@@ -6,7 +6,7 @@ import GoToJailUserCase.GoToJailOutputData;
 /**
  * Presenter class for GoToJailTest so that the View iwll not need to be updated each test call.
  */
-public class GoToJailPresenter implements GoToJailOutputBoundary{
+public class GoToJailTestPresenter implements GoToJailOutputBoundary{
 
     @Override
     public void performAction(GoToJailOutputData outputData){
