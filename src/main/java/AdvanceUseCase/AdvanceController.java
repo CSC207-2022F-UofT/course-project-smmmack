@@ -28,6 +28,10 @@ public class AdvanceController {
         return diceSum;
     }
 
+    public void setDiceSum(int diceSum) {
+        this.diceSum = diceSum;
+    }
+
     public void setInputBoundary(AdvanceInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
     }
