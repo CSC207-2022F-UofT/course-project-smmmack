@@ -23,7 +23,7 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
 
     }
 
-    // Campaign Getter & Setter:
+    // CampaignAccess Getter & Setter:
 
     public CampaignAccess getCampaignAccess() {
         return campaignAccess;
@@ -33,13 +33,23 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
         this.campaignAccess = campaignAccess;
     }
 
+    // ConfirmBuyPropertyOutputBoundary Getter & Setter:
+
+
+    public ConfirmBuyPropertyOutputBoundary getResult() {
+        return result;
+    }
+
+    public void setResult(ConfirmBuyPropertyOutputBoundary result) {
+        this.result = result;
+    }
+
     /**
      *
      * @param decision The decision of the player rather to purchase or not purchase
      *                 the landed on property. If decision is true corresponding to 'yes',
      *                 then the player attempts to purchase the property with buyProperty().
      */
-
     public void decisionBuyProperty(boolean decision){
         if (decision){
             buyProperty(campaignAccess);
@@ -56,7 +66,6 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
      *         player has enough funds and thus can purchase this property, when player attempts to
      *         buy the property, player successfully purchases the property.
      */
-
     public int buyProperty(CampaignAccess campaignAccess){
         Campaign campaign = campaignAccess.getCampaign();
         int message;
@@ -115,6 +124,7 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
             outputDataMessage = new ConfirmBuyPropertyOutputData("Error: Purchase cannot proceed.",
                     "error", campaign.getCurrPlayerIndex(), playerCashAfterPurchase,
                     currProperty.getAbbreviation());
+            result.performAction(outputDataMessage);
         } result.performAction(outputDataMessage);
     }
 

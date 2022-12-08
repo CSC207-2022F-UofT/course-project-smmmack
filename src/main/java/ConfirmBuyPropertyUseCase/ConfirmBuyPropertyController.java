@@ -14,10 +14,15 @@ public class ConfirmBuyPropertyController implements CommandPerformer {
 
     }
 
-    // The string command input that the player types when the question to initiate buy property is asked.
-    // The command can either be yes if the player wants to purchase the landed on property, no otherwise.
-    // If any command other than yes or no is received, throws error indicating the input is not found.
-
+    /**
+     *
+     * @param command The string command input that the player types when the question to
+     *                initiate buy property is asked. The command can either be yes if the
+     *                player wants to purchase the landed on property, no otherwise. If any
+     *                command other than yes or no is received, throws error indicating the
+     *                input is not found.
+     * @throws Exception Throws exception otherwise, when the input is not found.
+     */
     public void performCommand(String command) throws Exception {
         boolean decision;
         if (command.equals("yes")){
@@ -32,13 +37,11 @@ public class ConfirmBuyPropertyController implements CommandPerformer {
     }
 
     // Getters:
-
     public ConfirmBuyPropertyInputBoundary getInputBoundaryBuyProperty(){
         return inputBoundaryBuyProperty;
     }
     
     // Setters:
-
     public void setInputBoundaryBuyProperty(ConfirmBuyPropertyInputBoundary inputBoundaryBuyProperty){
         this.inputBoundaryBuyProperty = inputBoundaryBuyProperty;
     }
