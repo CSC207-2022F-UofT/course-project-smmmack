@@ -2,8 +2,6 @@ package PayRent;
 
 public class PayRentInputData {
 
-    public PayRentInputData(){
-
-    }
+    public PayRentInputData(){}
 
     }
