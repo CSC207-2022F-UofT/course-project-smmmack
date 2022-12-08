@@ -5,7 +5,7 @@ Are you a monopoly lover?
 Or maybe it is your first time playing Monopoly?
 
 Then this is one of the most exciting versions of Monopoly that you will ever play...
-Let's introduce you with the ***University of Toronto themed Monopoly Game***, **UofTorontopoly**!
+Let's introduce you with the ***University of Toronto themed Monopoly Game***, **UofTorontopoly**! 
 
 This is exactly the right game for you if you are a current UofT student, or maybe an alumni,
 or a professor at UofT, or a future student that is planning to apply
@@ -47,10 +47,10 @@ based on Clean Architecture Design Patterns and Solid Principles.
 ***Contents:***
 
 - A monopoly gameboard catered to the University of Toronto.
-- Beneath the game board displays the players cards. This will
-  include the player's property cards, etc...
-- Beside the gameboard and player cards is a command line where you will see instructions on what to do and your
-  responses will also be typed in this commandline.
+- Beneath the game board displays the players cards. This will 
+include the player's property cards, etc...
+- Beside the gameboard and player cards is a command line where you will see instructions on what to do and your 
+responses will also be typed in this commandline.
 - The default campaign will include 32 tiles, 5 Community Chest cards, 5 Chance cards, a package of Properties, 2 Dice
 
 ***Money:***

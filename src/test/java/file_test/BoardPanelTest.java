@@ -3,10 +3,7 @@ package file_test;
 import View.BoardPanel;
 import View.CommandPanel;
 import View.PlayersPanel;
-import ViewModel.BoardPanelViewModel;
-import ViewModel.CommandPanelViewModel;
-import ViewModel.PlayerPanelViewModel;
-import ViewModel.PlayerViewModel;
+import ViewModel.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,7 +50,11 @@ public class BoardPanelTest {
         commandPanelViewModel.addListener(commandPanel);
         commandPanelViewModel.notifyListeners();
 
+        //Set up input map dictionary
+        InputMapDictionary mapDictionary = new InputMapDictionary();
+
         commandPanel.setViewModel(commandPanelViewModel);
+        commandPanel.setMapDictionary(mapDictionary);
 
         centralPanel.setLayout(new BorderLayout());
         centralPanel.add(boardPanel, BorderLayout.CENTER);

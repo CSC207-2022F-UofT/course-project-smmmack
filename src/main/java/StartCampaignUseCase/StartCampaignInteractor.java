@@ -15,6 +15,10 @@ public class StartCampaignInteractor implements StartCampaignInputBoundary {
     private CampaignAccess campaignAccess;
     private StartCampaignOutputBoundary outputBoundary;
 
+    public StartCampaignInteractor() {
+
+    }
+
     public StartCampaignInteractor(CampaignAccess campaignAccess, StartCampaignOutputBoundary outputBoundary) {
         this.campaignAccess = campaignAccess;
         this.outputBoundary = outputBoundary;
@@ -89,6 +93,7 @@ public class StartCampaignInteractor implements StartCampaignInputBoundary {
         outputData.setHouseLevels(houseLevels);
         outputData.setOwnershipIndexes(ownershipIndexes);
         outputData.setMortgagedList(mortgagedList);
+        outputData.setPlayerColors(playerColors);
 
         // Call the presenter
         outputBoundary.performAction(outputData);

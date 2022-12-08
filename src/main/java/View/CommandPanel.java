@@ -24,10 +24,14 @@ public class CommandPanel extends JPanel implements CommandPanelVMListener {
     public CommandPanel(CommandPanelViewModel viewModel) {
         this.textArea = new JTextArea("OutputArea");
         textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
         textArea.setColumns(32);
 
         this.textField = new JTextField("inputField");
         textField.setColumns(32);
+
+        //Listener to the enter key
         textField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent keyEvent) {
@@ -36,9 +40,33 @@ public class CommandPanel extends JPanel implements CommandPanelVMListener {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
                 if (keyEvent.getKeyCode() == KeyEvent.VK_ENTER) {
-                    CommandPanel.this.viewModel.appendInput(textField.getText());
-                    CommandPanel.this.viewModel.notifyListeners();
+                    // First, append an input to the view model and call for update, clear the input field
+                    String input = textField.getText();
+                    InputMapDictionary mapDict = CommandPanel.this.mapDictionary;
+                    CommandPanelViewModel viewModel = CommandPanel.this.viewModel;
+                    viewModel.appendInput(textField.getText());
+                    viewModel.notifyListeners();
                     textField.setText("");
+
+                    // Then, check the input map if the command is written anywhere
+                    String[] words = input.split("\\s+");
+                    String command = words[0];
+                    // If the current input map has the command
+                    if (mapDict.hasCommand(command)) {
+                        try {
+                            mapDict.callOnCurrentMap(input);
+                        }
+                        //If an exception is thrown from the deeper layers
+                        catch (Exception e) {
+                            viewModel.appendError(e.getMessage());
+                            viewModel.notifyListeners();
+                        }
+                    }
+                    // If the current map doesn't have the command
+                    else {
+                        viewModel.appendWarning("Command \"" + command + "\" not found");
+                        viewModel.notifyListeners();
+                    }
                 }
             }
 
