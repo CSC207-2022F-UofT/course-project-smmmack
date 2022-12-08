@@ -1,5 +1,6 @@
 package GoToJailUserCase;
 
+
 public class GoToJailController {
     private GoToJailInputBoundary inputBoundary;
 
@@ -7,9 +8,8 @@ public class GoToJailController {
         this.inputBoundary = inputBoundary;
     }
 
-    public void create(boolean jail) throws Exception {
-        GoToJailInputData inputData = new GoToJailInputData(jail);
-        this.inputBoundary.create(inputData);
+    public void performAction() throws Exception {
+
     }
 
     public GoToJailInputBoundary getInput() {
