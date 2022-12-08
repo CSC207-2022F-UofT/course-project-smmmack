@@ -1,19 +1,11 @@
 import AdvanceUseCase.*;
-import ConfirmBuyPropertyUseCase.ConfirmBuyPropertyController;
-import ConfirmBuyPropertyUseCase.ConfirmBuyPropertyInteractor;
-import ConfirmBuyPropertyUseCase.ConfirmBuyPropertyPresenter;
-import DrawCardUseCase.DrawCardController;
-import DrawCardUseCase.DrawCardInteractor;
-import DrawCardUseCase.DrawCardPresenter;
+import ConfirmBuyPropertyUseCase.*;
+import DrawCardUseCase.*;
 import EndTurnUseCase.*;
 import GoToJailUserCase.*;
-import InitiateBuyPropertyUseCase.InitiateBuyPropertyController;
-import InitiateBuyPropertyUseCase.InitiateBuyPropertyInteractor;
-import InitiateBuyPropertyUseCase.InitiateBuyPropertyPresenter;
+import InitiateBuyPropertyUseCase.*;
 import MainEntities.CampaignAccess;
-import PayRent.PayRentController;
-import PayRent.PayRentInteractor;
-import PayRent.PayRentPresenter;
+import PayRent.*;
 import ReadCampaignUseCase.*;
 import RollDiceUseCase.*;
 import SaveCampaignUseCase.*;
@@ -22,9 +14,7 @@ import StartDefCampUseCase.*;
 import View.*;
 import ViewModel.*;
 import ViewModel.InputMap;
-import tradeUseCase.TradeController;
-import tradeUseCase.TradeInteractor;
-import tradeUseCase.TradePresenter;
+import tradeUseCase.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -72,16 +62,26 @@ public class GameMain {
         RollDiceInteractor rollDiceInteractor = new RollDiceInteractor();
         RollDiceController rollDiceController = new RollDiceController();
         RollDicePresenter rollDicePresenter = new RollDicePresenter();
-        //TODO: finish setting up roll dice use case
+        rollDiceController.setInputBoundary(rollDiceInteractor);
+        rollDiceInteractor.setOutput(rollDicePresenter);
+        rollDiceInteractor.setCampaignAccess(campaignAccess);
 
         //Set up advance use case
         AdvanceInteractor advanceInteractor = new AdvanceInteractor();
         AdvanceController advanceController = new AdvanceController();
         AdvancePresenter advancePresenter = new AdvancePresenter();
-        //TODO: finish setting up advance use case
+        advanceController.setInputBoundary(advanceInteractor);
+        advanceInteractor.setCampaign(campaignAccess);
+        advanceInteractor.setOutput(advancePresenter);
+        rollDiceInteractor.setAdvanceInputBoundary(advanceInteractor);
 
-        //Set up go to jail use case
-        //TODO: finish setting up go to jail use case
+        //Set up go to jail use case]
+        GoToJailInteractor goToJailInteractor = new GoToJailInteractor();
+        GoToJailController goToJailController = new GoToJailController();
+        GoToJailPresenter goToJailPresenter = new GoToJailPresenter();
+        goToJailController.setInputBoundary(goToJailInteractor);
+        goToJailInteractor.setCampaignAccess(campaignAccess);
+        advanceInteractor.setJailInputBoundary(goToJailInteractor);
 
         //Set up pay rent use case
         PayRentInteractor payRentInteractor = new PayRentInteractor();
@@ -90,6 +90,7 @@ public class GameMain {
         payRentController.setPayRentInputBoundary(payRentInteractor);
         payRentInteractor.setCampaignAccess(campaignAccess);
         payRentInteractor.setPayRentOutputBoundary(payRentPresenter);
+        advanceInteractor.setPayRentInputBoundary(payRentInteractor);
 
         //Set up draw card use case
         DrawCardInteractor drawCardInteractor = new DrawCardInteractor();
@@ -98,14 +99,16 @@ public class GameMain {
         drawCardController.setDrawCardInput(drawCardInteractor);
         drawCardInteractor.setCampaignAccess(campaignAccess);
         drawCardInteractor.setDrawCardOutputBoundary(drawCardPresenter);
+        advanceInteractor.setDrawCardInputBoundary(drawCardInteractor);
 
         //Set up initiate buy property use case
         InitiateBuyPropertyInteractor initiateBuyPropertyInteractor = new InitiateBuyPropertyInteractor();
         InitiateBuyPropertyController initiateBuyPropertyController = new InitiateBuyPropertyController();
         InitiateBuyPropertyPresenter initiateBuyPropertyPresenter = new InitiateBuyPropertyPresenter();
-        initiateBuyPropertyController.setInputInitiatePurchase(initiateBuyPropertyInteractor);
+        initiateBuyPropertyController.setInputBoundaryInitiatePurchase(initiateBuyPropertyInteractor);
         initiateBuyPropertyInteractor.setCampaignAccess(campaignAccess);
-        //TODO: set output boundary for initiate buy property interactor
+        initiateBuyPropertyInteractor.setOutput(initiateBuyPropertyPresenter);
+        advanceInteractor.setInitiateBuyPropertyIP(initiateBuyPropertyInteractor);
 
         //Set up confirm buy property use case
         ConfirmBuyPropertyInteractor confirmBuyPropertyInteractor = new ConfirmBuyPropertyInteractor();
@@ -113,7 +116,7 @@ public class GameMain {
         ConfirmBuyPropertyPresenter confirmBuyPropertyPresenter = new ConfirmBuyPropertyPresenter();
         confirmBuyPropertyController.setInputBoundaryBuyProperty(confirmBuyPropertyInteractor);
         confirmBuyPropertyInteractor.setCampaignAccess(campaignAccess);
-        //TODO: set output boundary for confirm buy property interactor
+        confirmBuyPropertyInteractor.setResult(confirmBuyPropertyPresenter);
 
         //Set up end turn use case
         EndTurnInteractor endTurnInteractor = new EndTurnInteractor();
@@ -164,6 +167,10 @@ public class GameMain {
 
         //Link the input map dictionary to the presenters
         startCampaignPresenter.setMapDictionary(mapDictionary);
+        advancePresenter.setInputMapDictionary(mapDictionary);
+        initiateBuyPropertyPresenter.setInputMapDictionary(mapDictionary);
+        confirmBuyPropertyPresenter.setMapDictionary(mapDictionary);
+        endTurnPresenter.setMapDictionary(mapDictionary);
 
 
         //Set up JFrame
@@ -180,10 +187,11 @@ public class GameMain {
         //Set up player panel view model
         PlayerPanelViewModel playerPanelVM = new PlayerPanelViewModel();
         startCampaignPresenter.setPlayerPanelVM(playerPanelVM);
-        //TODO: assign player panel VM to go to jail use case
-        //TODO: assign player panel VM to pay rent use case
+        goToJailPresenter.setJailPlayerPanelViewModel(playerPanelVM);
+        payRentPresenter.setPlayerPanelViewModel(playerPanelVM);
         drawCardPresenter.setPlayerPanelVM(playerPanelVM);
-        //TODO: assign player panel VM to confirm buy property use case
+        confirmBuyPropertyPresenter.setPlayerPanelViewModel(playerPanelVM);
+        endTurnPresenter.setPlayerPanelVM(playerPanelVM);
         tradePresenter.setPlayerPanelVM(playerPanelVM);
 
         playerPanelVM.addListener(playersPanel);
@@ -196,9 +204,10 @@ public class GameMain {
         BoardPanelViewModel boardPanelViewModel = new BoardPanelViewModel();
         boardPanelViewModel.setPicPath("gfx/default_board.png");
         startCampaignPresenter.setBoardPanelVM(boardPanelViewModel);
-        //TODO: assign board panel VM to advance use case
-        //TODO: assign board panel VM to go to jail use case
-        //TODO: assign board panel VM to confirm buy property uses case
+        advancePresenter.setBoardPanelViewModel(boardPanelViewModel);
+        advancePresenter.setBoardPanelViewModel(boardPanelViewModel);
+        goToJailPresenter.setBoardPanelViewModel(boardPanelViewModel);
+        confirmBuyPropertyPresenter.setBoardPanelViewModel(boardPanelViewModel);
         tradePresenter.setBoardPanelVM(boardPanelViewModel);
 
         boardPanelViewModel.addListener(boardPanel);
@@ -213,7 +222,14 @@ public class GameMain {
         startCampaignPresenter.setCommandPanelVM(commandPanelViewModel);
         startDefCampPresenter.setCommandPanelVM(commandPanelViewModel);
         readCampaignPresenter.setCommandPanelVM(commandPanelViewModel);
-        //TODO: assign command panel VM to s
+        rollDicePresenter.setCommandPanelViewModel(commandPanelViewModel);
+        advancePresenter.setCommandPanelViewModel(commandPanelViewModel);
+        goToJailPresenter.setCommandPanelViewModel(commandPanelViewModel);
+        payRentPresenter.setCommandPanelViewModel(commandPanelViewModel);
+        drawCardPresenter.setCommandPanelVM(commandPanelViewModel);
+        initiateBuyPropertyPresenter.setCommandPanelViewModel(commandPanelViewModel);
+        confirmBuyPropertyPresenter.setCommandPanelViewModel(commandPanelViewModel);
+        endTurnPresenter.setCommandPanelVM(commandPanelViewModel);
 
         commandPanelViewModel.addListener(commandPanel);
         commandPanelViewModel.notifyListeners();
