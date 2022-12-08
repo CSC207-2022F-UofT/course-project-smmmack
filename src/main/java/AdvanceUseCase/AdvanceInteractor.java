@@ -8,6 +8,7 @@ import MainEntities.Deck;
 import MainEntities.Player;
 import MainEntities.GameBoard;
 import PayRent.PayRentInputBoundary;
+import PayRent.PayRentInputData;
 import Tiles.*;
 import MainEntities.CampaignAccess;
 import DrawCardUseCase.*;
@@ -119,7 +120,9 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
                 initiateBuyPropertyIP.performAction(initiateBuyPropertyInput);
                 return false;
             }
-            else {
+            else { // Call PayRent use case
+                PayRentInputData payRentInput = new PayRentInputData();
+                payRentInputBoundary.performAction(payRentInput);
                 return true;
             }
         } else if (tile instanceof StartTile) {
