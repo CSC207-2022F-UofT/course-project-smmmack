@@ -10,9 +10,7 @@ public class PayRentPresenter implements PayRentOutputBoundary{
     PlayerPanelViewModel playerPanelViewModel;
     CommandPanelViewModel commandPanelViewModel;
 
-    public PayRentPresenter(){
-
-    }
+    public PayRentPresenter(){}
 
 
     public PayRentPresenter(PlayerPanelViewModel playerPanelViewModel, CommandPanelViewModel commandPanelViewModel){
@@ -44,6 +42,26 @@ public class PayRentPresenter implements PayRentOutputBoundary{
         commandPanelViewModel.appendOutput(message);
         commandPanelViewModel.notifyListeners();
 
+    }
+
+    // getters
+
+    public PlayerPanelViewModel getPlayerPanelViewModel() {
+        return this.playerPanelViewModel;
+    }
+
+    public CommandPanelViewModel getCommandPanelViewModel(){
+        return this.commandPanelViewModel;
+    }
+
+
+    // setters
+    public void setPlayerPanelViewModel(PlayerPanelViewModel playerPanelViewModel){
+        this.playerPanelViewModel = playerPanelViewModel;
+    }
+
+    public void setCommandPanelViewModel(CommandPanelViewModel commandPanelViewModel){
+        this.commandPanelViewModel = commandPanelViewModel;
     }
 
 

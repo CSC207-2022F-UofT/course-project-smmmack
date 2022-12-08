@@ -7,16 +7,14 @@ import Tiles.Tile;
 
 public class PayRentInteractor implements PayRent.PayRentInputBoundary {
 
-    private PayRent.PayRentOutputBoundary payRentOutputBoundary;
+    private PayRentOutputBoundary payRentOutputBoundary;
     private CampaignAccess campaignAccess;
     private Player rentee;
     private Player renter;
     private Tile propertyLandedOn;
     private int rentMoney;
 
-    public PayRentInteractor(){
-
-    }
+    public PayRentInteractor(){}
 
     /**
      * Constructor for PayRentInteractor
