@@ -32,8 +32,9 @@ public class InitiateBuyPropertyTest {
         Campaign defaultCampaign = defaultCampaignFactory.create();
         this.campaignAccess = new CampaignAccess();
         this.campaignAccess.setCampaign(defaultCampaign);
-        this.initiateBuyPropertyInputBoundary = new InitiateBuyPropertyInteractor();
         this.initiateBuyPropertyOutputBoundary = new InitiateBuyPropertyPresenter();
+        this.initiateBuyPropertyInputBoundary = new InitiateBuyPropertyInteractor(initiateBuyPropertyOutputBoundary,
+                campaignAccess);
     }
 
     /**
