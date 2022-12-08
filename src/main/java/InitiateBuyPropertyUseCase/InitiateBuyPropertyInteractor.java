@@ -32,6 +32,16 @@ public class InitiateBuyPropertyInteractor implements InitiateBuyPropertyInputBo
         this.campaignAccess = campaignAccess;
     }
 
+    // InitiateBuyPropertyOutputBoundary Getter & Setter:
+
+    public InitiateBuyPropertyOutputBoundary getOutput() {
+        return output;
+    }
+
+    public void setOutput(InitiateBuyPropertyOutputBoundary output) {
+        this.output = output;
+    }
+
     /**
      *
      * @return Returns true if the player lands on a Property tile,
@@ -75,6 +85,7 @@ public class InitiateBuyPropertyInteractor implements InitiateBuyPropertyInputBo
             } catch (Exception exception) {
             initiateOutputDataQuestion = new InitiateBuyPropertyOutputData(null,
                     false);
+            output.performAction(initiateOutputDataQuestion);
 
         }
         output.performAction(initiateOutputDataQuestion);
