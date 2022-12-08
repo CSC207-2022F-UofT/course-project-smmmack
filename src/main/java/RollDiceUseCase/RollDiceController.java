@@ -24,12 +24,13 @@ public class RollDiceController implements CommandPerformer{
         return userInput.isBlank();
     }
 
-    void performAction() {
+    void performAction() throws Exception {
         RollDiceInputData inputData = new RollDiceInputData(isUserInputValid());
+        inputBoundary.performAction(inputData);
     }
 
     @Override
-    public void performCommand(String command) {
+    public void performCommand(String command) throws Exception {
         performAction();
     }
 
