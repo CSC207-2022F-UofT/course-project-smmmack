@@ -1,5 +1,5 @@
 package DrawCardUseCase;
-// Need to change pckage name
+// Need to change package name
 
 import Cards.Card;
 import Cards.GainCashCard;

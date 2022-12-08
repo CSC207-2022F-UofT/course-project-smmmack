@@ -27,7 +27,7 @@ public class DrawCardTest {
         Campaign defCampaign = defCampaignFactory.create();
         this.defCampaignAccess = new CampaignAccess();
         this.defCampaignAccess.setCampaign(defCampaign);
-        this.drawCardOutputBoundary = new DrawCardPresenter();
+        this.drawCardOutputBoundary = new DrawCardTestPresenter();
         this.drawCardInputBoundary = new DrawCardInteractor(drawCardOutputBoundary, defCampaignAccess);
     }
 
