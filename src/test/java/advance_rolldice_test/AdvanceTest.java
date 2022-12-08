@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class advance_test {
+public class AdvanceTest {
 
     InputMapDictionary inputMapDict;
     CampaignAccess defCampaignAccess;
@@ -19,7 +19,7 @@ public class advance_test {
 
     AdvanceInputBoundary advanceInputBoundary;
 
-    public advance_test() {
+    public AdvanceTest() {
         inputMapDict = new InputMapDictionary();
         resetDefaultCampaign();
     }

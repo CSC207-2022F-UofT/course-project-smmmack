@@ -3,8 +3,6 @@ import GoToJailUserCase.GoToJailInputBoundary;
 import GoToJailUserCase.GoToJailInputData;
 import InitiateBuyPropertyUseCase.InitiateBuyPropertyInputBoundary;
 import InitiateBuyPropertyUseCase.InitiateBuyPropertyInputData;
-import InitiateBuyPropertyUseCase.InitiateBuyPropertyInteractor;
-import MainEntities.Deck;
 import MainEntities.Player;
 import MainEntities.GameBoard;
 import PayRent.PayRentInputBoundary;
@@ -132,6 +130,7 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
             throw new Exception("Tile not found.");
         }
     }
+
 
 
     /**
