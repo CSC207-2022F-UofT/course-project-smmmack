@@ -1,16 +1,34 @@
 package PayRent;
 
+/**
+ * The PayRentController class takes user input and converts the input into datastructor that can be used by the
+ * PayRentInteractor.
+ */
 public class PayRentController {
 
-    private final PayRentInputBoundary payRentInputBoundary;
+    private PayRent.PayRentInputBoundary payRentInputBoundary;
 
-    public PayRentController(PayRentInputBoundary payRentInputBoundary) {
+    public PayRentController(){
+
+    }
+
+    public PayRentController(PayRent.PayRentInputBoundary payRentInputBoundary) {
         this.payRentInputBoundary = payRentInputBoundary;
     }
 
-    PayRentOutputData create (PayRentInputData newPayRentInputData) {
-        PayRentInputData payRentInputData = new PayRentInputData(newPayRentInputData.getRentee(),
-                newPayRentInputData.getPropertyLandedOn());
-        return payRentInputBoundary.create(payRentInputData);
+    public void performAction() throws Exception {
+        PayRent.PayRentInputData payRentInputData = new PayRent.PayRentInputData();
+        payRentInputBoundary.performAction(payRentInputData);
     }
+
+    // getters
+    public PayRent.PayRentInputBoundary getPayRentInputBoundary(){
+        return this.payRentInputBoundary;
+    }
+
+    // setters
+    public void setPayRentInputBoundary(PayRent.PayRentInputBoundary payRentInputBoundary){
+        this.payRentInputBoundary = payRentInputBoundary;
+    }
+
 }

@@ -1,14 +1,27 @@
 package AdvanceUseCase;
 
-import ViewModel.CommandLineViewModel;
-import ViewModel.CommandPanelViewModel;
+import ViewModel.*;
 
-public class AdvancePresenter implements AdvanceOutputBoundary{
+public class AdvancePresenter implements AdvanceOutputBoundary {
 
     CommandPanelViewModel commandPanelViewModel;
 
-    public AdvancePresenter(CommandPanelViewModel commandPanelViewModel){
+    BoardPanelViewModel boardPanelViewModel;
+
+    PlayerPanelViewModel playerPanelViewModel;
+
+    InputMapDictionary inputMapDictionary;
+
+    public AdvancePresenter(CommandPanelViewModel commandPanelViewModel, BoardPanelViewModel boardPanelViewModel,
+                            PlayerPanelViewModel playerPanelViewModel, InputMapDictionary inputMapDictionary){
         this.commandPanelViewModel = commandPanelViewModel;
+        this.boardPanelViewModel = boardPanelViewModel;
+        this.playerPanelViewModel = playerPanelViewModel;
+        this.inputMapDictionary = inputMapDictionary;
+    }
+
+    public AdvancePresenter(){
+
     }
 
     /**
@@ -18,12 +31,27 @@ public class AdvancePresenter implements AdvanceOutputBoundary{
      */
     @Override
     public void performAction(AdvanceOutputData outputData){
+
+        int playerIndex = outputData.getPlayerIndex();
+
+        PlayerViewModel playerVM = playerPanelViewModel.getPlayerVMAt(playerIndex);
+
         String advanceMessage = outputData.getAdvanceMessage();
         if (outputData.isAdvanceSuccess()){
             commandPanelViewModel.appendOutput(advanceMessage);
+            playerVM.setPosition(outputData.getPlayerLocation());
+
+            playerPanelViewModel.notifyListeners();
         } else {
             commandPanelViewModel.appendError(advanceMessage);
         }
+
+        if (outputData.isUpdateInputMap()){
+            inputMapDictionary.setCurrentMapName("after_move");
+
+        }
+
+        commandPanelViewModel.notifyListeners();
     }
 
 }

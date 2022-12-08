@@ -5,5 +5,5 @@ package UseCaseUniversal;
  * mapped and called by the InputMap.
  */
 public interface CommandPerformer {
-    void performCommand(String command);
+    void performCommand(String command) throws Exception;
 }

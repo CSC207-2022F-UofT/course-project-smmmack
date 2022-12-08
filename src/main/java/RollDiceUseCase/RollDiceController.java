@@ -1,13 +1,19 @@
 package RollDiceUseCase;
 
-public class RollDiceController {
+import UseCaseUniversal.CommandPerformer;
 
-    final RollDiceInputBoundary inputBoundary;
+public class RollDiceController implements CommandPerformer{
+
+    RollDiceInputBoundary inputBoundary;
     String userInput;
 
     public RollDiceController(RollDiceInputBoundary inputBoundary, String userInput) {
         this.inputBoundary = inputBoundary;
         this.userInput = userInput;
+    }
+
+    public RollDiceController(){
+
     }
 
     /**
@@ -20,5 +26,11 @@ public class RollDiceController {
 
     void performAction() {
         RollDiceInputData inputData = new RollDiceInputData(isUserInputValid());
+    }
+
+
+    @Override
+    public void performCommand(String command) {
+        performAction();
     }
 }
