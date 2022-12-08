@@ -1,8 +1,5 @@
-package drawCard_Test;
+package drawCard_test;
 
-import Cards.Card;
-import Cards.GainCashCard;
-import Cards.LoseCashCard;
 import DrawCardUseCase.*;
 import MainEntities.Campaign;
 import MainEntities.CampaignAccess;
@@ -11,7 +8,6 @@ import ViewModel.InputMapDictionary;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 
 public class DrawCardTest {
 

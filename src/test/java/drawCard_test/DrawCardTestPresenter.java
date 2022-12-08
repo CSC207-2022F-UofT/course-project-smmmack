@@ -1,4 +1,4 @@
-package drawCard_Test;
+package drawCard_test;
 
 import DrawCardUseCase.DrawCardOutputBoundary;
 import DrawCardUseCase.DrawCardOutputData;
