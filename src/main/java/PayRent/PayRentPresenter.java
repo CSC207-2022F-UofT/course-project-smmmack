@@ -46,5 +46,25 @@ public class PayRentPresenter implements PayRentOutputBoundary{
 
     }
 
+    // getters
+
+    public PlayerPanelViewModel getPlayerPanelViewModel() {
+        return this.playerPanelViewModel;
+    }
+
+    public CommandPanelViewModel getCommandPanelViewModel(){
+        return this.commandPanelViewModel;
+    }
+
+
+    // setters
+    public void setPlayerPanelViewModel(PlayerPanelViewModel playerPanelViewModel){
+        this.playerPanelViewModel = playerPanelViewModel;
+    }
+
+    public void setCommandPanelViewModel(CommandPanelViewModel commandPanelViewModel){
+        this.commandPanelViewModel = commandPanelViewModel;
+    }
+
 
 }
