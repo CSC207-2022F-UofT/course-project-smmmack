@@ -1,3 +1,5 @@
+package advance_rolldice_test;
+
 import AdvanceUseCase.AdvanceInputBoundary;
 import AdvanceUseCase.AdvanceInteractor;
 import AdvanceUseCase.AdvanceOutputBoundary;
@@ -7,11 +9,13 @@ import MainEntities.DefaultCampaignFactory;
 import MainEntities.Player;
 import RollDiceUseCase.*;
 import ViewModel.InputMapDictionary;
+import advance_rolldice_test.AdvanceTestPresenter;
+import advance_rolldice_test.RollDiceTestPresenter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class RollDiceTest {
+public class roll_dice_test {
     CampaignAccess defCampaignAccess;
     RollDiceOutputBoundary rollDiceOutputBoundary;
     RollDiceInputBoundary rollDiceInputBoundary;
@@ -19,7 +23,7 @@ public class RollDiceTest {
     AdvanceOutputBoundary advanceOutputBoundary;
     InputMapDictionary inputMapDict;
 
-    public RollDiceTest(){
+    public roll_dice_test(){
 
     }
 

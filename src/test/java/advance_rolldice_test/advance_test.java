@@ -1,3 +1,5 @@
+package advance_rolldice_test;
+
 import AdvanceUseCase.*;
 import MainEntities.CampaignAccess;
 import MainEntities.Campaign;
@@ -8,7 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class AdvanceTest {
+public class advance_test {
 
     InputMapDictionary inputMapDict;
     CampaignAccess defCampaignAccess;
@@ -17,7 +19,7 @@ public class AdvanceTest {
 
     AdvanceInputBoundary advanceInputBoundary;
 
-    public AdvanceTest() {
+    public advance_test() {
         inputMapDict = new InputMapDictionary();
         resetDefaultCampaign();
     }
