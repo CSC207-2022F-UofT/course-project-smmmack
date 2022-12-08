@@ -36,6 +36,7 @@ public class RollDiceController implements CommandPerformer{
 
     // Getters and Setters
 
+
     public RollDiceInputBoundary getInputBoundary() {
         return inputBoundary;
     }
