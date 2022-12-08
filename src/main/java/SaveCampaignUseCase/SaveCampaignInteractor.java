@@ -12,8 +12,13 @@ import java.io.ObjectOutputStream;
  * TODO: might use another input format: the user might input only a file name instead of the full address.
  */
 public class SaveCampaignInteractor implements SaveCampaignInputBoundary {
+    public static final String ROOT_PATH = "saves/";
     private CampaignAccess campaignAccess;
     private SaveCampaignOutputBoundary outputBoundary;
+
+    public SaveCampaignInteractor() {
+
+    }
 
     public SaveCampaignInteractor(CampaignAccess campaignAccess, SaveCampaignOutputBoundary outputBoundary) {
         this.campaignAccess = campaignAccess;
@@ -22,7 +27,7 @@ public class SaveCampaignInteractor implements SaveCampaignInputBoundary {
 
     @Override
     public void performAction(SaveCampaignInputData inputData) {
-        String address = inputData.getAddress();
+        String address = ROOT_PATH + inputData.getRelativePath();
         Campaign campaign = campaignAccess.getCampaign();
         //Save the campaign to the given address as a serializable object
         try {

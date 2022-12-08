@@ -6,6 +6,10 @@ public class SaveCampaignPresenter implements SaveCampaignOutputBoundary{
 
     private CommandPanelViewModel commandPanelVM;
 
+    public SaveCampaignPresenter() {
+
+    }
+
     public SaveCampaignPresenter(CommandPanelViewModel commandPanelVM) {
         this.commandPanelVM = commandPanelVM;
     }

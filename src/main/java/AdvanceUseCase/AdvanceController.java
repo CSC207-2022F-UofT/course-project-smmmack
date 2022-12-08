@@ -3,11 +3,14 @@ package AdvanceUseCase;
 public class AdvanceController {
 
     private AdvanceInputBoundary inputBoundary;
-    final int diceSum;
+    int diceSum;
 
     public AdvanceController(AdvanceInputBoundary inputBoundary, int diceSum) {
         this.inputBoundary = inputBoundary;
         this.diceSum = diceSum;
+    }
+
+    public AdvanceController() {
     }
 
     void performAction() throws Exception {
@@ -23,6 +26,10 @@ public class AdvanceController {
 
     public int getDiceSum() {
         return diceSum;
+    }
+
+    public void setDiceSum(int diceSum) {
+        this.diceSum = diceSum;
     }
 
     public void setInputBoundary(AdvanceInputBoundary inputBoundary) {

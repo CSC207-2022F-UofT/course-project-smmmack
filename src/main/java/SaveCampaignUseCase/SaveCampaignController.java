@@ -1,18 +1,31 @@
 package SaveCampaignUseCase;
 
+import Exceptions.WrongCommandArgumentException;
 import UseCaseUniversal.CommandPerformer;
 
 public class SaveCampaignController implements CommandPerformer {
     private SaveCampaignInputBoundary inputBoundary;
 
+    public SaveCampaignController() {
+
+    }
+
     public SaveCampaignController(SaveCampaignInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
     }
 
-    public void performCommand(String command) {
+    /**
+     * The command accepted by this controller should be in the following pattern: <br>
+     * save_campaign [file_name] <br>
+     * file name: the name of the save file.
+     * @param command the command string (user input)
+     */
+    public void performCommand(String command) throws Exception {
         String[] words = command.split("\\s+");
-        String address = words[1];
-        SaveCampaignInputData inputData = new SaveCampaignInputData(address);
+        if (words.length != 2)
+            throw new WrongCommandArgumentException("This command only takes in one parameter");
+        String relativePath = words[1];
+        SaveCampaignInputData inputData = new SaveCampaignInputData(relativePath);
         inputBoundary.performAction(inputData);
     }
 

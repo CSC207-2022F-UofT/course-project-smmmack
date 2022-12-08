@@ -1,44 +1,21 @@
 package PayRent;
 
-import MainEntities.Player;
-
 public class PayRentOutputData {
 
-    private Player rentee;
-    private Player renter;
-    private int rentMoney;
+    private String payRentOutputData;
 
-    public PayRentOutputData(Player rentee, Player renter, int rentMoney){
-        this.rentee = rentee;
-        this.renter = renter;
-        this.rentMoney = rentMoney;
+    public PayRentOutputData(String payRentOutputData){
+        this.payRentOutputData = payRentOutputData;
     }
 
     // getters
-    public Player getRentee(){
-        return this.rentee;
+    public String getPayRentOutputData(){
+        return this.payRentOutputData;
     }
-
-    public Player getRenter(){
-        return this.renter;
-    }
-
-    public int getRentMoney(){
-        return this.rentMoney;
-    }
-
 
     // setters
-    public void setRentee(Player rentee){
-        this.rentee = rentee;
-    }
-
-    public void setRenter(Player renter){
-        this.renter = renter;
-    }
-
-    public void setRentMoney(int rentMoneyPaid){
-        this.rentMoney = rentMoneyPaid;
+    public void setPayRentOutputData(String payRentOutputData){
+        this.payRentOutputData = payRentOutputData;
     }
 
 }

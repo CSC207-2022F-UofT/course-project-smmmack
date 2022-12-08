@@ -7,13 +7,9 @@ import AdvanceUseCase.*;
 
 public class RollDiceInteractor implements RollDiceInputBoundary{
 
-    final RollDiceOutputBoundary output;
+    RollDiceOutputBoundary output;
 
-    final CampaignAccess campaignAccess;
-
-    final GameBoard board;
-
-    Player player;
+    CampaignAccess campaignAccess;
 
     AdvanceInputBoundary advanceInputBoundary;
 
@@ -21,9 +17,11 @@ public class RollDiceInteractor implements RollDiceInputBoundary{
                               advanceInputBoundary) {
         this.output = output;
         this.campaignAccess = campaignAccess;
-        board = campaignAccess.getCampaign().getBoard(); //Should not be instance attribute
-        player = campaignAccess.getCampaign().getCurrentPlayer();
         this.advanceInputBoundary = advanceInputBoundary;
+    }
+
+    public RollDiceInteractor(){
+
     }
 
     /**
@@ -47,21 +45,23 @@ public class RollDiceInteractor implements RollDiceInputBoundary{
         // Set up new input data for advance use case.
         AdvanceInputData advanceInput = new AdvanceInputData(diceRolls[0] + diceRolls[1]);
 
+        advanceInputBoundary.performAction(advanceInput);
 
-        //If a double is rolled:
-        if (diceRolls[0] == diceRolls[1]) {
-            if (numDoubles == 2) {
-                // Sends player to jail if three doubles are rolled
-            } else {
-                // Otherwise call advance use case, then let user roll dice again using recursive call.
-                advanceInputBoundary.performAction(advanceInput);
-                //Cal presenter
-                rollDice(numDoubles + 1);
-            }
-        }
-        else { // If a double is not rolled.
-            advanceInputBoundary.performAction(advanceInput);
-        }
+        // Note roll doubles is not implemented due to lack of time and complexity.
+//        //If a double is rolled:
+//        if (diceRolls[0] == diceRolls[1]) {
+//            if (numDoubles == 2) {
+//                // Sends player to jail if three doubles are rolled
+//            } else {
+//                // Otherwise call advance use case, then let user roll dice again using recursive call.
+//                advanceInputBoundary.performAction(advanceInput);
+//                //Cal presenter
+//                rollDice(numDoubles + 1);
+//            }
+//        }
+//        else { // If a double is not rolled.
+//            advanceInputBoundary.performAction(advanceInput);
+//        }
     }
 
     /**
@@ -85,5 +85,31 @@ public class RollDiceInteractor implements RollDiceInputBoundary{
                     new RollDiceOutputData("Please press any key to roll dice.", false);
             output.performAction(outputMessage);
         }
+    }
+
+    // Getters and Setters
+
+    public RollDiceOutputBoundary getOutput() {
+        return output;
+    }
+
+    public AdvanceInputBoundary getAdvanceInputBoundary() {
+        return advanceInputBoundary;
+    }
+
+    public CampaignAccess getCampaignAccess() {
+        return campaignAccess;
+    }
+
+    public void setAdvanceInputBoundary(AdvanceInputBoundary advanceInputBoundary) {
+        this.advanceInputBoundary = advanceInputBoundary;
+    }
+
+    public void setCampaignAccess(CampaignAccess campaignAccess) {
+        this.campaignAccess = campaignAccess;
+    }
+
+    public void setOutput(RollDiceOutputBoundary output) {
+        this.output = output;
     }
 }

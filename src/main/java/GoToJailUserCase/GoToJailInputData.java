@@ -1,17 +1,28 @@
 package GoToJailUserCase;
 
 public class GoToJailInputData {
-    boolean inJail;
+    private boolean inJail;
+    private int playerIndex;
+    private int tileIndex;
 
-    public GoToJailInputData(boolean jail) {
+    public GoToJailInputData(boolean jail, int playerIndex, int tileIndex) {
         this.inJail = jail;
+        this.playerIndex = playerIndex;
+        this.tileIndex = tileIndex;
     }
 
     public boolean getJail() {
         return inJail;
     }
 
-    public void setJail(boolean jail) {
-        this.inJail = jail;
+
+    public int getPlayerIndex(){
+        return playerIndex;
     }
+
+    public int getTileIndex(){
+        return tileIndex;
+    }
+
+
 }
