@@ -1,6 +1,6 @@
 package EndTurnUseCase;
 
-import MainEntities.Exceptions.WrongCommandArgumentException;
+import Exceptions.WrongCommandArgumentException;
 import UseCaseUniversal.CommandPerformer;
 
 public class EndTurnContoller implements CommandPerformer {

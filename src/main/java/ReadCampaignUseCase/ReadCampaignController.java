@@ -1,6 +1,6 @@
 package ReadCampaignUseCase;
 
-import MainEntities.Exceptions.WrongCommandArgumentException;
+import Exceptions.WrongCommandArgumentException;
 import UseCaseUniversal.CommandPerformer;
 
 public class ReadCampaignController implements CommandPerformer {

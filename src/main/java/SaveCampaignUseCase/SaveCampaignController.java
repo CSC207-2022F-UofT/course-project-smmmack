@@ -1,6 +1,6 @@
 package SaveCampaignUseCase;
 
-import MainEntities.Exceptions.WrongCommandArgumentException;
+import Exceptions.WrongCommandArgumentException;
 import UseCaseUniversal.CommandPerformer;
 
 public class SaveCampaignController implements CommandPerformer {

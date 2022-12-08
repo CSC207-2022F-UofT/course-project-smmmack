@@ -1,6 +1,6 @@
 package StartDefCampUseCase;
 
-import MainEntities.Exceptions.WrongCommandArgumentException;
+import Exceptions.WrongCommandArgumentException;
 import UseCaseUniversal.CommandPerformer;
 
 public class StartDefCampController implements CommandPerformer {
