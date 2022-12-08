@@ -75,6 +75,7 @@ public class InitiateBuyPropertyInteractor implements InitiateBuyPropertyInputBo
             } catch (Exception exception) {
             initiateOutputDataQuestion = new InitiateBuyPropertyOutputData(null,
                     false);
+            output.performAction(initiateOutputDataQuestion);
 
         }
         output.performAction(initiateOutputDataQuestion);

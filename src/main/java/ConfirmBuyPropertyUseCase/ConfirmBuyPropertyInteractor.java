@@ -115,6 +115,7 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
             outputDataMessage = new ConfirmBuyPropertyOutputData("Error: Purchase cannot proceed.",
                     "error", campaign.getCurrPlayerIndex(), playerCashAfterPurchase,
                     currProperty.getAbbreviation());
+            result.performAction(outputDataMessage);
         } result.performAction(outputDataMessage);
     }
 
