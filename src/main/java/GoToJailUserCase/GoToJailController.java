@@ -15,6 +15,10 @@ public class GoToJailController {
 
     }
 
+    public GoToJailInputBoundary getInputBoundary() {
+        return inputBoundary;
+    }
+
     public GoToJailInputBoundary getInput() {
         return inputBoundary;
     }
