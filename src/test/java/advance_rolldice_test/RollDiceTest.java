@@ -1,3 +1,5 @@
+package advance_rolldice_test;
+
 import AdvanceUseCase.AdvanceInputBoundary;
 import AdvanceUseCase.AdvanceInteractor;
 import AdvanceUseCase.AdvanceOutputBoundary;

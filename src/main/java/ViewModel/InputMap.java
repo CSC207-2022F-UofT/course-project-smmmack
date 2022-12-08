@@ -127,11 +127,12 @@ public class InputMap {
      * @throws InvalidParameterException when the input is not found.
      */
     public void call(String command) throws Exception {
-        CommandPerformer performer = this.getPerformer(command);
+        String header = command.split("\\s+")[0];
+        CommandPerformer performer = this.getPerformer(header);
         if (performer != null) {
             performer.performCommand(command);
         } else {
-            String message = "Command: " + command + " is not found in input map " + this.name + " or its appendices.";
+            String message = "Command: " + header + " is not found in input map " + this.name + " or its appendices.";
             throw new InvalidParameterException(message);
         }
     }

@@ -1,6 +1,4 @@
 package RollDiceUseCase;
-
-import AdvanceUseCase.AdvanceOutputBoundary;
 import ViewModel.*;
 
 public class RollDicePresenter implements RollDiceOutputBoundary{

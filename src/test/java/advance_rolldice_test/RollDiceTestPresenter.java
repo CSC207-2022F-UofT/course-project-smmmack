@@ -1,3 +1,5 @@
+package advance_rolldice_test;
+
 import RollDiceUseCase.RollDiceOutputBoundary;
 import RollDiceUseCase.RollDiceOutputData;
 

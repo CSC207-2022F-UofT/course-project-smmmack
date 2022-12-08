@@ -3,6 +3,10 @@ package StartCampaignUseCase;
 public class StartCampaignController {
     private StartCampaignInputBoundary inputBoundary;
 
+    public StartCampaignController() {
+
+    }
+
     public StartCampaignController(StartCampaignInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
     }

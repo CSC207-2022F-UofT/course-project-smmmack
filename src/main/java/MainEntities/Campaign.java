@@ -291,7 +291,7 @@ public class Campaign implements Serializable {
      * of the list, the index returns to 0.
      */
     public void incrementCurrPlayerIndex() {
-        currPlayerIndex = (currPlayerIndex + 1) / getPlayerNumber();
+        currPlayerIndex = (currPlayerIndex + 1) % getPlayerNumber();
     }
 
     /**

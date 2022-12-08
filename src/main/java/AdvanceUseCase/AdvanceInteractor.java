@@ -1,10 +1,15 @@
 package AdvanceUseCase;
-import BuyPropertyUseCase.BuyPropertyInputData;
+import GoToJailUserCase.GoToJailInputBoundary;
+import GoToJailUserCase.GoToJailInputData;
+import InitiateBuyPropertyUseCase.InitiateBuyPropertyInputBoundary;
+import InitiateBuyPropertyUseCase.InitiateBuyPropertyInputData;
 import MainEntities.Player;
 import MainEntities.GameBoard;
+import PayRent.PayRentInputBoundary;
+import PayRent.PayRentInputData;
 import Tiles.*;
 import MainEntities.CampaignAccess;
-import ViewModel.InputMapDictionary;
+import DrawCardUseCase.*;
 
 
 public class AdvanceInteractor implements AdvanceInputBoundary{
@@ -14,16 +19,34 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
      */
 
     AdvanceOutputBoundary output;
-
     CampaignAccess campaign;
+    DrawCardInputBoundary drawCardInputBoundary;
+    InitiateBuyPropertyInputBoundary initiateBuyPropertyIP;
+    PayRentInputBoundary payRentInputBoundary;
 
-    public AdvanceInteractor(AdvanceOutputBoundary output, CampaignAccess campaign) {
+    GoToJailInputBoundary jailInputBoundary;
+
+    public AdvanceInteractor(AdvanceOutputBoundary output, CampaignAccess campaign, DrawCardInputBoundary
+            drawCardInputBoundary, InitiateBuyPropertyInputBoundary initiateBuyPropertyIP, PayRentInputBoundary
+                             payRentInputBoundary, GoToJailInputBoundary jailInputBoundary) {
         this.output = output;
         this.campaign = campaign;
+        this.drawCardInputBoundary = drawCardInputBoundary;
+        this.initiateBuyPropertyIP = initiateBuyPropertyIP;
+        this.payRentInputBoundary = payRentInputBoundary;
+        this.jailInputBoundary = jailInputBoundary;
     }
 
     public AdvanceInteractor(){
 
+    }
+
+    /**
+     * Less constructor variables for testing.
+     */
+    public AdvanceInteractor(AdvanceOutputBoundary output, CampaignAccess campaign) {
+        this.output = output;
+        this.campaign = campaign;
     }
 
     /**
@@ -61,26 +84,43 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
         Tile tile = board.getTileAt(tileIndex);
 
         if (tile instanceof DrawCardTile){
-            // Calls on DrawCard use case after it is finished.
+            String deckType = ((DrawCardTile) tile).getDeck().getType();
+            DrawCardInputData drawCardInputData = new DrawCardInputData(deckType);
+            drawCardInputBoundary.performAction(drawCardInputData, deckType);
+
             return true;
         } else if (tile instanceof GoToJailTile) {
-            // Calls on GoToJail use case after it is finished.
+
+            Player currPlayer = campaign.getCampaign().getCurrentPlayer();
+            Tile jailTile = new JailTile();
+            int jailTileIndex = campaign.getCampaign().getBoard().getTileIndex(jailTile);
+
+            GoToJailInputData jailInputData = new GoToJailInputData(true,
+                    campaign.getCampaign().getCurrPlayerIndex(), jailTileIndex);
+            jailInputBoundary.performAction(jailInputData);
             return true;
+
         } else if (tile instanceof JailTile) {
             // Do nothing as the tile has no user actions.
             return true;
+
         } else if (tile instanceof ParkingTile) {
             // Do nothing as the tile has no user actions.
             return true;
+
         } else if (tile instanceof PropertyTile) {
             // Calls on BuyProperty and PayRent use case after it is finished.
             // What happens if the property is owned? If it isn't?
 
             if (((PropertyTile) tile).getProperty().isOwnerless()) {
+                InitiateBuyPropertyInputData initiateBuyPropertyInput =
+                        new InitiateBuyPropertyInputData(true);
+                initiateBuyPropertyIP.performAction(initiateBuyPropertyInput);
                 return false;
             }
-            else {
-                // TODO
+            else { // Call PayRent use case
+                PayRentInputData payRentInput = new PayRentInputData();
+                payRentInputBoundary.performAction(payRentInput);
                 return true;
             }
         } else if (tile instanceof StartTile) {
@@ -91,7 +131,7 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
         }
     }
 
-    // Todo: may need to change output message depending on tile type.
+
 
     /**
      * Performs the Advance action by moving the player forwards the appropriate number of tiles. The Advance use case
