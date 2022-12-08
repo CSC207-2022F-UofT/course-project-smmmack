@@ -50,7 +50,6 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
      *                 the landed on property. If decision is true corresponding to 'yes',
      *                 then the player attempts to purchase the property with buyProperty().
      */
-
     public void decisionBuyProperty(boolean decision){
         if (decision){
             buyProperty(campaignAccess);
@@ -67,7 +66,6 @@ public class ConfirmBuyPropertyInteractor implements ConfirmBuyPropertyInputBoun
      *         player has enough funds and thus can purchase this property, when player attempts to
      *         buy the property, player successfully purchases the property.
      */
-
     public int buyProperty(CampaignAccess campaignAccess){
         Campaign campaign = campaignAccess.getCampaign();
         int message;

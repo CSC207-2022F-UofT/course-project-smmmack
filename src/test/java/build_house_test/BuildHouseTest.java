@@ -22,7 +22,6 @@ public class BuildHouseTest {
     CampaignAccess campaignAccess;
     BuildHouseOutputBoundary buildHouseOutputBoundary;
     BuildHouseInputBoundary buildHouseInputBoundary;
-    BuildHouseInteractor buildHouseInteractor;
 
     @BeforeEach
     public void setBuildHouseTest() {

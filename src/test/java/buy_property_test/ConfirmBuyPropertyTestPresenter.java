@@ -1,6 +1,5 @@
 package buy_property_test;
 
-import ConfirmBuyPropertyUseCase.ConfirmBuyPropertyInputBoundary;
 import ConfirmBuyPropertyUseCase.ConfirmBuyPropertyOutputBoundary;
 import ConfirmBuyPropertyUseCase.ConfirmBuyPropertyOutputData;
 

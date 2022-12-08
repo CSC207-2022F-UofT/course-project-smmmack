@@ -47,7 +47,6 @@ public class InitiateBuyPropertyInteractor implements InitiateBuyPropertyInputBo
      * @return Returns true if the player lands on a Property tile,
      *         otherwise returns false.
      */
-
     public boolean checkLandOnPropertyTile(){
         Campaign campaign = campaignAccess.getCampaign();
         int currPlayerIndex = campaign.getCurrPlayerIndex();

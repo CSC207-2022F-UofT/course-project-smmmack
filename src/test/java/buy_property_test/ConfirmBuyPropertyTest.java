@@ -9,7 +9,6 @@ import Properties.Property;
 import Tiles.PropertyTile;
 import ViewModel.InputMapDictionary;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 

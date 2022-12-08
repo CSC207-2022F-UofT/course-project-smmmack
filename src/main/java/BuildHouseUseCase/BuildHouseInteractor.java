@@ -56,7 +56,6 @@ public class BuildHouseInteractor implements BuildHouseInputBoundary {
      * @return Returns a boolean indicating whether the player satisfied the criteria to build houses
      * on the selected property; true if the player satisfies the criteria, false otherwise.
      */
-
     public boolean checkEligibility(Property property, int houseAmount) {
         Campaign campaign = campaignAccess.getCampaign();
         Player player = campaign.getCurrentPlayer();
@@ -79,7 +78,6 @@ public class BuildHouseInteractor implements BuildHouseInputBoundary {
      * @return Returns boolean if the player satisfies the criteria to build house(s) on the selected
      *         property.
      */
-
     public boolean checkHouseLevelDifference(Property property, int houseAmount) {
         NormalProperty propertyToBuild = (NormalProperty) property;
         NormalProperty[] normalPropertyListToCompare = propertyToBuild.getSameColorGroupProperties();
@@ -111,7 +109,6 @@ public class BuildHouseInteractor implements BuildHouseInputBoundary {
      *         property; false if the player does not satisfy the criteria that the checkEligibility()
      *         and checkHouseLevelDifference() functions check.
      */
-
     public boolean buildHouse (Property property,int houseAmount){
         Campaign campaign = campaignAccess.getCampaign();
         if (checkEligibility(property, houseAmount) &&
