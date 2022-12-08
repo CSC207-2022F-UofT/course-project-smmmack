@@ -1,21 +1,21 @@
 package SaveCampaignUseCase;
 
 public class SaveCampaignInputData {
-    private String address;
+    private String relativePath;
 
-    public SaveCampaignInputData(String address) {
-        this.address = address;
+    public SaveCampaignInputData(String relativePath) {
+        this.relativePath = relativePath;
     }
 
     //getters
 
-    public String getAddress() {
-        return address;
+    public String getRelativePath() {
+        return relativePath;
     }
 
     //setters
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setRelativePath(String relativePath) {
+        this.relativePath = relativePath;
     }
 }
