@@ -15,7 +15,7 @@ public class EndTurnInteractor implements EndTurnInputBoundary{
             campaign.incrementRoundCount();
         }
         String message = "Now it's player " + campaign.getCurrentPlayer().getName() + "'s turn. " +
-                "(Turn count: " + campaign.getRoundCount() + ")";
+                "(Round count: " + campaign.getRoundCount() + ")";
         outputBoundary.performAction(new EndTurnOutputData(message));
     }
 
