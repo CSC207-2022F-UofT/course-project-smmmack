@@ -1,17 +1,16 @@
 package tradeUseCase;
 import UseCaseUniversal.CommandPerformer;
-import Properties.NormalProperty;
 
 
-import java.util.ArrayList;
+public class TradeController implements CommandPerformer {
 
+    private TradeInputBoundary input;
 
+    public TradeController() {
 
-public class tradeController implements CommandPerformer {
+    }
 
-    private tradeInputBoundary input;
-
-    public tradeController(tradeInputBoundary input) {
+    public TradeController(TradeInputBoundary input) {
         this.input = input;
     }
 
@@ -31,19 +30,19 @@ public class tradeController implements CommandPerformer {
                 ("]", "").split(",\\s*");
         int cash2 = Integer.parseInt(words[5]);;
 
-        tradeInputData inputData = new tradeInputData(player, properties1,
+        TradeInputData inputData = new TradeInputData(player, properties1,
                 properties2, cash1, cash2);
        input.performAction(inputData);
     }
 
 
     //getters
-    public tradeInputBoundary getInput() {
+    public TradeInputBoundary getInput() {
         return input;
     }
 
     //setters
-    public void setInput(tradeInputBoundary input) {
+    public void setInput(TradeInputBoundary input) {
         this.input = input;
     }
 

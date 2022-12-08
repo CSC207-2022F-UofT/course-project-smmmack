@@ -5,7 +5,7 @@ import java.util.List;
 
 
 
-public class tradePresenter implements tradeOutputBoundary {
+public class TradePresenter implements TradeOutputBoundary {
     private CommandPanelViewModel commandPanelVM;
     private PlayerPanelViewModel playerPanelVM;
     private PlayerViewModel playerVM;
@@ -13,7 +13,11 @@ public class tradePresenter implements tradeOutputBoundary {
 
     private TileViewModel tileVM;
 
-    public tradePresenter(CommandPanelViewModel commandPanelVM, PlayerPanelViewModel playerPanelVM, TileViewModel tileVM,
+    public TradePresenter() {
+
+    }
+
+    public TradePresenter(CommandPanelViewModel commandPanelVM, PlayerPanelViewModel playerPanelVM, TileViewModel tileVM,
                           PlayerViewModel playerVM, BoardPanelViewModel boardPanelVM) {
         this.commandPanelVM = commandPanelVM;
         this.playerPanelVM = playerPanelVM;
@@ -22,7 +26,7 @@ public class tradePresenter implements tradeOutputBoundary {
         this.boardPanelVM = boardPanelVM;
     }
     @Override
-    public void performAction(tradeOutputData outputMessage) {
+    public void performAction(TradeOutputData outputMessage) {
         String outputData = outputMessage.getTradeMessage();
         this.commandPanelVM.appendOutput(outputData);
         if(outputMessage.getTradeSuccess()){

@@ -3,7 +3,7 @@ package tradeUseCase;
 
 import java.util.List;
 
-public class tradeOutputData {
+public class TradeOutputData {
     private Boolean tradeSuccess;
     private String tradeMessage;
     private int player1Index;
@@ -15,7 +15,7 @@ public class tradeOutputData {
     private List<Integer> player1NewPropertyIndex;
     private List<Integer> player2NewPropertyIndex;
 
-    public tradeOutputData(Boolean tradeSuccess, String tradeMessage, int player1Index, int player2Index,
+    public TradeOutputData(Boolean tradeSuccess, String tradeMessage, int player1Index, int player2Index,
                            int player1NewMoney, int player2NewMoney, String[] player1NewProperty,
                            String[] player2NewProperty, List<Integer> player1NewPropertyIndex, List<Integer> player2NewPropertyIndex) {
         this.tradeSuccess = tradeSuccess;

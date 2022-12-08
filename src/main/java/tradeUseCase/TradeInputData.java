@@ -1,13 +1,10 @@
 package tradeUseCase;
-import MainEntities.Player;
-import Properties.NormalProperty;
 
-import java.util.ArrayList;
 /**
  * TradeInteractor is a class that handles the trade between two players.
  */
 
-public class tradeInputData {
+public class TradeInputData {
     //change to private`
     boolean confirmTrade;
     String player2;
@@ -30,7 +27,7 @@ public class tradeInputData {
      */
 
 
-    public tradeInputData(String player2, String[] player1Properties,
+    public TradeInputData(String player2, String[] player1Properties,
                           String[] player2Properties, int player1Cash, int player2Cash) {
         this.confirmTrade = true;
         this.player2 = player2;
