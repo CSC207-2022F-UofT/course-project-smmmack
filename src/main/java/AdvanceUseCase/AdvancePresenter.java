@@ -20,6 +20,10 @@ public class AdvancePresenter implements AdvanceOutputBoundary {
         this.inputMapDictionary = inputMapDictionary;
     }
 
+    public AdvancePresenter(){
+
+    }
+
     /**
      * Updates viewmodel's command panel with results of the advance.
      * @param outputData message telling player which tile they have advanced to or an error

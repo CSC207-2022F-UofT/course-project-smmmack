@@ -13,13 +13,17 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
     AdvanceController.
      */
 
-    final AdvanceOutputBoundary output;
+    AdvanceOutputBoundary output;
 
-    final CampaignAccess campaign;
+    CampaignAccess campaign;
 
     public AdvanceInteractor(AdvanceOutputBoundary output, CampaignAccess campaign) {
         this.output = output;
         this.campaign = campaign;
+    }
+
+    public AdvanceInteractor(){
+
     }
 
     /**
@@ -73,11 +77,11 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
             // What happens if the property is owned? If it isn't?
 
             if (((PropertyTile) tile).getProperty().isOwnerless()) {
-                return true;
+                return false;
             }
             else {
                 // TODO
-                return false;
+                return true;
             }
         } else if (tile instanceof StartTile) {
             return true;

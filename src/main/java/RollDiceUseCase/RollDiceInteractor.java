@@ -7,9 +7,9 @@ import AdvanceUseCase.*;
 
 public class RollDiceInteractor implements RollDiceInputBoundary{
 
-    final RollDiceOutputBoundary output;
+    RollDiceOutputBoundary output;
 
-    final CampaignAccess campaignAccess;
+    CampaignAccess campaignAccess;
 
     AdvanceInputBoundary advanceInputBoundary;
 
@@ -18,6 +18,10 @@ public class RollDiceInteractor implements RollDiceInputBoundary{
         this.output = output;
         this.campaignAccess = campaignAccess;
         this.advanceInputBoundary = advanceInputBoundary;
+    }
+
+    public RollDiceInteractor(){
+
     }
 
     /**

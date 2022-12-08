@@ -4,12 +4,16 @@ import UseCaseUniversal.CommandPerformer;
 
 public class RollDiceController implements CommandPerformer{
 
-    final RollDiceInputBoundary inputBoundary;
+    RollDiceInputBoundary inputBoundary;
     String userInput;
 
     public RollDiceController(RollDiceInputBoundary inputBoundary, String userInput) {
         this.inputBoundary = inputBoundary;
         this.userInput = userInput;
+    }
+
+    public RollDiceController(){
+
     }
 
     /**
