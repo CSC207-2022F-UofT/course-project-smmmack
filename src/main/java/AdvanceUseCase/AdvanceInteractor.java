@@ -87,12 +87,11 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
             String deckType = ((DrawCardTile) tile).getDeck().getType();
             DrawCardInputData drawCardInputData = new DrawCardInputData(deckType);
             drawCardInputBoundary.performAction(drawCardInputData, deckType);
-
             return true;
+
         } else if (tile instanceof GoToJailTile) {
 
-            Player currPlayer = campaign.getCampaign().getCurrentPlayer();
-            Tile jailTile = new JailTile();
+            Tile jailTile = ((GoToJailTile) tile).getJailTile();
             int jailTileIndex = campaign.getCampaign().getBoard().getTileIndex(jailTile);
 
             GoToJailInputData jailInputData = new GoToJailInputData(true,
@@ -132,7 +131,6 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
     }
 
 
-
     /**
      * Performs the Advance action by moving the player forwards the appropriate number of tiles. The Advance use case
      * will be called by the RollDice use case and Card use cases.
@@ -162,5 +160,55 @@ public class AdvanceInteractor implements AdvanceInputBoundary{
                             player.getLocation(), campaign.getCampaign().getCurrPlayerIndex(), false);
             output.performAction(outputMessage);
         }
+    }
+
+    // Getters and Setters
+
+    public AdvanceOutputBoundary getOutput() {
+        return output;
+    }
+
+    public CampaignAccess getCampaign() {
+        return campaign;
+    }
+
+    public DrawCardInputBoundary getDrawCardInputBoundary() {
+        return drawCardInputBoundary;
+    }
+
+    public GoToJailInputBoundary getJailInputBoundary() {
+        return jailInputBoundary;
+    }
+
+    public InitiateBuyPropertyInputBoundary getInitiateBuyPropertyIP() {
+        return initiateBuyPropertyIP;
+    }
+
+    public PayRentInputBoundary getPayRentInputBoundary() {
+        return payRentInputBoundary;
+    }
+
+    public void setOutput(AdvanceOutputBoundary output) {
+        this.output = output;
+    }
+
+    public void setCampaign(CampaignAccess campaign) {
+        this.campaign = campaign;
+    }
+
+    public void setDrawCardInputBoundary(DrawCardInputBoundary drawCardInputBoundary) {
+        this.drawCardInputBoundary = drawCardInputBoundary;
+    }
+
+    public void setInitiateBuyPropertyIP(InitiateBuyPropertyInputBoundary initiateBuyPropertyIP) {
+        this.initiateBuyPropertyIP = initiateBuyPropertyIP;
+    }
+
+    public void setJailInputBoundary(GoToJailInputBoundary jailInputBoundary) {
+        this.jailInputBoundary = jailInputBoundary;
+    }
+
+    public void setPayRentInputBoundary(PayRentInputBoundary payRentInputBoundary) {
+        this.payRentInputBoundary = payRentInputBoundary;
     }
 }

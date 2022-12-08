@@ -8,7 +8,7 @@ public class BuildHouseInputData {
 
     /**
      *
-     * @param property The property selected by the current player to build house(s) on.
+     * @param property The property's abbreviation selected by the current player to build house(s) on.
      * @param numberOfHouse The integer amount indicating the number of house(s) the
      *                      player wants to build on the selected property.
      */

@@ -54,4 +54,36 @@ public class AdvancePresenter implements AdvanceOutputBoundary {
         commandPanelViewModel.notifyListeners();
     }
 
+    //Getters and Setters
+    public void setCommandPanelViewModel(CommandPanelViewModel commandPanelViewModel) {
+        this.commandPanelViewModel = commandPanelViewModel;
+    }
+
+    public void setBoardPanelViewModel(BoardPanelViewModel boardPanelViewModel) {
+        this.boardPanelViewModel = boardPanelViewModel;
+    }
+
+    public void setInputMapDictionary(InputMapDictionary inputMapDictionary) {
+        this.inputMapDictionary = inputMapDictionary;
+    }
+
+    public void setPlayerPanelViewModel(PlayerPanelViewModel playerPanelViewModel) {
+        this.playerPanelViewModel = playerPanelViewModel;
+    }
+
+    public CommandPanelViewModel getCommandPanelViewModel() {
+        return commandPanelViewModel;
+    }
+
+    public BoardPanelViewModel getBoardPanelViewModel() {
+        return boardPanelViewModel;
+    }
+
+    public InputMapDictionary getInputMapDictionary() {
+        return inputMapDictionary;
+    }
+
+    public PlayerPanelViewModel getPlayerPanelViewModel() {
+        return playerPanelViewModel;
+    }
 }
