@@ -1,7 +1,7 @@
 package advance_rolldice_test;
 
-import RollDiceUseCase.RollDiceOutputBoundary;
-import RollDiceUseCase.RollDiceOutputData;
+import usecase_rolldice.RollDiceOutputBoundary;
+import usecase_rolldice.RollDiceOutputData;
 
 public class RollDiceTestPresenter implements RollDiceOutputBoundary {
 

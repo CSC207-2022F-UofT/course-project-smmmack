@@ -1,7 +1,7 @@
 package build_house_test;
 
-import BuildHouseUseCase.BuildHouseOutputBoundary;
-import BuildHouseUseCase.BuildHouseOutputData;
+import usecase_buildhouse.BuildHouseOutputBoundary;
+import usecase_buildhouse.BuildHouseOutputData;
 
 public class BuildHouseTestPresenter implements BuildHouseOutputBoundary {
     @Override

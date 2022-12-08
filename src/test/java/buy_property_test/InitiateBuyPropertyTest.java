@@ -1,14 +1,14 @@
 package buy_property_test;
 
-import AdvanceUseCase.AdvanceInputData;
-import InitiateBuyPropertyUseCase.*;
-import MainEntities.Campaign;
-import MainEntities.CampaignAccess;
-import MainEntities.DefaultCampaignFactory;
-import MainEntities.Player;
-import Tiles.PropertyTile;
-import Tiles.Tile;
-import ViewModel.InputMapDictionary;
+import usecase_advance.AdvanceInputData;
+import usecase_initiatebuyproperty.*;
+import entities_main.Campaign;
+import entities_main.CampaignAccess;
+import entities_main.DefaultCampaignFactory;
+import entities_main.Player;
+import entities_tiles.PropertyTile;
+import entities_tiles.Tile;
+import viewmodel.InputMapDictionary;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 

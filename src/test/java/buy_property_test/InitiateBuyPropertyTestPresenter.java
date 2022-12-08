@@ -1,7 +1,7 @@
 package buy_property_test;
 
-import InitiateBuyPropertyUseCase.InitiateBuyPropertyOutputBoundary;
-import InitiateBuyPropertyUseCase.InitiateBuyPropertyOutputData;
+import usecase_initiatebuyproperty.InitiateBuyPropertyOutputBoundary;
+import usecase_initiatebuyproperty.InitiateBuyPropertyOutputData;
 
 public class InitiateBuyPropertyTestPresenter implements InitiateBuyPropertyOutputBoundary {
     @Override

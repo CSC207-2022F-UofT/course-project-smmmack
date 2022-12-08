@@ -1,9 +1,9 @@
 package file_test;
 
-import View.BoardPanel;
-import View.CommandPanel;
-import View.PlayersPanel;
-import ViewModel.*;
+import view.BoardPanel;
+import view.CommandPanel;
+import view.PlayersPanel;
+import viewmodel.*;
 
 import javax.swing.*;
 import java.awt.*;

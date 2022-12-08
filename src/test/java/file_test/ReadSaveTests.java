@@ -1,12 +1,12 @@
 package file_test;
 
-import MainEntities.Campaign;
-import MainEntities.CampaignAccess;
-import MainEntities.DefaultCampaignFactory;
-import ReadCampaignUseCase.ReadCampaignInputData;
-import ReadCampaignUseCase.ReadCampaignInteractor;
-import SaveCampaignUseCase.SaveCampaignInputData;
-import SaveCampaignUseCase.SaveCampaignInteractor;
+import entities_main.Campaign;
+import entities_main.CampaignAccess;
+import entities_main.DefaultCampaignFactory;
+import usecase_readcampaign.ReadCampaignInputData;
+import usecase_readcampaign.ReadCampaignInteractor;
+import usecase_savecampaign.SaveCampaignInputData;
+import usecase_savecampaign.SaveCampaignInteractor;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 

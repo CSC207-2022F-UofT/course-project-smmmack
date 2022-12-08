@@ -1,7 +1,7 @@
 package buy_property_test;
 
-import ConfirmBuyPropertyUseCase.ConfirmBuyPropertyOutputBoundary;
-import ConfirmBuyPropertyUseCase.ConfirmBuyPropertyOutputData;
+import usecause_confirmbuyproperty.ConfirmBuyPropertyOutputBoundary;
+import usecause_confirmbuyproperty.ConfirmBuyPropertyOutputData;
 
 public class ConfirmBuyPropertyTestPresenter implements ConfirmBuyPropertyOutputBoundary {
 

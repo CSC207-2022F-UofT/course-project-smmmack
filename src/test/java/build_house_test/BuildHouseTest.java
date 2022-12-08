@@ -1,16 +1,16 @@
 package build_house_test;
 
-import BuildHouseUseCase.BuildHouseInputBoundary;
-import BuildHouseUseCase.BuildHouseInputData;
-import BuildHouseUseCase.BuildHouseInteractor;
-import BuildHouseUseCase.BuildHouseOutputBoundary;
-import MainEntities.Campaign;
-import MainEntities.CampaignAccess;
-import MainEntities.DefaultCampaignFactory;
-import MainEntities.Player;
-import Properties.Property;
-import Properties.NormalProperty;
-import ViewModel.InputMapDictionary;
+import usecase_buildhouse.BuildHouseInputBoundary;
+import usecase_buildhouse.BuildHouseInputData;
+import usecase_buildhouse.BuildHouseInteractor;
+import usecase_buildhouse.BuildHouseOutputBoundary;
+import entities_main.Campaign;
+import entities_main.CampaignAccess;
+import entities_main.DefaultCampaignFactory;
+import entities_main.Player;
+import entities_properties.Property;
+import entities_properties.NormalProperty;
+import viewmodel.InputMapDictionary;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;

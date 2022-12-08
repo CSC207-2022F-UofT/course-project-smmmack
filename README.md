@@ -51,7 +51,7 @@ based on Clean Architecture Design Patterns and Solid Principles.
 include the player's property cards, etc...
 - Beside the gameboard and player cards is a command line where you will see instructions on what to do and your 
 responses will also be typed in this commandline.
-- The default campaign will include 32 tiles, 5 Community Chest cards, 5 Chance cards, a package of Properties, 2 Dice
+- The default campaign will include 32 tiles, 5 Community Chest cards, 5 Chance cards, a package of entities_properties, 2 Dice
 
 ***Money:***
 

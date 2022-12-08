@@ -1,10 +1,10 @@
 package drawCard_test;
 
-import DrawCardUseCase.*;
-import MainEntities.Campaign;
-import MainEntities.CampaignAccess;
-import MainEntities.DefaultCampaignFactory;
-import ViewModel.InputMapDictionary;
+import usecase_drawcard.*;
+import entities_main.Campaign;
+import entities_main.CampaignAccess;
+import entities_main.DefaultCampaignFactory;
+import viewmodel.InputMapDictionary;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
