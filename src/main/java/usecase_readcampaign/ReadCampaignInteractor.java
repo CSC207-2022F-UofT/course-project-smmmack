@@ -21,7 +21,7 @@ public class ReadCampaignInteractor implements ReadCampaignInputBoundary {
         try {
             FileInputStream fileStream = new FileInputStream(ROOT_PATH + relativePath);
             ObjectInputStream objectStream = new ObjectInputStream(fileStream);
-            Campaign campaign = (Campaign) objectStream.readObject();
+            Campaign campaign = (entities_main.Campaign) objectStream.readObject();
             campaignAccess.setCampaign(campaign);
             objectStream.close();
             fileStream.close();
