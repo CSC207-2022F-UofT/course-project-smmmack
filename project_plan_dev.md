@@ -82,7 +82,7 @@ must be reviewed and approved by other team members before merging.** :warning: 
 
 ![](images/closed_project.png)
 
-6. (Optional) Delete the feature branch after the pull request is merged. You can delete the branch by navigating to the **View all branches** page.
+6. (Optional) Delete the feature branch after the pull request is merged. You can delete the branch by navigating to the **view all branches** page.
 
 7. (Optional) If the feature is not completed or you want to continue working on the feature, you can reopen the issue and create new pull requests. Remember to change the status of the issue to **In Progress**.
 

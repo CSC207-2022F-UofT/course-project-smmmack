@@ -1,14 +1,14 @@
 package advance_rolldice_test;
 
-import AdvanceUseCase.AdvanceInputBoundary;
-import AdvanceUseCase.AdvanceInteractor;
-import AdvanceUseCase.AdvanceOutputBoundary;
-import MainEntities.Campaign;
-import MainEntities.CampaignAccess;
-import MainEntities.DefaultCampaignFactory;
-import MainEntities.Player;
-import RollDiceUseCase.*;
-import ViewModel.InputMapDictionary;
+import usecase_advance.AdvanceInputBoundary;
+import usecase_advance.AdvanceInteractor;
+import usecase_advance.AdvanceOutputBoundary;
+import entities_main.Campaign;
+import entities_main.CampaignAccess;
+import entities_main.DefaultCampaignFactory;
+import entities_main.Player;
+import usecase_rolldice.*;
+import viewmodel.InputMapDictionary;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

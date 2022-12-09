@@ -1,8 +1,8 @@
 package pay_rent_test;
 
-import MainEntities.*;
-import Properties.NormalProperty;
-import Properties.Property;
+import entities_main.*;
+import entities_properties.NormalProperty;
+import entities_properties.Property;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -28,13 +28,13 @@ public class PayRentTests {
 
         player1.setLocation(1);
 
-        PayRent.PayRentInputData payRentInputData = new PayRent.PayRentInputData();
-        PayRent.PayRentOutputBoundary payRentOutputBoundary = new PayRent.PayRentOutputBoundary() {
+        usecase_payrent.PayRentInputData payRentInputData = new usecase_payrent.PayRentInputData();
+        usecase_payrent.PayRentOutputBoundary payRentOutputBoundary = new usecase_payrent.PayRentOutputBoundary() {
             @Override
             public void performAction(String payRentOutputData) {}
         };
 
-        PayRent.PayRentInteractor payRentInteractor = new PayRent.PayRentInteractor(payRentOutputBoundary, campaignAccess);
+        usecase_payrent.PayRentInteractor payRentInteractor = new usecase_payrent.PayRentInteractor(payRentOutputBoundary, campaignAccess);
         payRentInteractor.performAction(payRentInputData);
 
         int player1CashAfter = player1.getCash();
@@ -66,13 +66,13 @@ public class PayRentTests {
 
         player1.setLocation(1);
 
-        PayRent.PayRentInputData payRentInputData = new PayRent.PayRentInputData();
-        PayRent.PayRentOutputBoundary payRentOutputBoundary = new PayRent.PayRentOutputBoundary() {
+        usecase_payrent.PayRentInputData payRentInputData = new usecase_payrent.PayRentInputData();
+        usecase_payrent.PayRentOutputBoundary payRentOutputBoundary = new usecase_payrent.PayRentOutputBoundary() {
             @Override
             public void performAction(String payRentOutputData) {}
         };
 
-        PayRent.PayRentInteractor payRentInteractor = new PayRent.PayRentInteractor(payRentOutputBoundary, campaignAccess);
+        usecase_payrent.PayRentInteractor payRentInteractor = new usecase_payrent.PayRentInteractor(payRentOutputBoundary, campaignAccess);
         payRentInteractor.performAction(payRentInputData);
 
         int player1CashAfter = player1.getCash();
@@ -104,13 +104,13 @@ public class PayRentTests {
 
         player1.setLocation(1);
 
-        PayRent.PayRentInputData payRentInputData = new PayRent.PayRentInputData();
-        PayRent.PayRentOutputBoundary payRentOutputBoundary = new PayRent.PayRentOutputBoundary() {
+        usecase_payrent.PayRentInputData payRentInputData = new usecase_payrent.PayRentInputData();
+        usecase_payrent.PayRentOutputBoundary payRentOutputBoundary = new usecase_payrent.PayRentOutputBoundary() {
             @Override
             public void performAction(String payRentOutputData) {}
         };
 
-        PayRent.PayRentInteractor payRentInteractor = new PayRent.PayRentInteractor(payRentOutputBoundary, campaignAccess);
+        usecase_payrent.PayRentInteractor payRentInteractor = new usecase_payrent.PayRentInteractor(payRentOutputBoundary, campaignAccess);
         payRentInteractor.performAction(payRentInputData);
 
         int player1CashAfter = player1.getCash();
@@ -146,13 +146,13 @@ public class PayRentTests {
 
         player1.setLocation(1);
 
-        PayRent.PayRentInputData payRentInputData = new PayRent.PayRentInputData();
-        PayRent.PayRentOutputBoundary payRentOutputBoundary = new PayRent.PayRentOutputBoundary() {
+        usecase_payrent.PayRentInputData payRentInputData = new usecase_payrent.PayRentInputData();
+        usecase_payrent.PayRentOutputBoundary payRentOutputBoundary = new usecase_payrent.PayRentOutputBoundary() {
             @Override
             public void performAction(String payRentOutputData) {}
         };
 
-        PayRent.PayRentInteractor payRentInteractor = new PayRent.PayRentInteractor(payRentOutputBoundary, campaignAccess);
+        usecase_payrent.PayRentInteractor payRentInteractor = new usecase_payrent.PayRentInteractor(payRentOutputBoundary, campaignAccess);
         payRentInteractor.performAction(payRentInputData);
 
         int player1CashAfter = player1.getCash();
@@ -185,13 +185,13 @@ public class PayRentTests {
 
         player1.setLocation(1);
 
-        PayRent.PayRentInputData payRentInputData = new PayRent.PayRentInputData();
-        PayRent.PayRentOutputBoundary payRentOutputBoundary = new PayRent.PayRentOutputBoundary() {
+        usecase_payrent.PayRentInputData payRentInputData = new usecase_payrent.PayRentInputData();
+        usecase_payrent.PayRentOutputBoundary payRentOutputBoundary = new usecase_payrent.PayRentOutputBoundary() {
             @Override
             public void performAction(String payRentOutputData) {}
         };
 
-        PayRent.PayRentInteractor payRentInteractor = new PayRent.PayRentInteractor(payRentOutputBoundary, campaignAccess);
+        usecase_payrent.PayRentInteractor payRentInteractor = new usecase_payrent.PayRentInteractor(payRentOutputBoundary, campaignAccess);
         payRentInteractor.performAction(payRentInputData);
 
         int player1CashAfter = player1.getCash();

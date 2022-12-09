@@ -1,11 +1,11 @@
 package advance_rolldice_test;
 
-import AdvanceUseCase.*;
-import MainEntities.CampaignAccess;
-import MainEntities.Campaign;
-import MainEntities.DefaultCampaignFactory;
-import MainEntities.Player;
-import ViewModel.InputMapDictionary;
+import usecase_advance.*;
+import entities_main.CampaignAccess;
+import entities_main.Campaign;
+import entities_main.DefaultCampaignFactory;
+import entities_main.Player;
+import viewmodel.InputMapDictionary;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package drawCard_test;
 
-import DrawCardUseCase.DrawCardOutputBoundary;
-import DrawCardUseCase.DrawCardOutputData;
+import usecase_drawcard.DrawCardOutputBoundary;
+import usecase_drawcard.DrawCardOutputData;
 
 public class DrawCardTestPresenter implements DrawCardOutputBoundary {
 

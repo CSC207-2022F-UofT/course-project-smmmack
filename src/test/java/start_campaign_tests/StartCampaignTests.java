@@ -1,15 +1,15 @@
 package start_campaign_tests;
 
-import MainEntities.Campaign;
-import MainEntities.CampaignAccess;
-import MainEntities.DefaultCampaignFactory;
-import MainEntities.Player;
-import Properties.NormalProperty;
-import StartCampaignUseCase.StartCampaignInputData;
-import StartCampaignUseCase.StartCampaignInteractor;
-import StartDefCampUseCase.StartDefCampInputData;
-import StartDefCampUseCase.StartDefCampInteractor;
-import Tiles.PropertyTile;
+import entities_main.Campaign;
+import entities_main.CampaignAccess;
+import entities_main.DefaultCampaignFactory;
+import entities_main.Player;
+import entities_properties.NormalProperty;
+import usecase_startcampaign.StartCampaignInputData;
+import usecase_startcampaign.StartCampaignInteractor;
+import usecase_startdefcamp.StartDefCampInputData;
+import usecase_startdefcamp.StartDefCampInteractor;
+import entities_tiles.PropertyTile;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 

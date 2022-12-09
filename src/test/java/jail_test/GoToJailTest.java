@@ -1,13 +1,10 @@
 package jail_test;
 
-import GoToJailUserCase.*;
-import MainEntities.CampaignAccess;
-import MainEntities.Campaign;
-import MainEntities.DefaultCampaignFactory;
-import MainEntities.Player;
-import Tiles.JailTile;
-import Tiles.Tile;
-import ViewModel.InputMapDictionary;
+import usecase_gotojail.*;
+import entities_main.CampaignAccess;
+import entities_main.Campaign;
+import entities_main.DefaultCampaignFactory;
+import viewmodel.InputMapDictionary;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

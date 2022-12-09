@@ -1,7 +1,7 @@
 package jail_test;
 
-import GoToJailUserCase.GoToJailOutputBoundary;
-import GoToJailUserCase.GoToJailOutputData;
+import usecase_gotojail.GoToJailOutputBoundary;
+import usecase_gotojail.GoToJailOutputData;
 
 /**
  * Presenter class for GoToJailTest so that the View iwll not need to be updated each test call.
