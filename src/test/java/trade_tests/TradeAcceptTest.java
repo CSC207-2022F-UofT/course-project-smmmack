@@ -1,28 +1,28 @@
 package trade_tests;
-import MainEntities.CampaignAccess;
-import MainEntities.Campaign;
-import MainEntities.DefaultCampaignFactory;
-import MainEntities.Player;
-import Properties.NormalProperty;
-import Properties.Property;
-import ViewModel.InputMapDictionary;
+import entities_main.CampaignAccess;
+import entities_main.Campaign;
+import entities_main.DefaultCampaignFactory;
+import entities_main.Player;
+import entities_properties.NormalProperty;
+import entities_properties.Property;
+import viewmodel.InputMapDictionary;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tradeUseCase.*;
+import usecase_trade.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class tradeAcceptTest {
+public class TradeAcceptTest {
 
     InputMapDictionary inputMapDict;
     CampaignAccess defCampaignAccess;
 
-    tradeOutputBoundary tradeOutputBoundary;
+    TradeOutputBoundary tradeOutputBoundary;
 
-    tradeInputBoundary tradeInputBoundary;
+    TradeInputBoundary tradeInputBoundary;
 
-    public tradeAcceptTest() {
+    public TradeAcceptTest() {
         inputMapDict = new InputMapDictionary();
         resetDefaultCampaign();
     }
@@ -36,7 +36,7 @@ public class tradeAcceptTest {
         this.defCampaignAccess = new CampaignAccess();
         this.defCampaignAccess.setCampaign(defCampaign);
         this.tradeOutputBoundary = new TradeTestPresenter();
-        this.tradeInputBoundary = new tradeInteractor(tradeOutputBoundary, defCampaignAccess);
+        this.tradeInputBoundary = new TradeInteractor(tradeOutputBoundary, defCampaignAccess);
     }
 
     /**
@@ -64,7 +64,7 @@ public class tradeAcceptTest {
         player1.setCash(4000);
         String[] test1 = new String[]{"L1"};
         String[] test2 = new String[]{"L3"};
-        tradeInputData tradeInput = new tradeInputData("p2", test1, test2, 2000, 0);
+        TradeInputData tradeInput = new TradeInputData("p2", test1, test2, 2000, 0);
         tradeInputBoundary.performAction(tradeInput);
         ArrayList<Property> player1NewProperties = player1.getProperties();
         ArrayList<Property> player0NewProperties = player0.getProperties();
@@ -103,7 +103,7 @@ public class tradeAcceptTest {
         player1.setCash(4000);
         String[] test1 = new String[]{"L1"};
         String[] test2 = new String[]{"L3"};
-        tradeInputData tradeInput = new tradeInputData("p2", test1, test2, 0, 0);
+        TradeInputData tradeInput = new TradeInputData("p2", test1, test2, 0, 0);
         tradeInputBoundary.performAction(tradeInput);
         ArrayList<Property> player1NewProperties = player1.getProperties();
         ArrayList<Property> player0NewProperties = player0.getProperties();
@@ -137,7 +137,7 @@ public class tradeAcceptTest {
         player1.setCash(4000);
         String[] test1 = new String[]{"L1"};
         String[] test2 = new String[]{};
-        tradeInputData tradeInput = new tradeInputData("p2", test1, test2, 2000, 0);
+        TradeInputData tradeInput = new TradeInputData("p2", test1, test2, 2000, 0);
         tradeInputBoundary.performAction(tradeInput);
         ArrayList<Property> player1NewProperties = player1.getProperties();
         ArrayList<Property> player0NewProperties = player0.getProperties();
