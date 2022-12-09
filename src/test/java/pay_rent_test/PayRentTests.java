@@ -122,6 +122,48 @@ public class PayRentTests {
     }
 
     /**
+     * Test PayRent when the rentee has negative cash and lands on a property where the house level is 5
+     * @throws Exception if there is an error
+     */
+    @Test
+    public void PayRentTestsNegativeCashNormalPropertyHouseUpFive() throws Exception {
+
+        Campaign defaultCampaignFactory = new DefaultCampaignFactory(2).create();
+        CampaignAccess campaignAccess = new CampaignAccess();
+        campaignAccess.setCampaign(defaultCampaignFactory);
+
+        Player player1 = campaignAccess.getCampaign().getPlayerCalled("p1");
+        Player player2 = campaignAccess.getCampaign().getPlayerCalled("p2");
+        player1.loseCash(-50);
+
+        NormalProperty land1 = (NormalProperty) campaignAccess.getCampaign().getPropertyByAbbr("L1");
+        land1.assignOwnership(player2);
+        land1.houseUp();
+        land1.houseUp();
+        land1.houseUp();
+        land1.houseUp();
+        land1.houseUp();
+
+        player1.setLocation(1);
+
+        PayRent.PayRentInputData payRentInputData = new PayRent.PayRentInputData();
+        PayRent.PayRentOutputBoundary payRentOutputBoundary = new PayRent.PayRentOutputBoundary() {
+            @Override
+            public void performAction(String payRentOutputData) {}
+        };
+
+        PayRent.PayRentInteractor payRentInteractor = new PayRent.PayRentInteractor(payRentOutputBoundary, campaignAccess);
+        payRentInteractor.performAction(payRentInputData);
+
+        int player1CashAfter = player1.getCash();
+        int player2CashAfter = player2.getCash();
+
+        Assertions.assertEquals(player1CashAfter, -300);
+        Assertions.assertEquals(player2CashAfter, 1250);
+
+    }
+
+    /**
      * Test PayRent when the rentee lands on a property where the renter owns all the same coloured property of that the
      * property the rentee landed on
      * @throws Exception if there is an error
