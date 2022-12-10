@@ -41,6 +41,7 @@ based on Clean Architecture Design Patterns and Solid Principles.
 - [ ] For the rest of the game rules and how to play, please refer to the UofTorontopoly Manual below.
 
 **Work in progress, not the final version.**  
+Dependency Diagram: https://docs.google.com/drawings/d/1guxgc3iXlnha_ts0hO3Yk_yEdKgGnaPNtL6vQpJy02k/edit?usp=sharing
 
 ## UofTorontopoly Manual
 
